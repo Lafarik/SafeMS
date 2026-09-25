@@ -62,6 +62,10 @@ den aktuellen Flashinhalt. Backups koennen Schluessel oder WLAN-Daten enthalten.
 - MeshCore: abschliessender Build mit CAD-Anpassung erfolgreich (56,8 s).
 - Vollstaendiges Backup: 16.777.216 Bytes lokal gesichert, blockweise und als Gesamtimage gegen die Geraete-MD5 verifiziert; SHA-256 separat lokal gespeichert.
 - Hardware-Registertest erfolgreich: vier aufeinanderfolgende Lesungen RegVersion=0x12, RegOpMode=0x09, IRQ=0. SPI-Pins bestaetigt, SX1276/77/78/79-Familie erkannt. Exakter RF-Typ und Frequenzband weiterhin offen.
-- Diagnose-Firmware geschrieben und Flash-Pruefsummen verifiziert. Sie ist aktuell installiert, MeshCore wurde noch nicht geflasht. Keine Funk-Aussendungen im Testcode.
-- Nach dem Upload war ein Watchdog-Reset erforderlich; einfacher RTS-Reset lieferte keine Programmausgabe.
+- Diagnose-Firmware zuvor geschrieben und Flash-Pruefsummen verifiziert. Keine Funk-Aussendungen im Diagnosecode.
+- Nach dem Diagnose-Upload war ein Watchdog-Reset erforderlich; einfacher RTS-Reset lieferte damals keine Programmausgabe.
+- Am 25.09.2026 MeshCore USB Companion v1.17.1 installiert. Bootloader, Partitionstabelle, Boot-App und Firmware beim Schreiben jeweils per Hash verifiziert. Dieser Start gelang nach dem normalen Upload-Reset.
+- USB-Protokoll 13 antwortet mit Herstellerkennung `senseBox Eye (experimental)`. Zwei Statusabfragen zeigen steigende Laufzeit (51/54 s), Fehlerflags 0, Sendewarteschlange 0 und RX-Fehler 0. Paketzaehler: RX 0 / TX 0. Kein Funk-Link nachgewiesen.
+- Ausgelesene Konfiguration: 869,618 MHz, 62,5 kHz Bandbreite, SF8, CR 4/5, 10 dBm; Client-Repeat deaktiviert. Diese Werte bestaetigen die Softwareeinstellung, nicht RF-Matching oder Reichweite.
+- Wiederholbare USB-Pruefung: `python scripts/check_meshcore_usb.py --port COM7`.
 - MeshCore RX/TX/CAD noch nicht am Geraet validiert.
