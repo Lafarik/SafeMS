@@ -1,0 +1,14 @@
+# Device images may contain credentials and must remain local.
+/backups/
+*.bin
+*.elf
+*.map
+*.log
+*.partial
+.pio/
+__pycache__/
+.env
+.env.*
+secrets.*
+# Downloaded, pinned upstream source; our variant lives in meshcore-overlay/.
+/MeshCore/
