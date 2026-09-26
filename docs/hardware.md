@@ -140,3 +140,20 @@ den aktuellen Flashinhalt. Backups koennen Schluessel oder WLAN-Daten enthalten.
   3.841.664-Byte-Image auf COM7 geflasht und Schreib-Hash verifiziert.
 - Danach Kiosk-UTC erneut synchronisiert, alle 19 Geraete-Selbsttests bestanden.
   USB-Laufzeit 2/5 s, Fehlerflags 0, Queue 0; Funkparameter unveraendert.
+
+## Meldungen ohne Zeilenumbruch
+
+- Parser akzeptiert jetzt `title: Stromausfall message: Hier ist dick Stromausfall, Leute!!`
+  in einer Zeile, auch mit MeshCore-Absenderpraefix. LF/CRLF, Tabs und direkt
+  vor dem message-Feld geschriebenes `\n` werden ebenfalls unterstuetzt.
+  Nachrichtentext wird nicht global umgeschrieben. Doppelte Feldmarker,
+  fehlende Inhalte, Freitext ohne Feldnamen und ungueltiges UTF-8 bleiben ausgeschlossen.
+- Alle 32 Parser-/JSON-/Verlauf-Pruefgruppen auf dem ESP32 bestanden,
+  einschliesslich der bisherigen Tests und der neuen Einzeiler-Grenzfaelle.
+- Build: 101.564 Bytes RAM, 3.843.821 Bytes Programm-Flash. Das
+  3.844.240-Byte-Image auf COM7 geflasht und Schreib-Hash verifiziert.
+- Kiosk-UTC erneut synchronisiert. USB-Laufzeit 3/6 s, Fehlerflags 0, Queue 0,
+  RX/TX/RX-Fehler 0. Der grosse WLAN-QR und die Funkkonfiguration bleiben erhalten.
+- Vor dem Update waren Pager und normale MeshCore-Nachrichtenqueue leer
+  (RX 3 / TX 0 / RX-Fehler 0). Die fruehere Nachricht war nicht mehr abrufbar;
+  eine neue Funknachricht ist fuer den Ende-zu-Ende-Test erforderlich.

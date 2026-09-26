@@ -10,8 +10,17 @@ title: Stromausfall
 message: Hier ist dick Stromausfall, Leute!!
 ```
 
-Zwischen den Feldern steht ein echter Zeilenumbruch. MeshCores automatisch
-vorangestellter Knotenname wird entfernt. `title` und `message` sind erforderlich;
+Alternativ koennen beide Felder in einer Zeile stehen:
+
+```text
+title: Stromausfall message: Hier ist dick Stromausfall, Leute!!
+```
+
+Zwischen den Feldern genuegen Leerzeichen oder Tabs; echte Zeilenumbrueche
+(LF/CRLF) funktionieren weiterhin. Auch ein als zwei Zeichen geschriebenes `\n`
+direkt vor `message:` wird als Feldtrenner akzeptiert; im Nachrichtentext
+werden solche Zeichenfolgen nicht ersetzt. MeshCores automatisch vorangestellter
+Knotenname wird entfernt. `title:` und `message:` sind weiterhin erforderlich;
 der Nachrichtentext darf mehrere Zeilen haben. Leere Felder, doppelte Feldnamen,
 ungueltiges UTF-8 und mehr als 160 UTF-8-Bytes einschliesslich des Knotennamen-
 Praefixes werden verworfen. MeshCore kann zu lange Texte bereits beim Sender
@@ -42,7 +51,7 @@ Die fehlerhafte automatisch erkannte Board-RTC wird fuer den Pager nicht benutzt
 python scripts/check_kiosk.py --port COM7 --sync-time
 ```
 
-Dieses Skript synchronisiert die separate Kiosk-Uhr vom Rechner, fuehrt 19
+Dieses Skript synchronisiert die separate Kiosk-Uhr vom Rechner, fuehrt die
 Parser/JSON/Verlauf-Pruefungen direkt auf dem ESP32 aus und liest den echten
 Meldungsspeicher. Eine erfolgreiche normale MeshCore-Zeitsynchronisierung
 synchronisiert ebenfalls die Kiosk-Uhr. USB-Erweiterungen: 112 + uint32 LE UTC

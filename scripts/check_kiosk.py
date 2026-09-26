@@ -24,7 +24,7 @@ def main():
         failures = struct.unpack_from('<I', query(port, b'\x72', b'\x72'), 1)[0]
         if failures:
             raise RuntimeError('Feed self-test failed, bitmap: ' + hex(failures))
-        print('19 on-device parser/JSON/history checks passed.')
+        print('On-device parser/JSON/history checks passed.')
         # A live arrival can change the snapshot between chunks; retry a torn read.
         for attempt in range(3):
             content = bytearray()

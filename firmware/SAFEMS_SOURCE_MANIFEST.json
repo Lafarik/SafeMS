@@ -4401,14 +4401,14 @@
     {
       "path": "variants/sensebox_eye/SafeMSFeed.h",
       "mode": "100644",
-      "bytes": 4313,
-      "sha256": "637323151498783948a22e6d8ece3734e9aca617b3cc37dbae7c5c858aca5cae"
+      "bytes": 5220,
+      "sha256": "680d61b4efd7ed0711c2203ed037219c64442b01aaa79cd018612b7be1c32281"
     },
     {
       "path": "variants/sensebox_eye/SafeMSFeedSelfTest.h",
       "mode": "100644",
-      "bytes": 2115,
-      "sha256": "a435f9b76c14815cb042261b8da6c800ad6485d34d51b767309d24f46aebfd11"
+      "bytes": 4412,
+      "sha256": "e91cfb64179f7412d452f56e451c315460396bc25dc1951d5f9498ff2d4cf38e"
     },
     {
       "path": "variants/sensebox_eye/SafeMSKiosk.cpp",
