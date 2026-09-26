@@ -5,6 +5,13 @@
 #include <DNSServer.h>
 #include <esp_http_server.h>
 #include <SafeMSWebAssets.h>
+#include "SafeMSFeed.h"
+#include "SafeMSFeedSelfTest.h"
+#include <esp_timer.h>
+#include <mbedtls/sha256.h>
+#include <freertos/queue.h>
+#include <freertos/semphr.h>
+#include <atomic>
 
 namespace {
 DNSServer dns;
@@ -12,15 +19,83 @@ httpd_handle_t server = nullptr;
 bool ready = false;
 volatile uint32_t lastMeshTick = 0;
 const IPAddress address(192, 168, 4, 1);
+QueueHandle_t incoming = nullptr;
+SemaphoreHandle_t historyMutex = nullptr;
+SafeMSFeed::History history;
+std::atomic<bool> workPending{false};
+std::atomic<uint32_t> accepted{0}, rejected{0}, dropped{0}, duplicates{0};
+portMUX_TYPE clockMutex = portMUX_INITIALIZER_UNLOCKED;
+int64_t clockOffsetMs = 0;
+std::atomic<bool> clockSynced{false};
+
+std::string snapshot() {
+  xSemaphoreTake(historyMutex, portMAX_DELAY);
+  auto body = SafeMSFeed::json(history.alerts, history.count);
+  xSemaphoreGive(historyMutex);
+  return body;
+}
+
+void sendSnapshot(void* argument) {
+  const int fd = int(reinterpret_cast<intptr_t>(argument));
+  if (httpd_ws_get_fd_info(server, fd) != HTTPD_WS_CLIENT_WEBSOCKET) return;
+  const auto body = snapshot();
+  httpd_ws_frame_t frame = {};
+  frame.type = HTTPD_WS_TYPE_TEXT;
+  frame.payload = reinterpret_cast<uint8_t*>(const_cast<char*>(body.data()));
+  frame.len = body.size();
+  if (httpd_ws_send_frame_async(server, fd, &frame) != ESP_OK) httpd_sess_trigger_close(server, fd);
+}
+
+void deliverMessages(void*) {
+  SafeMSFeed::Alert alert;
+  bool changed = false;
+  // Bounded work per callback; further arrivals are picked up by the main loop.
+  for (size_t i=0; i<SafeMSFeed::Capacity && xQueueReceive(incoming, &alert, 0)==pdTRUE; ++i) {
+    xSemaphoreTake(historyMutex, portMAX_DELAY);
+    const bool added = history.add(alert);
+    xSemaphoreGive(historyMutex);
+    if (added) { ++accepted; changed = true; } else ++duplicates;
+  }
+  if (changed) {
+    size_t count = 7; int clients[7];
+    if (httpd_get_client_list(server, &count, clients) == ESP_OK)
+      for (size_t i=0; i<count; ++i) sendSnapshot(reinterpret_cast<void*>(intptr_t(clients[i])));
+  }
+  workPending.store(false);
+}
+
+esp_err_t messagesHandler(httpd_req_t* request) {
+  const auto body = snapshot();
+  httpd_resp_set_type(request, "application/json; charset=utf-8");
+  httpd_resp_set_hdr(request, "Cache-Control", "no-store");
+  return httpd_resp_send(request, body.data(), body.size());
+}
+
+esp_err_t websocketHandler(httpd_req_t* request) {
+  if (request->method == HTTP_GET) {
+    // The handshake completes after this handler returns. Send from queued work.
+    return httpd_queue_work(server, sendSnapshot, reinterpret_cast<void*>(intptr_t(httpd_req_to_sockfd(request))));
+  }
+  httpd_ws_frame_t frame = {};
+  if (httpd_ws_recv_frame(request, &frame, 0) != ESP_OK) return ESP_FAIL;
+  // Browsers may only request the current snapshot with a bounded text "refresh".
+  if (frame.type != HTTPD_WS_TYPE_TEXT || !frame.final || frame.len > 16) return ESP_FAIL;
+  uint8_t payload[17] = {};
+  frame.payload = payload;
+  if (httpd_ws_recv_frame(request, &frame, 16) != ESP_OK) return ESP_FAIL;
+  if (frame.len != 7 || memcmp(payload,"refresh",7)) return ESP_FAIL;
+  sendSnapshot(reinterpret_cast<void*>(intptr_t(httpd_req_to_sockfd(request))));
+  return ESP_OK;
+}
 
 esp_err_t statusHandler(httpd_req_t* request) {
-  char body[220];
+  char body[460];
   const uint32_t now = millis();
   const bool meshLoopRecent = lastMeshTick != 0 && uint32_t(now - lastMeshTick) < 1500;
   snprintf(body, sizeof(body),
-    "{\"mode\":\"test\",\"uptime_s\":%lu,\"wifi_clients\":%u,\"free_heap\":%u,\"min_free_heap\":%u,\"mesh_loop_recent\":%s}",
+    "{\"mode\":\"test\",\"uptime_s\":%lu,\"wifi_clients\":%u,\"free_heap\":%u,\"min_free_heap\":%u,\"mesh_loop_recent\":%s,\"pager_channel\":\"Krisenstab\",\"pager_accepted\":%u,\"pager_rejected\":%u,\"pager_dropped\":%u,\"pager_duplicates\":%u,\"pager_clock_synced\":%s}",
     (unsigned long)(now / 1000), WiFi.softAPgetStationNum(), ESP.getFreeHeap(),
-    ESP.getMinFreeHeap(), meshLoopRecent ? "true" : "false");
+    ESP.getMinFreeHeap(), meshLoopRecent ? "true" : "false", accepted.load(), rejected.load(), dropped.load(), duplicates.load(), clockSynced ? "true" : "false");
   httpd_resp_set_type(request, "application/json");
   httpd_resp_set_hdr(request, "Cache-Control", "no-store");
   return httpd_resp_send(request, body, HTTPD_RESP_USE_STRLEN);
@@ -119,6 +194,9 @@ esp_err_t pageHandler(httpd_req_t* request) {
 
 bool SafeMSKiosk::begin() {
   if (ready) return true;
+  if (!incoming) incoming = xQueueCreate(SafeMSFeed::Capacity, sizeof(SafeMSFeed::Alert));
+  if (!historyMutex) historyMutex = xSemaphoreCreateMutex();
+  if (!incoming || !historyMutex) return false;
   if (!WiFi.mode(WIFI_AP) || !WiFi.softAPConfig(address, address, IPAddress(255,255,255,0)) ||
       !WiFi.softAP("notfall.ms INFO", nullptr, 1, false, 4)) return false;
   WiFi.setSleep(false);
@@ -128,7 +206,8 @@ bool SafeMSKiosk::begin() {
     return false;
   }
   httpd_config_t config = HTTPD_DEFAULT_CONFIG();
-  config.max_open_sockets = 4;
+  config.max_open_sockets = 7; // Leave HTTP capacity alongside four live WebSockets.
+  config.stack_size = 6144;
   config.lru_purge_enable = true;
   config.recv_wait_timeout = 2;
   config.send_wait_timeout = 2;
@@ -140,7 +219,13 @@ bool SafeMSKiosk::begin() {
   status.uri = "/api/status"; status.method = HTTP_GET; status.handler = statusHandler;
   httpd_uri_t page = {};
   page.uri = "/*"; page.method = HTTP_GET; page.handler = pageHandler;
+  httpd_uri_t messages = {};
+  messages.uri = "/api/messages"; messages.method = HTTP_GET; messages.handler = messagesHandler;
+  httpd_uri_t websocket = {};
+  websocket.uri = "/ws"; websocket.method = HTTP_GET; websocket.handler = websocketHandler; websocket.is_websocket = true;
   if (httpd_register_uri_handler(server, &status) != ESP_OK ||
+      httpd_register_uri_handler(server, &messages) != ESP_OK ||
+      httpd_register_uri_handler(server, &websocket) != ESP_OK ||
       httpd_register_uri_handler(server, &page) != ESP_OK) {
     httpd_stop(server); server = nullptr; dns.stop(); WiFi.softAPdisconnect(true); return false;
   }
@@ -151,5 +236,47 @@ bool SafeMSKiosk::begin() {
 void SafeMSKiosk::loop() {
   lastMeshTick = millis();
   if (ready) dns.processNextRequest();
+  if (ready && uxQueueMessagesWaiting(incoming) && !workPending.exchange(true)) {
+    if (httpd_queue_work(server, deliverMessages, nullptr) != ESP_OK) workPending.store(false);
+  }
+}
+
+bool SafeMSKiosk::setClock(uint32_t seconds) {
+  if (seconds < 1767225600UL || seconds >= 4102444800UL) return false; // 2026..2099
+  portENTER_CRITICAL(&clockMutex);
+  clockOffsetMs = int64_t(seconds)*1000 - esp_timer_get_time()/1000;
+  clockSynced = true;
+  portEXIT_CRITICAL(&clockMutex);
+  return true;
+}
+
+void SafeMSKiosk::receiveChannelMessage(const char* channel, const char* text, uint32_t senderTimestamp) {
+  if (!channel || strcmp(channel,"Krisenstab")) return;
+  SafeMSFeed::Alert alert;
+  if (!SafeMSFeed::parse(channel,text,alert)) { ++rejected; return; }
+  portENTER_CRITICAL(&clockMutex);
+  const bool synced = clockSynced;
+  const int64_t now = esp_timer_get_time()/1000 + clockOffsetMs;
+  portEXIT_CRITICAL(&clockMutex);
+  // No internet is required. After a cold start, use the channel sender's UTC
+  // until the operator synchronizes this kiosk via USB or MeshCore device time.
+  if (!synced && (senderTimestamp < 1767225600UL || senderTimestamp >= 4102444800UL)) { ++rejected; return; }
+  alert.timestampMs = synced ? now : uint64_t(senderTimestamp)*1000;
+  uint8_t digest[32];
+  mbedtls_sha256_context hash;
+  mbedtls_sha256_init(&hash); mbedtls_sha256_starts_ret(&hash,0);
+  mbedtls_sha256_update_ret(&hash,reinterpret_cast<const uint8_t*>(&senderTimestamp),4);
+  mbedtls_sha256_update_ret(&hash,reinterpret_cast<const uint8_t*>(text),strlen(text));
+  mbedtls_sha256_finish_ret(&hash,digest); mbedtls_sha256_free(&hash);
+  strcpy(alert.id,"msg-");
+  for (int i=0;i<16;++i) snprintf(alert.id+4+i*2,3,"%02x",digest[i]);
+  if (!incoming || xQueueSend(incoming,&alert,0)!=pdTRUE) ++dropped;
+}
+
+uint32_t SafeMSKiosk::feedSelfTest() { return safeMSFeedSelfTest(); }
+uint16_t SafeMSKiosk::readFeed(uint16_t offset, char* output, uint16_t capacity) {
+  const auto body = historyMutex ? snapshot() : std::string("{\"messages\":[]}");
+  if (offset < body.size()) memcpy(output, body.data()+offset, std::min(size_t(capacity),body.size()-offset));
+  return body.size();
 }
 #endif

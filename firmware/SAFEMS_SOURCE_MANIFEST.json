@@ -4,6 +4,8 @@
   "upstream_file_count": 874,
   "modified_upstream_paths": [
     "examples/companion_radio/main.cpp",
+    "examples/companion_radio/MyMesh.cpp",
+    "examples/companion_radio/ui-new/UITask.cpp",
     "platformio.ini",
     "src/helpers/ui/SSD1306Display.cpp"
   ],
@@ -691,8 +693,8 @@
     {
       "path": "examples/companion_radio/MyMesh.cpp",
       "mode": "100644",
-      "bytes": 84669,
-      "sha256": "3c746cc6cab9ca6f9c623ff861f02c14a3b3849b78559d1d5cadb019136687da"
+      "bytes": 85956,
+      "sha256": "3b9ec86bc9810f20b41e2a42a1e40b2a999d967cf383f878d039ba629a512531"
     },
     {
       "path": "examples/companion_radio/MyMesh.h",
@@ -715,8 +717,8 @@
     {
       "path": "examples/companion_radio/ui-new/UITask.cpp",
       "mode": "100644",
-      "bytes": 29297,
-      "sha256": "bdc915c9eac1032a6224cecdef6f6fbaa99baa5b85641e1521144d388b3b7541"
+      "bytes": 30297,
+      "sha256": "74199bfb6605ee299545cdf582cb23ba6bd7b5c8e6673eb99776db3d2cf4bc24"
     },
     {
       "path": "examples/companion_radio/ui-new/UITask.h",
@@ -4397,16 +4399,34 @@
       "sha256": "5df4c203b28e798d7d018517f60a8000aa45a6f183a363a9118fa5d1aa46596b"
     },
     {
+      "path": "variants/sensebox_eye/SafeMSFeed.h",
+      "mode": "100644",
+      "bytes": 4313,
+      "sha256": "637323151498783948a22e6d8ece3734e9aca617b3cc37dbae7c5c858aca5cae"
+    },
+    {
+      "path": "variants/sensebox_eye/SafeMSFeedSelfTest.h",
+      "mode": "100644",
+      "bytes": 2115,
+      "sha256": "a435f9b76c14815cb042261b8da6c800ad6485d34d51b767309d24f46aebfd11"
+    },
+    {
       "path": "variants/sensebox_eye/SafeMSKiosk.cpp",
       "mode": "100644",
-      "bytes": 7043,
-      "sha256": "8d825551dd04e82b6dbd05ebc891f17ff414ddfd2ffd21a279f8f7efe718cdf1"
+      "bytes": 13190,
+      "sha256": "0955d047e450678a7fe1eb2498aaacdf6b9043a4b3ca716d5829bdd0ab2c58ee"
     },
     {
       "path": "variants/sensebox_eye/SafeMSKiosk.h",
       "mode": "100644",
-      "bytes": 67,
-      "sha256": "66489874512bd188359ad2b06ccf745c213c98c8fe7593d6e4f5578225ee6a45"
+      "bytes": 312,
+      "sha256": "c62928b6e6e190d38af29efb707e16aacdf2393cf3867aa221ba22df709b62af"
+    },
+    {
+      "path": "variants/sensebox_eye/SafeMSWifiQr.h",
+      "mode": "100644",
+      "bytes": 570,
+      "sha256": "42aea47ba1c97381a155a9073dc6ccee44f0d4bb93597a4478abe2da1e05fdc6"
     },
     {
       "path": "variants/sensebox_eye/SenseBoxEyeBoard.h",
@@ -4445,6 +4465,18 @@
       "sha256": "0992a0b4d841d916a7023414d8960ca6389ca9fdde62d8757c1361efaeabc53f"
     },
     {
+      "path": "variants/sensebox_eye/web/0a343528f517fb5923dbbf172065365d0e3bf624e20d231fdfe0b5611f70ba89.dat",
+      "mode": "100644",
+      "bytes": 322,
+      "sha256": "0a343528f517fb5923dbbf172065365d0e3bf624e20d231fdfe0b5611f70ba89"
+    },
+    {
+      "path": "variants/sensebox_eye/web/2fa5b2e5243decb85bd382f99d25ed70153d53b7c70349519aa18bd739321e1c.dat",
+      "mode": "100644",
+      "bytes": 10243,
+      "sha256": "2fa5b2e5243decb85bd382f99d25ed70153d53b7c70349519aa18bd739321e1c"
+    },
+    {
       "path": "variants/sensebox_eye/web/3a447047bd13773649d9ab7b1041aa1f435378154bd4f5b8163fb5d2a4e0fdbc.dat",
       "mode": "100644",
       "bytes": 668,
@@ -4455,6 +4487,18 @@
       "mode": "100644",
       "bytes": 31183,
       "sha256": "3aeebfec6a45f4add3c3352c12a9430133ef8592a99be4b3ba5f2c42a13d0909"
+    },
+    {
+      "path": "variants/sensebox_eye/web/3dc54cd184d49ca0f3b7de81950b28388243456951db9b4c50d1ebbec14b8fb4.dat",
+      "mode": "100644",
+      "bytes": 9941,
+      "sha256": "3dc54cd184d49ca0f3b7de81950b28388243456951db9b4c50d1ebbec14b8fb4"
+    },
+    {
+      "path": "variants/sensebox_eye/web/3f94f46abae73154584badf5620ad5efd58da34c76e1f6e90515a7ccaeb7f5e3.dat",
+      "mode": "100644",
+      "bytes": 388165,
+      "sha256": "3f94f46abae73154584badf5620ad5efd58da34c76e1f6e90515a7ccaeb7f5e3"
     },
     {
       "path": "variants/sensebox_eye/web/52c4110961cdcbe98b04bf9f4a90c74d720428164c28cf18653b1e3f4605c969.dat",
@@ -4553,6 +4597,12 @@
       "sha256": "e107e3dd8bbc39e535cc77fbc1d8c4d727f5848b8c778a623cb40b763fd9361a"
     },
     {
+      "path": "variants/sensebox_eye/web/e796bb85e612c0e2a4bb8c70688f77bf484e8c0b5c08e4063256adba3c521cce.dat",
+      "mode": "100644",
+      "bytes": 4166,
+      "sha256": "e796bb85e612c0e2a4bb8c70688f77bf484e8c0b5c08e4063256adba3c521cce"
+    },
+    {
       "path": "variants/sensebox_eye/web/e8cc82cfeaee0806b9f38644f00db4de622bea2260310e6e701f783205ab9aec.dat",
       "mode": "100644",
       "bytes": 80727,
@@ -4585,8 +4635,8 @@
     {
       "path": "variants/sensebox_eye/web/manifest.json",
       "mode": "100644",
-      "bytes": 7002,
-      "sha256": "ba2b4bf6ac839320847ba382b01e75e8338d60449c331bc967d088d032f80920"
+      "bytes": 7003,
+      "sha256": "925ec9dc89b4f6b32710d18fd3aed241b7f5e4c57873133cf025db7319c81732"
     },
     {
       "path": "variants/sensecap_indicator-espnow/SCIndicatorDisplay.h",

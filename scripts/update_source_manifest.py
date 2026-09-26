@@ -23,7 +23,7 @@ for relative in sorted(paths):
             pass
     files.append({'path': relative, 'mode': previous_modes.get(relative, '100644'), 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()})
 manifest['files'] = files
-manifest['modified_upstream_paths'] = ['examples/companion_radio/main.cpp', 'platformio.ini', 'src/helpers/ui/SSD1306Display.cpp']
+manifest['modified_upstream_paths'] = ['examples/companion_radio/main.cpp', 'examples/companion_radio/MyMesh.cpp', 'examples/companion_radio/ui-new/UITask.cpp', 'platformio.ini', 'src/helpers/ui/SSD1306Display.cpp']
 manifest['integrated_display_branch'] = 'https://github.com/Lafarik/SafeMS/commit/802d6008aefe919588147c4ee70aecda692df3fe'
 manifest_file.write_bytes((json.dumps(manifest, indent=2) + '\n').encode('utf-8'))
 print(f'Updated {len(files)} firmware file checksums')

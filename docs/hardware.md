@@ -99,3 +99,29 @@ den aktuellen Flashinhalt. Backups koennen Schluessel oder WLAN-Daten enthalten.
 - Vollstaendiger PWA-Ursprung als Quellarchiv, nachvollziehbarer Anpassungs-Patch, Lizenz, Build- und Verpackungsskripte liegen ebenfalls im Repository.
 - Abschliessend auch den kombinierten Display/PWA-Build auf COM7 geschrieben; Flash-Hash geprueft. Danach USB-Laufzeit 81/84 s, Fehlerflags 0, Queue 0, RX 1, TX 0 und RX-Fehler 0.
 - Der Nutzer bestaetigt am Handy im WLAN **notfall.ms INFO**: offizielle Oberflaeche und Blackout-PDF funktionieren. Sichtbare OLED-Ausgabe und Bluetooth-Kopplung bleiben gesondert zu pruefen; im aktuellen Scan wurde die Ziel-Box nicht als neues BLE-Geraet gefunden.
+
+
+## Krisenstab-WebSocket, PWA-Update und WLAN-QR am 26.09.2026
+
+- Der Nutzer hat die funktionierende sichtbare OLED-Ausgabe bestaetigt.
+- Offiziellen PWA-Upstream erneut geprueft und auf Version 1.1.2 / Commit
+  `369e253aa39fe71de66c89bcb5950fef732ac17b` aktualisiert (Bluetooth-Diagnose).
+- Empfang aus dem vorhandenen MeshCore-Kanal `Krisenstab` wird in Pager-JSON
+  umgesetzt und per `/ws` an alle verbundenen PWA-Clients verteilt.
+  Implementierte Grenzen und Uhrverhalten stehen in `live-pager.md`.
+- 48 Jest-Tests bestanden; produktiver Browser-Build mit simulierter WebSocket-
+  Gegenstelle zeigt Live-Push ohne Neuladen, drei Dokumente und Blackout-PDF.
+  Keine Browserfehler/fehlenden Ressourcen. Kein Ersatz fuer den Funk-End-to-End-Test.
+- Vollstaendiger PWA-Quellstand aus Archiv plus Patch rekonstruiert und verglichen.
+- WLAN-QR mit explizitem `nopass`, SSID `notfall.ms INFO`, Version 2-L erzeugt.
+  Gerendertes OLED-Bild mit unabhaengigem ZXing-Decoder korrekt dekodiert.
+  Physischer Handy-Scan auf diesem kleinen Display noch vom Nutzer zu bestaetigen.
+- Build: 101.564 Bytes statischer RAM, 3.841.285 Bytes Programm-Flash (58,6 %).
+  3.841.696-Byte-Image erfolgreich auf COM7 geschrieben und Hash verifiziert.
+- Alle 19 read-only Parser-/JSON-/Verlauf-Selbsttests direkt auf dem ESP32 bestanden.
+  Kiosk-UTC vom Rechner synchronisiert. Unterliegende MeshCore-RTC unveraendert,
+  da sie beim Auslesen ein falsches Datum lieferte.
+- Nach Flash USB-Laufzeit 33/36 s, Fehlerflags 0, Queue 0, RX/TX/RX-Fehler 0.
+  Funkparameter unveraendert. BLE, USB, WLAN und OLED bleiben im selben Build.
+- Der echte Meldungsspeicher war beim USB-Test leer. Gezielte Funkmeldung von
+  zweitem Knoten und Anzeige auf dem Handy sind zur Bestaetigung angefragt.

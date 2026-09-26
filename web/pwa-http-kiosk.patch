@@ -1,3 +1,26 @@
+diff --git a/src/frontend/components/pager/pager.ts b/src/frontend/components/pager/pager.ts
+index e2dcfe2..cbd297b 100644
+--- a/src/frontend/components/pager/pager.ts
++++ b/src/frontend/components/pager/pager.ts
+@@ -5,6 +5,7 @@ import {
+ } from './bluetooth/bluetooth';
+ import { setupBluetoothDebug } from './bluetooth/debug/debug';
+ import { savedMessages } from './inbox/inbox';
++import { setupKioskPager } from './websocket/websocket';
+ import { renderMessages } from './view/view';
+ import './pager.css';
+ import { readLocal, writeLocal } from '../preparedness/storage/storage';
+@@ -22,6 +23,10 @@ export const setupPager = (): void => {
+         '[data-pager-refresh]'
+     );
+     if (!container || !status) return;
++    if (document.querySelector('meta[name="safems-kiosk"][content="1"]')) {
++        setupKioskPager(container, status);
++        return;
++    }
+     const pair = document.querySelector<HTMLButtonElement>('[data-pager-pair]');
+     const pairLabel = pair?.querySelector('[data-pager-pair-label]');
+     const bluetoothStatus = document.querySelector(
 diff --git a/src/frontend/components/pwa/documents/documents.spec.ts b/src/frontend/components/pwa/documents/documents.spec.ts
 index 110dbc5..11bccf2 100644
 --- a/src/frontend/components/pwa/documents/documents.spec.ts
@@ -165,3 +188,180 @@ index 3636b35..d26a575 100644
  export const toUrl = (path: string): string =>
 -    '/' + path.split('/').map(encodeURIComponent).join('/');
 +    '/' + path.replace(/\\/g, '/').split('/').map(encodeURIComponent).join('/');
+diff --git a/src/frontend/components/pager/websocket/websocket.ts b/src/frontend/components/pager/websocket/websocket.ts
+new file mode 100644
+index 0000000..4edab02
+--- /dev/null
++++ b/src/frontend/components/pager/websocket/websocket.ts
+@@ -0,0 +1,89 @@
++import { parseMessages } from '../feed/feed';
++import { renderMessages } from '../view/view';
++
++/** The firmware marks its embedded HTML; the public HTTPS/Bluetooth PWA is unchanged. */
++export const setupKioskPager = (container: HTMLElement, status: Element): void => {
++    const refresh = document.querySelector<HTMLButtonElement>('[data-pager-refresh]');
++    const section = container.closest('section') || document;
++    for (const element of section.querySelectorAll<HTMLElement>(
++        '[data-pager-pair], [data-pager-bluetooth-status], [data-pager-interval], label[for="pager-interval"], .pager-bluetooth-debug'
++    )) element.hidden = true;
++    const caption = section.querySelector('.preparedness-caption');
++    if (caption) caption.textContent = 'Meldungen aus dem MeshCore-Kanal Krisenstab werden über diese WLAN-Box live angezeigt.';
++    const help = section.querySelector('[data-pager-interval-help]');
++    if (help) help.textContent = 'Neue Meldungen erscheinen automatisch. Internet und Bluetooth-Kopplung sind dafür nicht nötig.';
++
++    let socket: WebSocket | undefined;
++    let retry: number | undefined;
++    let heartbeat: number | undefined;
++    let delay = 1000;
++    let suspended = false;
++    let lastMessage = 0;
++    let received = false;
++    container.textContent = 'Verbindung zur Box wird aufgebaut …';
++    status.textContent = '◷ Krisenstab verbinden …';
++
++    const connect = (): void => {
++        if (suspended || socket) return;
++        const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
++        let current: WebSocket;
++        try { current = new WebSocket(`${protocol}//${location.host}/ws`); }
++        catch { disconnected(); return; }
++        socket = current;
++        current.onmessage = (event: MessageEvent): void => {
++            if (current !== socket || typeof event.data !== 'string' || event.data.length > 16384) return;
++            try {
++                const messages = parseMessages(JSON.parse(event.data));
++                if (messages.length > 8) throw new Error('Oversized feed');
++                renderMessages(container, messages);
++                status.textContent = '● Krisenstab · live über WLAN';
++                received = true;
++                lastMessage = Date.now();
++                delay = 1000;
++            } catch {
++                status.textContent = '◌ Ungültige Meldung von der Box';
++            }
++        };
++        current.onopen = (): void => {
++            if (current !== socket) return;
++            lastMessage = Date.now();
++            // Also detects silently lost WLAN links; no message can be published here.
++            heartbeat = window.setInterval(() => {
++                if (Date.now() - lastMessage > 45000) current.close();
++                else if (current.readyState === WebSocket.OPEN) current.send('refresh');
++            }, 15000);
++        };
++        current.onerror = (): void => current.close();
++        current.onclose = (): void => {
++            if (current !== socket) return;
++            socket = undefined;
++            disconnected();
++        };
++    };
++    const disconnected = (): void => {
++        window.clearInterval(heartbeat);
++        window.clearTimeout(retry);
++        status.textContent = received
++            ? '◌ Verbindung unterbrochen · letzter empfangener Stand'
++            : '◌ Box derzeit nicht erreichbar';
++        if (!received) container.textContent = 'Noch keine Meldungen von dieser Box empfangen.';
++        if (!suspended) {
++            retry = window.setTimeout(connect, delay);
++            delay = Math.min(delay * 2, 15000);
++        }
++    };
++    refresh?.addEventListener('click', () => {
++        if (socket?.readyState === WebSocket.OPEN) socket.send('refresh');
++        else { window.clearTimeout(retry); connect(); }
++    });
++    window.addEventListener('pagehide', () => {
++        suspended = true;
++        window.clearTimeout(retry);
++        window.clearInterval(heartbeat);
++        const previous = socket;
++        socket = undefined;
++        previous?.close();
++    });
++    window.addEventListener('pageshow', () => { suspended = false; connect(); });
++    connect();
++};
+diff --git a/src/frontend/components/pager/websocket/websocket.spec.ts b/src/frontend/components/pager/websocket/websocket.spec.ts
+new file mode 100644
+index 0000000..449ed09
+--- /dev/null
++++ b/src/frontend/components/pager/websocket/websocket.spec.ts
+@@ -0,0 +1,76 @@
++import { setupKioskPager } from './websocket';
++
++class FakeSocket {
++    static OPEN = 1;
++    static instances: FakeSocket[] = [];
++    readyState = 1;
++    onmessage?: (event: { data: string }) => void;
++    onopen?: () => void;
++    onclose?: () => void;
++    onerror?: () => void;
++    send = jest.fn();
++    close = jest.fn(() => { this.readyState = 3; this.onclose?.(); });
++    constructor(public url: string) { FakeSocket.instances.push(this); }
++}
++const feed = { messages: [{ id: 'msg-1', title: 'Stromausfall', message: 'Hier ist dick Stromausfall, Leute!!', timestamp: '2026-09-26T10:18:40.123Z' }] };
++let added: [string, EventListenerOrEventListenerObject][];
++beforeEach(() => {
++    jest.useFakeTimers();
++    FakeSocket.instances = [];
++    Object.defineProperty(window, 'WebSocket', { configurable: true, value: FakeSocket });
++    document.body.innerHTML = '<section><p class="preparedness-caption"></p><div data-pager-messages></div><span data-pager-status></span><button data-pager-pair></button><button data-pager-refresh></button></section>';
++    added = [];
++    const original = window.addEventListener.bind(window);
++    jest.spyOn(window, 'addEventListener').mockImplementation((name, listener, options) => {
++        added.push([name, listener]); original(name, listener, options);
++    });
++});
++afterEach(() => {
++    for (const [name, listener] of added) window.removeEventListener(name, listener);
++    jest.restoreAllMocks(); jest.clearAllTimers(); jest.useRealTimers();
++});
++const start = () => {
++    setupKioskPager(document.querySelector('[data-pager-messages]')!, document.querySelector('[data-pager-status]')!);
++    const socket = FakeSocket.instances[0]; socket.onopen?.(); return socket;
++};
++test('renders the requested live feed immediately, escapes markup and clears an empty snapshot', () => {
++    const socket = start();
++    expect(socket.url).toBe('ws://localhost/ws');
++    socket.onmessage?.({ data: JSON.stringify(feed) });
++    expect(document.body.textContent).toContain('Hier ist dick Stromausfall, Leute!!');
++    expect(document.querySelector('[data-pager-status]')?.textContent).toContain('live');
++    socket.onmessage?.({ data: JSON.stringify({ messages: [{ ...feed.messages[0], message: '<img src=x onerror=alert(1)>' }] }) });
++    expect(document.querySelector('img')).toBeNull();
++    socket.onmessage?.({ data: '{"messages":[]}' });
++    expect(document.querySelector('[data-pager-messages]')?.textContent).toBe('Keine aktuellen Nachrichten.');
++});
++test('retains valid messages on malformed JSON and invalid timestamps', () => {
++    const socket = start(); socket.onmessage?.({ data: JSON.stringify(feed) });
++    socket.onmessage?.({ data: '{bad' });
++    socket.onmessage?.({ data: JSON.stringify({ messages: [{ ...feed.messages[0], timestamp: 'wrong' }] }) });
++    expect(document.body.textContent).toContain(feed.messages[0].message);
++    expect(document.querySelector('[data-pager-status]')?.textContent).toContain('Ungültige');
++});
++test('reconnects after WLAN loss, preserving the old feed with a stale label', () => {
++    const socket = start(); socket.onmessage?.({ data: JSON.stringify(feed) }); socket.close();
++    expect(document.querySelector('[data-pager-status]')?.textContent).toContain('letzter empfangener Stand');
++    jest.advanceTimersByTime(1000);
++    expect(FakeSocket.instances).toHaveLength(2);
++    FakeSocket.instances[1].onmessage?.({ data: '{"messages":[]}' });
++    expect(document.querySelector('[data-pager-status]')?.textContent).toContain('live');
++});
++test('refreshes a read-only snapshot and detects a silently stalled connection', () => {
++    const socket = start();
++    document.querySelector<HTMLButtonElement>('[data-pager-refresh]')!.click();
++    expect(socket.send).toHaveBeenCalledWith('refresh');
++    jest.advanceTimersByTime(60000);
++    expect(socket.close).toHaveBeenCalled();
++});
++test('closes on pagehide and reconnects on pageshow without retaining timers', () => {
++    const socket = start(); window.dispatchEvent(new Event('pagehide'));
++    jest.advanceTimersByTime(120000);
++    expect(socket.close).toHaveBeenCalledTimes(1);
++    expect(FakeSocket.instances).toHaveLength(1);
++    window.dispatchEvent(new Event('pageshow'));
++    expect(FakeSocket.instances).toHaveLength(2);
++});

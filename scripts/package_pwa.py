@@ -36,6 +36,8 @@ def main():
     runtime['/kiosk-info.json'] = (json.dumps(info, ensure_ascii=False) + '\n').encode('utf-8')
     runtime['/LICENSE-pwa.txt'] = (repo / 'LICENSE').read_bytes()
     assert '/index.html' in runtime
+    runtime['/index.html'] = runtime['/index.html'].replace(b'</head>', b'<meta name="safems-kiosk" content="1"></head>')
+    assert b'name="safems-kiosk"' in runtime['/index.html']
     assert all(url in runtime for url in metadata['documents'])
     assert all(url == '/' or url in runtime for url in metadata['precache']), 'Missing precache resource'
     types = {'.html': 'text/html; charset=utf-8', '.js': 'application/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.json': 'application/json', '.webmanifest': 'application/manifest+json', '.pdf': 'application/pdf', '.txt': 'text/plain; charset=utf-8', '.md': 'text/plain; charset=utf-8', '.ico': 'image/x-icon'}

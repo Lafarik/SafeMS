@@ -2,6 +2,9 @@
 #include <helpers/TxtDataHelpers.h>
 #include "../MyMesh.h"
 #include "target.h"
+#ifdef ENABLE_SAFEMS_KIOSK
+#include "SafeMSWifiQr.h"
+#endif
 #ifdef WIFI_SSID
   #include <WiFi.h>
 #endif
@@ -86,6 +89,9 @@ public:
 
 class HomeScreen : public UIScreen {
   enum HomePage {
+#ifdef ENABLE_SAFEMS_KIOSK
+    WLAN,
+#endif
     FIRST,
     RECENT,
     RADIO,
@@ -190,6 +196,25 @@ public:
 
   int render(DisplayDriver& display) override {
     display.setColor(UIColor::title_bkg);
+#ifdef ENABLE_SAFEMS_KIOSK
+    if (_page == HomePage::WLAN) {
+      display.setTextSize(1);
+      display.setColor(UIColor::primary_txt);
+      display.setCursor(0,0); display.print("WLAN verbinden");
+      // The complete 33x33 symbol fits with the required four-module quiet zone.
+      // Render dark modules on a light background, not an inverted QR.
+      display.fillRect(4,17,33,33);
+      display.setColor(UIColor::window_bkg);
+      for (int y=0;y<25;++y) for (int x=0;x<25;++x)
+        if (safeMSWifiQrRows[y] & (uint32_t(1)<<x)) display.fillRect(8+x,21+y,1,1);
+      display.setColor(UIColor::primary_txt);
+      display.setCursor(46,18); display.print("notfall.ms");
+      display.setCursor(46,29); display.print("INFO");
+      display.setCursor(46,42); display.print("192.168.4.1");
+      display.setCursor(0,56); display.print("Taste: Mesh-Status");
+      return 1000;
+    }
+#endif
     display.fillRect(0, 0, display.width(), 12);
     char tmp[80];
     // node name

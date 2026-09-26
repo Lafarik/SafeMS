@@ -84,7 +84,9 @@ anderer Pfade werden zur Startseite umgeleitet. Das automatische Oeffnen eines
 Anmeldefensters haengt vom Smartphone ab; die lokale Adresse funktioniert als
 manueller Einstieg. HTTPS wird nicht umgeleitet.
 
-Die Website stammt aus `notfall-ms/pwa` und enthaelt dessen gekennzeichneten Demo-Nachrichtenfeed.
+Die Website stammt aus `notfall-ms/pwa` (Version 1.1.2). Auf der Box zeigt sie
+Live-Meldungen aus dem MeshCore-Kanal **Krisenstab** ueber WebSocket an.
+Nachrichtenformat, Zeitabgleich und Tests: [Live-Pager](docs/live-pager.md).
 Alle drei Dokumente einschliesslich Blackout-PDF werden lokal ausgeliefert.
 Quellstand, Anpassungen und HTTP-Einschraenkungen: siehe `web/README.md`.
 `/api/status` zeigt
@@ -93,9 +95,11 @@ Das belegt keinen erfolgreichen Funk-Link. Maximal vier WLAN-Clients sind
 konfiguriert. Der HTTP-Server laeuft in einer eigenen Task; MeshCore, USB und
 Bluetooth bleiben aktiv. Es gibt keine administrativen HTTP-Endpunkte.
 
-WLAN startet momentan immer beim Booten. Der Befehl zur Aktivierung ueber Mesh,
-authentisierte Krisenstab-Updates und die QR-Code-Anzeige sind
-die naechsten Ausbauschritte.
+WLAN startet momentan immer beim Booten. Die erste OLED-Seite zeigt einen
+WLAN-QR-Code. Eine Taste wechselt zu den MeshCore-Statusseiten. Die
+Fernaktivierung des Hotspots ueber Mesh bleibt ein weiterer Ausbauschritt.
+Meldungen werden anhand des eingerichteten Kanals gefiltert; alle Teilnehmer
+mit dem Krisenstab-Kanalschluessel koennen sie senden.
 
 ## OLED aus dem Branch display
 

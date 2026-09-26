@@ -2,6 +2,9 @@
 
 #include <Arduino.h> // needed for PlatformIO
 #include <Mesh.h>
+#ifdef ENABLE_SAFEMS_KIOSK
+#include "SafeMSKiosk.h"
+#endif
 
 #define CMD_APP_START                 1
 #define CMD_SEND_TXT_MSG              2
@@ -555,6 +558,11 @@ void MyMesh::onChannelMessageRecv(const mesh::GroupChannel &channel, mesh::Packe
   }
 
   uint8_t channel_idx = findChannelIdx(channel);
+#ifdef ENABLE_SAFEMS_KIOSK
+  ChannelDetails kioskChannel;
+  if (getChannel(channel_idx, kioskChannel))
+    SafeMSKiosk::receiveChannelMessage(kioskChannel.name, text, timestamp);
+#endif
   out_frame[i++] = channel_idx;
   uint8_t path_len = out_frame[i++] = pkt->isRouteFlood() ? pkt->path_len : 0xFF;
 
@@ -1231,6 +1239,22 @@ void MyMesh::handleCmdFrame(size_t len) {
     } else {
       writeErrFrame(ERR_CODE_ILLEGAL_ARG); // invalid geo coordinate
     }
+#ifdef ENABLE_SAFEMS_KIOSK
+  } else if (cmd_frame[0] == 112 && len == 5) { // SafeMS: explicit kiosk UTC sync, independent of discovered RTC
+    uint32_t seconds; memcpy(&seconds, &cmd_frame[1], 4);
+    if (SafeMSKiosk::setClock(seconds)) writeOKFrame();
+    else writeErrFrame(ERR_CODE_ILLEGAL_ARG);
+  } else if (cmd_frame[0] == 113 && len == 3) { // Read-only JSON feed, chunked for USB diagnostics
+    uint16_t offset; memcpy(&offset,cmd_frame+1,2);
+    uint8_t reply[225] = {113};
+    uint16_t total = SafeMSKiosk::readFeed(offset,reinterpret_cast<char*>(reply+5),220);
+    memcpy(reply+1,&offset,2); memcpy(reply+3,&total,2);
+    _serial->writeFrame(reply,5+(offset < total ? std::min(220,int(total-offset)) : 0));
+  } else if (cmd_frame[0] == 114 && len == 1) { // Read-only parser/serializer self-test
+    uint8_t reply[5] = {114};
+    uint32_t failed = SafeMSKiosk::feedSelfTest();
+    memcpy(reply+1, &failed, 4); _serial->writeFrame(reply, sizeof(reply));
+#endif
   } else if (cmd_frame[0] == CMD_GET_DEVICE_TIME) {
     uint8_t reply[5];
     reply[0] = RESP_CODE_CURR_TIME;
@@ -1243,6 +1267,9 @@ void MyMesh::handleCmdFrame(size_t len) {
     uint32_t curr = getRTCClock()->getCurrentTime();
     if (secs >= curr) {
       getRTCClock()->setCurrentTime(secs);
+#ifdef ENABLE_SAFEMS_KIOSK
+      SafeMSKiosk::setClock(secs);
+#endif
       writeOKFrame();
     } else {
       writeErrFrame(ERR_CODE_ILLEGAL_ARG);
