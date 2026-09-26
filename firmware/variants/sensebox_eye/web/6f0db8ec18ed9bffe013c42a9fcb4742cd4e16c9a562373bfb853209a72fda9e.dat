@@ -1,0 +1,161 @@
+# Inhaltskatalog: Krisen-App & Offline-Notfallportal
+
+Das Material ist in Module gegliedert. Die meisten Punkte passen in beide Kanäle. Mit 🔔 markierte Punkte sind für die Vorsorge-App gedacht, mit 📡 markierte für das Offline-Portal im Krisenfall. Die Rezepte in Modul C und die Vorlagen in Modul E stammen von mir und nicht aus euren Quellen. Die Rezepte sollte vor der Veröffentlichung eine Fachperson prüfen.
+
+---
+
+## Modul A: Checklisten zur Vorsorge 🔔
+
+### A1 Wasser & Lebensmittel (pro Person, 10 Tage)
+
+| Kategorie | Menge | Beispiele |
+|---|---|---|
+| Getränke | 20 l (2 l/Tag) | Wasser, Saft, Tee |
+| Getreide, Brot, Kartoffeln | 3,5 kg | Reis, Nudeln, Haferflocken, Knäckebrot |
+| Gemüse & Hülsenfrüchte | 4,0 kg | Konserven: Bohnen, Erbsen, Mais |
+| Obst & Nüsse | 2,5 kg | Obstkonserven, Trockenobst |
+| Milchprodukte | 2,6 kg | H-Milch, Hartkäse |
+| Fisch, Fleisch, Eier | 1,5 kg | Konserven |
+| Fette & Öle | 350 g | Öl, Margarine |
+
+Quellen: [^1][^2]. Der aktuelle BLE-Vorratskalkulator nennt leicht abweichende Werte, z. B. 3,3 kg Getreide und 1,2 kg Eier/Fleisch/Fisch [^3]. Einigt euch auf eine Referenz.
+
+- Die BBK-Checkliste bietet Stufen zum Abhaken für **3, 5, 7 oder 10 Tage** an [^4]. Das eignet sich gut als Fortschrittsanzeige in der App.
+- Einstiegstipp: Mit einem 3-Tage-Vorrat anfangen und als „lebenden Vorrat“ führen, also immer etwas mehr kaufen als gerade nötig [^5].
+- Münster empfiehlt mindestens 3 Tage, besser 10 bis 14 Tage [^0f10fc#61-64, 73-75].
+
+### A2 Hausapotheke
+Schmerzmittel, Fiebermittel, Fieberthermometer, Wund- und Hautdesinfektion, Pflaster/Verbandsmaterial, Verbandtuch für Brandwunden, Einmalhandschuhe, Kühlkompresse, Pinzette, Schere, Wund-/Brandsalbe, Mittel gegen Durchfall/Übelkeit/Erkältung, Elektrolyte, Mittel gegen Sonnenbrand und Insektenstiche, Kühlgel, Nasenspray, **persönliche Medikamente** [^4]
+
+### A3 Hygiene
+Zahnbürste/-pasta, Seife, Monatshygiene/Windeln, stabile Müllbeutel (auch zum Einhängen in die Toilette), Toilettenpapier, Desinfektionsmittel, Waschmittel, Feuchttücher, Haushaltspapier, Haushaltshandschuhe, Campingtoilette [^4]
+
+### A4 Energieausfall
+Taschenlampe mit Ersatzbatterien, Kerzen/Feuerzeug, warme Kleidung, Decken, Schlafsäcke, netzunabhängige Heizung mit Brennstoff, Campingkocher mit Gas, Kurbel- oder Solarradio, geladene Powerbank [^4], Bargeldreserve [^0f10fc#61-64, 73-75]
+
+### A5 Brandschutz
+Rauchmelder, Feuerlöscher/Löschspray, Kohlenmonoxid-Melder [^4]
+
+### A6 Notgepäck (Rucksack)
+Warme Kleidung, Regenschutz, feste Schuhe, Wechselkleidung, Erste-Hilfe-Material, Medikamente, Powerbank, Hygieneartikel, Proviant und Trinkflasche, Dokumentenmappe, Schlafsack, Essgeschirr, Taschenmesser, Dosenöffner, Taschenlampe, Radio, Feuerzeug, Sonnencreme, Kopfbedeckung, Notizblock, Arbeitshandschuhe, Ersatzbrille bzw. Ersatz für Hörgeräte, Bargeld [^4]. Schlüssel, Handy und Geldbörse sollten griffbereit liegen [^6].
+
+### A7 Dokumentenmappe
+Die Mappe feuerfest und/oder wasserdicht aufbewahren [^7]. Hinein gehören Dokumente zu:
+- **Identität:** Geburtsurkunde, Personalausweis
+- **Besitz:** Grundbuch, Kaufverträge
+- **Finanzen:** Versicherungen
+- **Qualifikationen:** Zeugnisse
+- **Rechten:** Vollmachten, Urteile
+- **Persönlichem:** Testament, Befunde, Impfausweis, Passwortliste
+- **Erinnerungen:** ausgewählte Fotos
+
+Münster empfiehlt, Originale oder Kopien einzupacken [^143c7b#117].
+
+### A8 Haus vor Unwetter schützen
+Sandsäcke, Schwellen vor Kellerfenstern und -türen, Rückstausicherung, keine Wertsachen im Keller lagern, Stromanlagen möglichst in oberen Etagen [^8]
+
+### A9 IT-Vorsorge
+Passwortmanager, Zwei-Faktor-Anmeldung, Updates einspielen, Router-Standardpasswort ändern, Backups auf USB-Stick [^9]
+
+---
+
+## Modul B: Kurzkarten für den Krisenfall 📡
+
+| Karte | Kernaussagen |
+|---|---|
+| **Sirenensignale** | Warnung: 1 Min. auf- und abschwellender Ton. Entwarnung: 1 Min. Dauerton [^10] |
+| **Bei Warnung** | Ruhe bewahren, ins Gebäude gehen, Nachbarn informieren, Fenster und Türen schließen, Lüftung aus, Radio an, Hilfsbedürftigen helfen. Notruf nicht für Nachfragen nutzen [^10] |
+| **Warnkanäle** | Sirenen, NINA, Cell Broadcast, Radio (in Münster: WDR 2, Antenne Münster), Lautsprecherwagen [^10], zusätzlich Katwarn [^11] |
+| **Stromausfall** | Geräte ausschalten und später einzeln wieder einschalten, Radio hören, 110/112 freihalten [^12]. Kühlschrank geschlossen halten: Lebensmittel halten dort ca. 6 Std., in der Truhe ca. 48 Std. [^11] |
+| **Heizen ohne Strom** | Kleidung und Decken, Türen zu, regelmäßig stoßlüften. Innen nur zugelassene Geräte verwenden (sonst CO-Gefahr) und einen CO-Melder aufstellen [^11]. Niemals mit Grill in der Wohnung heizen oder kochen [^12] |
+| **Wasserausfall** | Restwasser aus der Leitung in Gefäßen sammeln. Die Stadt gibt Standorte der Notbrunnen bekannt [^13] |
+| **Schutz suchen** | Am besten Keller oder Tiefgarage, sonst fensterlose Innenräume wie Bad oder Flur. Draußen: Tunnel, Mauer, Graben [^14] |
+| **Welche Etage?** | Gas im Freien: nach oben. Strahlung oder Explosion: nach unten. Hochwasser: nach oben, **nie in den Keller** [^14] |
+| **Gefahrstoffe** | Drinnen bleiben, abdichten, Lüftung aus, keine Kerzen. Draußen quer zur Windrichtung gehen. Kontaminierte Kleidung in Beutel packen und draußen lassen, dann Hände, Gesicht und Haare waschen [^15] |
+| **Sturm** | Drinnen bleiben, Abstand zu Fenstern halten, Dachgeschoss meiden, lose Gegenstände sichern [^8] |
+| **Hitze** | 1,5 bis 2 l pro Tag trinken, 11 bis 17 Uhr meiden, Räume abdunkeln, Kinder und Tiere nie im Auto lassen. Bei Verdacht auf Hitzschlag: 112 [^8] |
+| **Evakuierung** | Notgepäck nehmen, dazu Schlüssel, Handy, Geldbörse, Powerbank mit Kabel [^6] |
+| **Jodtabletten** | Nur auf ausdrückliche Anweisung der Behörde einnehmen [^13] |
+| **Fake News** | Emotionale Meldungen hinterfragen, nichts ungeprüft weiterleiten, mit seriösen Quellen abgleichen [^9] |
+| **Notruf ausgefallen?** | In Münster: Notrufmeldestellen an Feuerwachen, Feuerwehrhäusern, Polizei, Hilfsorganisationen und am Stadthaus 1 [^0f10fc#37, 119, 153]. In Berlin: Katastrophenschutz-Leuchttürme, die erst bei Bedarf geöffnet werden [^16] |
+
+**Idee für das Portal:** eine Seite „Meine Anlaufstelle“ mit lokaler Karte als Offline-Bild. Darauf Notrufmeldestellen, Notbrunnen und Infopunkte, dazu ein vom Betreiber aktualisierbares Lage-Banner.
+
+---
+
+## Modul C: Notfallrezepte 🔔📡
+
+Grundregeln: wenig Wasser und Energie verbrauchen, Topf mit Deckel verwenden, Kochwasser weiternutzen, Campingkocher nur mit guter Belüftung betreiben.
+
+**Ohne Kochen**
+
+| Rezept | Zutaten | Zubereitung |
+|---|---|---|
+| Overnight Oats | 60 g Haferflocken, 150 ml H-Milch, Trockenobst, Nüsse | Mischen, 20 Min. bis über Nacht quellen lassen |
+| Bohnen-Mais-Salat | Je 1 Dose Kidneybohnen und Mais, Öl, Essig, Salz | Abgießen, alles mischen |
+| Thunfisch-Knäckebrot | 1 Dose Thunfisch, Knäckebrot, Gurkenglas | Belegen, fertig |
+| Kichererbsen-Mus | 1 Dose Kichererbsen, Öl, Zitronensaft, Salz | Mit der Gabel zerdrücken, zu Knäckebrot essen |
+| Müsli-Energiekugeln | Haferflocken, Erdnussbutter, Honig, Rosinen | Verkneten, Kugeln formen |
+
+**Mit wenig Energie (Ein-Topf)**
+
+| Rezept | Zutaten (2 Pers.) | Zubereitung |
+|---|---|---|
+| **Rote-Linsen-Dhal mit Reis** | 150 g rote Linsen, 150 g Parboiled-Reis, 1 Glas Möhren, 200 ml Tomatensoße, 1 Glas Paprika, 200 ml Kokosmilch, Gewürze | Linsen mit Tomatensoße, Kokosmilch und ca. 300 ml Wasser 12 bis 15 Min. köcheln, Gemüse zugeben. Reis separat quellen lassen |
+| Couscous-Topf | 150 g Couscous, 1 Dose Gemüse, Brühwürfel | Mit heißer Brühe übergießen, zugedeckt 5 Min. ziehen lassen |
+| Nudeln mit Thunfisch-Tomate | 200 g Nudeln, 1 Dose Thunfisch, 1 Glas Tomatensoße | Nudeln in wenig Wasser garen, Soße und Fisch unterrühren |
+| Chili sin carne | Je 1 Dose Kidneybohnen, Mais und Tomaten, Gewürze | 10 Min. erhitzen, mit Knäckebrot oder Reis essen |
+| Kartoffelpüree-Eintopf | Püreeflocken, 1 Dose Erbsen, 1 Dose Würstchen | Flocken mit heißem Wasser anrühren, Rest dazugeben |
+
+Das Dhal stammt aus dem Flyer der FH Münster. Die Zutaten dort gelten als sättigend, gut lagerfähig, nährstoffreich und für die meisten Ernährungsweisen geeignet [^5]. Der Flyer enthält aber keine Mengen und keine Anleitung. Die Angaben oben habe ich ergänzt.
+
+**Zusätzliche Karten:** Kochkiste (Topf nach dem Aufkochen in Decken wickeln und nachgaren lassen), Essensplan für 10 Tage, Tipps für Babys, Allergien und Haustiere.
+
+---
+
+## Modul D: Proaktive Inhalte für die App 🔔
+
+| Auslöser | Push-Nachricht |
+|---|---|
+| Monatlich | Vorrat rotieren und Haltbarkeit prüfen |
+| Vierteljährlich | Powerbank laden, Batterien und Taschenlampe testen, Rauchmelder prüfen |
+| Jährlich | Dokumentenmappe und Medikamente aktualisieren, Notgepäck an die Jahreszeit anpassen |
+| Warntag (NRW: 2. Donnerstag im März und September) | Vorher Hinweis, dass Sirenen, NINA und Cell Broadcast getestet werden [^10] |
+| Wetterwarnung | Kurzkarte zu Hitze, Sturm oder Starkregen |
+| Onboarding | Haushaltsgröße eingeben, Vorratsmengen automatisch berechnen, 3-Tage-Startpaket vorschlagen |
+
+---
+
+## Modul E: Vorlagen 🔔📡
+- Familien-Notfallplan: Treffpunkt, wer holt die Kinder ab, Kontakt außerhalb der Region
+- Kontaktliste auf Papier: Ärztin/Arzt, Nachbarn, Versicherung
+- Liste mit Nachbarn, die Hilfe brauchen könnten
+- Druckbare Checklisten als PDF zum Aufhängen
+- Erste-Hilfe-Kurzanleitungen: stabile Seitenlage, Wiederbelebung, Blutung stillen (von einer Hilfsorganisation prüfen lassen)
+
+---
+
+**Tipps zur Umsetzung:**
+- Im Offline-Portal alles lokal hosten, auch Bilder, Karten und PDFs, ohne externe Links.
+- Seiten schlank halten, damit sie auch auf alten Handys laden.
+- Einen Lage-Stand mit Uhrzeit anzeigen, etwa „Stand: 14:30“.
+- Zusätzlich einfache Sprache und Piktogramme anbieten.
+
+**References**
+
+[^1]: [Notvorrat-Liste vom Bundesamt: BBK-Checkliste für 10 Tage](https://krisenvorsorge-guide.de/ratgeber/notvorrat-liste-bundesamt/) (1%)
+[^2]: [Empfehlung BBK: Notration](https://feuerwehr-enger.de/deine-sicherheit/empfehlung-bbk-notration/) (1%)
+[^3]: [Notvorrat-Liste berechnen: BBK-Rechner für 3-28 Tage](https://rechner-portal.de/kochen-ernaehrung/ernaehrung/notvorrat-rechner) (1%)
+[^4]: [BBK – Checklisten](https://www.bbk.bund.de/SharedDocs/Downloads/DE/Mediathek/Publikationen/Buergerinformationen/Ratgeber/ratgeber-notfallvosorge-checkliste.pdf?__blob=publicationFile&v=10) (18%)
+[^5]: [Praxisübung Flyer](https://www-backend.fh-muenster.de/kompetenzzentrum-humanitaere-hilfe/downloads-kompetenzzentrum-humanitaere-hilfe/Praxisuebung-Flyer.pdf) (8%)
+[^6]: [Wie verhalte ich mich bei einer Evakuierung? - Berlin.de](https://www.berlin.de/ba-treptow-koepenick/service/bevoelkerungsschutz/artikel.1585574.php) (3%)
+[^7]: [Welche Dokumente sind in Krisenfällen wichtig? - Berlin.de](https://www.berlin.de/ba-treptow-koepenick/service/bevoelkerungsschutz/artikel.1657227.php) (3%)
+[^8]: [Extremwetterlagen - Berlin.de](https://www.berlin.de/ba-treptow-koepenick/service/bevoelkerungsschutz/extremwetterlagen-1674948.php) (13%)
+[^9]: [Cyberangriffe und Fake News - Berlin.de](https://www.berlin.de/ba-treptow-koepenick/service/bevoelkerungsschutz/artikel.1692363.php) (6%)
+[^10]: [Stadt Münster: Feuerwehr - Warnung der Bevölkerung](https://www.stadt-muenster.de/feuerwehr/warnung) (13%)
+[^11]: [Stromausfall - Berlin.de](https://www.berlin.de/ba-treptow-koepenick/service/bevoelkerungsschutz/artikel.1626100.php) (1%)
+[^12]: [Was tun beim Stromausfall? | Stadt Münster](https://www.stadt-muenster.de/energie/energiekrise/was-tun-beim-stromausfall) (4%)
+[^13]: [Stadt Münster: Feuerwehr - Katastrophenschutz - Was tun im Notfall?](https://www.stadt-muenster.de/feuerwehr/katastrophenschutz/was-tun-im-notfall) (1%)
+[^14]: [Schutz suchen in Krisenfällen - Berlin.de](https://www.berlin.de/ba-treptow-koepenick/service/bevoelkerungsschutz/artikel.1617279.php) (7%)
+[^15]: [Freisetzung von Gefahrstoffen - Berlin.de](https://www.berlin.de/ba-treptow-koepenick/service/bevoelkerungsschutz/artikel.1692360.php) (6%)
+[^16]: [Katastrophenschutz-Leuchttürme in Treptow-Köpenick - Berlin.de](https://www.berlin.de/ba-treptow-koepenick/service/bevoelkerungsschutz/katastrophenschutz-leuchttuerme-in-treptow-koepenick-1459622.php) (13%)

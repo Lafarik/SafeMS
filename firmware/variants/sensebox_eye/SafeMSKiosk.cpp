@@ -4,6 +4,7 @@
 #include <WiFi.h>
 #include <DNSServer.h>
 #include <esp_http_server.h>
+#include <SafeMSWebAssets.h>
 
 namespace {
 DNSServer dns;
@@ -11,23 +12,6 @@ httpd_handle_t server = nullptr;
 bool ready = false;
 volatile uint32_t lastMeshTick = 0;
 const IPAddress address(192, 168, 4, 1);
-
-const char PAGE[] PROGMEM = R"HTML(<!doctype html>
-<html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SafeMS Testkiosk</title><style>
-body{font:18px/1.5 system-ui,sans-serif;background:#f4f6f3;color:#172d24;margin:0;padding:24px}
-main{max-width:650px;margin:4vh auto;background:white;padding:28px;border-radius:18px}
-h1{font-size:2rem;margin:.3em 0}strong{color:#745100}a{color:#075438}
-.tag{font-size:14px;font-weight:700;color:#745100}small{color:#52615a}
-</style><main><div class="tag">HACKATHON · TESTBETRIEB</div><h1>SafeMS</h1>
-<p>Du bist mit dem lokalen Informationskiosk verbunden. Diese Seite funktioniert ohne Internet.</p>
-<p><strong>Dies ist eine Testseite. Hier werden noch keine amtlichen Notfallmeldungen bereitgestellt.</strong></p>
-<p>Die Anbindung der Hinweise des Krisenstabs wird noch entwickelt.</p>
-<p>WLAN: <b>SafeMS-Test</b><br>Lokale Adresse: <a href="http://192.168.4.1/">192.168.4.1</a></p>
-<small id="state">Lokale Verbindung aktiv.</small></main>
-<script>async function update(){try{const r=await fetch('/api/status',{cache:'no-store'});const s=await r.json();
-document.getElementById('state').textContent='Kiosk seit '+Math.floor(s.uptime_s/60)+' Minuten aktiv · '+s.wifi_clients+' WLAN-Gerät(e)';}catch(e){}}
-update();setInterval(update,5000);</script></html>)HTML";
 
 esp_err_t statusHandler(httpd_req_t* request) {
   char body[220];
@@ -43,22 +27,100 @@ esp_err_t statusHandler(httpd_req_t* request) {
 }
 
 esp_err_t pageHandler(httpd_req_t* request) {
-  if (strcmp(request->uri, "/") != 0) {
+  char path[256];
+  const size_t length = strcspn(request->uri, "?");
+  if (length >= sizeof(path)) return httpd_resp_send_err(request, HTTPD_400_BAD_REQUEST, "Path too long");
+  memcpy(path, request->uri, length); path[length] = 0;
+  // Decode only valid escapes; lookup is against the fixed asset table, never a filesystem.
+  size_t write = 0;
+  for (size_t read = 0; read < length; ++read) {
+    if (path[read] == '%') {
+      if (read + 2 >= length || !isxdigit((unsigned char)path[read+1]) || !isxdigit((unsigned char)path[read+2]))
+        return httpd_resp_send_err(request, HTTPD_400_BAD_REQUEST, "Invalid URL escape");
+      char hex[3] = {path[read+1], path[read+2], 0};
+      char value = (char)strtoul(hex, nullptr, 16);
+      if (!value) return httpd_resp_send_err(request, HTTPD_400_BAD_REQUEST, "Invalid URL byte");
+      path[write++] = value; read += 2;
+    } else path[write++] = path[read];
+  }
+  path[write] = 0;
+  if (!strcmp(path, "/")) strcpy(path, "/index.html");
+  const SafeMSWebAsset* asset = nullptr;
+  for (const auto& candidate : safeMSWebAssets) {
+    if (!strcmp(path, candidate.url)) { asset = &candidate; break; }
+  }
+  if (!asset) {
+    const char* probes[] = {"/generate_204", "/gen_204", "/hotspot-detect.html", "/library/test/success.html", "/connecttest.txt", "/ncsi.txt", "/fwlink", "/canonical.html", "/success.txt", "/redirect"};
+    bool captiveProbe = false;
+    for (const char* probe : probes) if (!strcmp(path, probe)) captiveProbe = true;
+    if (!captiveProbe) return httpd_resp_send_err(request, HTTPD_404_NOT_FOUND, "Not found");
     httpd_resp_set_status(request, "302 Found");
     httpd_resp_set_hdr(request, "Location", "http://192.168.4.1/");
     httpd_resp_set_hdr(request, "Cache-Control", "no-store");
-    return httpd_resp_send(request, "SafeMS: http://192.168.4.1/", HTTPD_RESP_USE_STRLEN);
+    return httpd_resp_send(request, "notfall.ms: http://192.168.4.1/", HTTPD_RESP_USE_STRLEN);
   }
-  httpd_resp_set_type(request, "text/html; charset=utf-8");
-  httpd_resp_set_hdr(request, "Cache-Control", "no-store");
-  return httpd_resp_send(request, PAGE, HTTPD_RESP_USE_STRLEN);
+  httpd_resp_set_type(request, asset->mime);
+  httpd_resp_set_hdr(request, "Cache-Control", "no-cache");
+  httpd_resp_set_hdr(request, "X-Content-Type-Options", "nosniff");
+  httpd_resp_set_hdr(request, "Vary", "Accept-Encoding");
+  // A weak ETag identifies equivalent decoded content across gzip/identity encodings.
+  char etag[32]; snprintf(etag, sizeof(etag), "W/%s", asset->etag);
+  httpd_resp_set_hdr(request, "ETag", etag);
+  char header[128];
+  if (httpd_req_get_hdr_value_str(request, "If-None-Match", header, sizeof(header)) == ESP_OK && !strcmp(header, etag)) {
+    httpd_resp_set_status(request, "304 Not Modified");
+    return httpd_resp_send(request, nullptr, 0);
+  }
+  const uint8_t* data = asset->data;
+  size_t size = asset->size;
+  const bool hasRange = httpd_req_get_hdr_value_len(request, "Range") > 0;
+  if (!hasRange && asset->gzip && httpd_req_get_hdr_value_str(request, "Accept-Encoding", header, sizeof(header)) == ESP_OK && strstr(header, "gzip") && !strstr(header, "gzip;q=0")) {
+    data = asset->gzip; size = asset->gzipSize;
+    httpd_resp_set_hdr(request, "Content-Encoding", "gzip");
+  }
+  // PDF readers may request byte ranges. Serve a valid single range from flash.
+  char contentRange[64];
+  httpd_resp_set_hdr(request, "Accept-Ranges", "bytes");
+  if (hasRange && httpd_req_get_hdr_value_len(request, "If-Range") == 0 &&
+      httpd_req_get_hdr_value_str(request, "Range", header, sizeof(header)) == ESP_OK) {
+    unsigned long first = 0, last = size ? size - 1 : 0;
+    char* end = nullptr;
+    bool valid = size > 0 && !strncmp(header, "bytes=", 6) && !strchr(header, ',');
+    const char* range = header + 6;
+    if (valid && range[0] == '-') {
+      unsigned long suffix = strtoul(range + 1, &end, 10);
+      valid = end != range + 1 && *end == 0 && suffix > 0;
+      first = suffix < size ? size - suffix : 0;
+    } else if (valid) {
+      first = strtoul(range, &end, 10);
+      valid = end != range && *end == '-';
+      if (valid && end[1]) {
+        const char* tail = end + 1;
+        last = strtoul(tail, &end, 10);
+        valid = end != tail && *end == 0;
+      }
+      if (last >= size) last = size - 1;
+      valid = valid && first < size && first <= last;
+    }
+    if (!valid) {
+      snprintf(contentRange, sizeof(contentRange), "bytes */%u", (unsigned)size);
+      httpd_resp_set_status(request, "416 Range Not Satisfiable");
+      httpd_resp_set_hdr(request, "Content-Range", contentRange);
+      return httpd_resp_send(request, nullptr, 0);
+    }
+    snprintf(contentRange, sizeof(contentRange), "bytes %lu-%lu/%u", first, last, (unsigned)size);
+    httpd_resp_set_status(request, "206 Partial Content");
+    httpd_resp_set_hdr(request, "Content-Range", contentRange);
+    data += first; size = last - first + 1;
+  }
+  return httpd_resp_send(request, (const char*)data, size);
 }
 }
 
 bool SafeMSKiosk::begin() {
   if (ready) return true;
   if (!WiFi.mode(WIFI_AP) || !WiFi.softAPConfig(address, address, IPAddress(255,255,255,0)) ||
-      !WiFi.softAP("SafeMS-Test", nullptr, 1, false, 4)) return false;
+      !WiFi.softAP("notfall.ms INFO", nullptr, 1, false, 4)) return false;
   WiFi.setSleep(false);
   dns.setErrorReplyCode(DNSReplyCode::NoError);
   if (!dns.start(53, "*", address)) {

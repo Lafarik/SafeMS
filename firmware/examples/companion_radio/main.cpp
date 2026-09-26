@@ -236,7 +236,7 @@ void setup() {
   the_mesh.startInterface(interface_manager);
 #ifdef ENABLE_SAFEMS_KIOSK
   board.setInhibitSleep(true);
-  Serial.println(SafeMSKiosk::begin() ? "SafeMS WLAN ready: SafeMS-Test / http://192.168.4.1/" : "SafeMS WLAN startup failed");
+  Serial.println(SafeMSKiosk::begin() ? "notfall.ms WLAN ready: notfall.ms INFO / http://192.168.4.1/" : "notfall.ms WLAN startup failed");
 #endif
   sensors.begin();
 

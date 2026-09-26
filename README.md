@@ -6,11 +6,11 @@ WLAN, kurze Lage-Updates ueber LoRa/MeshCore und Betrieb ohne Internet.
 ## Stand
 
 - senseBox Eye mit ESP32-S3, 16 MiB Flash und 8 MiB PSRAM per USB identifiziert.
-- Experimentelle MeshCore-Companion-Boardvariante mit Bluetooth LE, USB und offenem WLAN-Testkiosk.
+- Experimentelle MeshCore-Companion-Boardvariante mit Bluetooth LE, USB und offenem WLAN-Kiosk mit der offiziellen notfall.ms-PWA.
 - Vollstaendiger MeshCore-Quellcode inklusive senseBox-Anpassung direkt in `firmware/`; kein zusaetzlicher MeshCore-Download noetig.
 - SPI-Diagnoseprogramm kompiliert und am Geraet getestet: RegVersion 0x12, SX1276/77/78/79-Familie. Keine Aussendungen.
 - Original-Firmware vollstaendig lokal gesichert und gegen die Geraete-Pruefsumme verifiziert.
-- Lokale Testseite und DNS/HTTP-Captive-Portal enthalten. Krisenstab-Meldungen per Mesh, Fernaktivierung und QR-Anzeige sind noch nicht implementiert.
+- Offizielle PWA aus `notfall-ms/pwa` mit Dokumenten und DNS/HTTP-Captive-Portal enthalten. Krisenstab-Meldungen per Mesh, Fernaktivierung und QR-Anzeige sind noch nicht implementiert.
 - Ein gezielter Funk-Link mit Gegenstation ist noch nicht bestaetigt.
 - Hardware-Backup und Diagnoseergebnisse: siehe `docs/hardware.md`.
 
@@ -75,21 +75,34 @@ Am 25.09.2026 erfolgreich geprueft: steigende Laufzeit, Fehlerflags 0,
 keine gesendeten oder empfangenen Funkpakete. Ein Funk-Link ist damit noch
 nicht bestaetigt. Aktuelle Geraetetests werden in `docs/hardware.md` dokumentiert.
 
-## WLAN-Testkiosk
+## WLAN-Kiosk mit der offiziellen PWA
 
-Nach dem Start bietet die Standardvariante das offene WLAN **SafeMS-Test** an.
+Nach dem Start bietet die Standardvariante das offene WLAN **notfall.ms INFO** an.
 Mit diesem WLAN verbinden und **http://192.168.4.1/** aufrufen. Internet ist
 dafuer nicht erforderlich. DNS-Anfragen werden lokal beantwortet; HTTP-Aufrufe
 anderer Pfade werden zur Startseite umgeleitet. Das automatische Oeffnen eines
 Anmeldefensters haengt vom Smartphone ab; die lokale Adresse funktioniert als
 manueller Einstieg. HTTPS wird nicht umgeleitet.
 
-Die Seite ist ausdruecklich als Hackathon-Test markiert. `/api/status` zeigt
+Die Website stammt aus `notfall-ms/pwa` und enthaelt dessen gekennzeichneten Demo-Nachrichtenfeed.
+Alle drei Dokumente einschliesslich Blackout-PDF werden lokal ausgeliefert.
+Quellstand, Anpassungen und HTTP-Einschraenkungen: siehe `web/README.md`.
+`/api/status` zeigt
 Laufzeit, WLAN-Clients, freien Heap und ob die Mesh-Hauptschleife weiterlaeuft.
 Das belegt keinen erfolgreichen Funk-Link. Maximal vier WLAN-Clients sind
 konfiguriert. Der HTTP-Server laeuft in einer eigenen Task; MeshCore, USB und
 Bluetooth bleiben aktiv. Es gibt keine administrativen HTTP-Endpunkte.
 
 WLAN startet momentan immer beim Booten. Der Befehl zur Aktivierung ueber Mesh,
-authentisierte Krisenstab-Updates, Dateiverteilung und die QR-Code-Anzeige sind
+authentisierte Krisenstab-Updates und die QR-Code-Anzeige sind
 die naechsten Ausbauschritte.
+
+## OLED aus dem Branch display
+
+Der Display-Branch `802d600` ist mit korrigierter Build-Einbindung integriert.
+Unterstuetzt wird ein SSD1306-OLED (128x64) an I2C-Adresse `0x3D`,
+SDA GPIO2 / SCL GPIO1. Ohne antwortendes OLED startet die Box weiter.
+MeshCores Standard-Oberflaeche bleibt fuer den Kiosk eingeschaltet.
+Bei vorhandenem Display und nicht gesetzter eigener Bluetooth-PIN kann
+MeshCore eine zufaellige PIN fuer den Start erzeugen und auf dem Display zeigen.
+

@@ -22,10 +22,16 @@ bool SSD1306Display::begin() {
     if (_peripher_power) _peripher_power->claim();
     _isOn = true;
   }
+  const bool initialized = display.begin(SSD1306_SWITCHCAPVCC, DISPLAY_ADDRESS, true, false) && i2c_probe(Wire, DISPLAY_ADDRESS);
+  if (!initialized) {
+    _isOn = false;
+    if (_peripher_power) _peripher_power->release();
+    return false;
+  }
   #ifdef DISPLAY_ROTATION
   display.setRotation(DISPLAY_ROTATION);
   #endif
-  return display.begin(SSD1306_SWITCHCAPVCC, DISPLAY_ADDRESS, true, false) && i2c_probe(Wire, DISPLAY_ADDRESS);
+  return true;
 }
 
 void SSD1306Display::turnOn() {

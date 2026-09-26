@@ -4,7 +4,8 @@
   "upstream_file_count": 874,
   "modified_upstream_paths": [
     "examples/companion_radio/main.cpp",
-    "platformio.ini"
+    "platformio.ini",
+    "src/helpers/ui/SSD1306Display.cpp"
   ],
   "line_endings": "LF for UTF-8 text",
   "default_environment": "SenseBox_Eye_companion_radio_ble_usb_wifi",
@@ -120,8 +121,8 @@
     {
       "path": "SAFEMS.md",
       "mode": "100644",
-      "bytes": 2726,
-      "sha256": "56aa08c242782aa55fb11e6d14b8f610710dae88ec905b2f796c26fd3f4f5964"
+      "bytes": 3440,
+      "sha256": "56c36488863f1d7403c6d2c8a526a4fde9d6553572ae8735df7c678fd34045cd"
     },
     {
       "path": "SECURITY.md",
@@ -708,8 +709,8 @@
     {
       "path": "examples/companion_radio/main.cpp",
       "mode": "100644",
-      "bytes": 7292,
-      "sha256": "236fd25aff6bedf14a6eb7522968d8a4f8ebbe2e77482a89ad85ff71228b1f78"
+      "bytes": 7304,
+      "sha256": "30ccb11f870a7c6427f9fed0149ce2ff75dfe3f6a02703d7bde4791a4601ed6d"
     },
     {
       "path": "examples/companion_radio/ui-new/UITask.cpp",
@@ -2106,8 +2107,8 @@
     {
       "path": "src/helpers/ui/SSD1306Display.cpp",
       "mode": "100644",
-      "bytes": 2690,
-      "sha256": "2afc033ee6d160cab18b3c21d8cddb5b80d9d89d2e1b273c308ad498f9d14344"
+      "bytes": 2839,
+      "sha256": "d957190445ae599ff4831b71ff558b2e734c5492149e682072bce3f4dd0ba3a1"
     },
     {
       "path": "src/helpers/ui/SSD1306Display.h",
@@ -4398,8 +4399,8 @@
     {
       "path": "variants/sensebox_eye/SafeMSKiosk.cpp",
       "mode": "100644",
-      "bytes": 4178,
-      "sha256": "a40ac7b62cd7074eac5cc4185785250aeaaab3bc053bcc2b80dd322dd586bda7"
+      "bytes": 7043,
+      "sha256": "8d825551dd04e82b6dbd05ebc891f17ff414ddfd2ffd21a279f8f7efe718cdf1"
     },
     {
       "path": "variants/sensebox_eye/SafeMSKiosk.h",
@@ -4414,22 +4415,178 @@
       "sha256": "2c4ba95dda0d9d655e36967f13bf79d1aa39ca4e6b6e233fed133aa666fff348"
     },
     {
+      "path": "variants/sensebox_eye/embed_web.py",
+      "mode": "100644",
+      "bytes": 2010,
+      "sha256": "4193b8beeda47ad3cd6fab9051418b6bbbccdc02cdeb2284f365678fd0254945"
+    },
+    {
       "path": "variants/sensebox_eye/platformio.ini",
       "mode": "100644",
-      "bytes": 1495,
-      "sha256": "3831adc1584fc70dc38328ed5a850042e199d0e0e53fd34bad855a941ef19c26"
+      "bytes": 1855,
+      "sha256": "8590339f49cb19604189b6976583a2fc2f881ec27dc3cf700e15dcd3c073863d"
     },
     {
       "path": "variants/sensebox_eye/target.cpp",
       "mode": "100644",
-      "bytes": 756,
-      "sha256": "445c0dd67cdb04db3127d554e325e13adfb3e9895580fcd82eed1abc495ce850"
+      "bytes": 807,
+      "sha256": "77218cb571e316ff4c4116411cec6d91bb5cb9ef724a7846cf99981fcdf3a1b9"
     },
     {
       "path": "variants/sensebox_eye/target.h",
       "mode": "100644",
-      "bytes": 475,
-      "sha256": "92155182dda5e722c205ae17b2306abb7cf3cdbd3bc32323d5d70c7a07ce35e6"
+      "bytes": 576,
+      "sha256": "84dfcd731a45d3e16ec004fa0c3dbdf35bc89192b79455f8b7f8272709d71d48"
+    },
+    {
+      "path": "variants/sensebox_eye/web/0992a0b4d841d916a7023414d8960ca6389ca9fdde62d8757c1361efaeabc53f.dat",
+      "mode": "100644",
+      "bytes": 4233,
+      "sha256": "0992a0b4d841d916a7023414d8960ca6389ca9fdde62d8757c1361efaeabc53f"
+    },
+    {
+      "path": "variants/sensebox_eye/web/3a447047bd13773649d9ab7b1041aa1f435378154bd4f5b8163fb5d2a4e0fdbc.dat",
+      "mode": "100644",
+      "bytes": 668,
+      "sha256": "3a447047bd13773649d9ab7b1041aa1f435378154bd4f5b8163fb5d2a4e0fdbc"
+    },
+    {
+      "path": "variants/sensebox_eye/web/3aeebfec6a45f4add3c3352c12a9430133ef8592a99be4b3ba5f2c42a13d0909.dat",
+      "mode": "100644",
+      "bytes": 31183,
+      "sha256": "3aeebfec6a45f4add3c3352c12a9430133ef8592a99be4b3ba5f2c42a13d0909"
+    },
+    {
+      "path": "variants/sensebox_eye/web/52c4110961cdcbe98b04bf9f4a90c74d720428164c28cf18653b1e3f4605c969.dat",
+      "mode": "100644",
+      "bytes": 9738,
+      "sha256": "52c4110961cdcbe98b04bf9f4a90c74d720428164c28cf18653b1e3f4605c969"
+    },
+    {
+      "path": "variants/sensebox_eye/web/581f312460aabf969efacd16501491bffbdbfc320bf6dec3714084507b5ad331.dat",
+      "mode": "100644",
+      "bytes": 10758,
+      "sha256": "581f312460aabf969efacd16501491bffbdbfc320bf6dec3714084507b5ad331"
+    },
+    {
+      "path": "variants/sensebox_eye/web/5d94f35ef4f0a9cb4b2e5f4863af8198a14169ce7eae3688a9ebdc45e6dfeaea.dat",
+      "mode": "100644",
+      "bytes": 4166,
+      "sha256": "5d94f35ef4f0a9cb4b2e5f4863af8198a14169ce7eae3688a9ebdc45e6dfeaea"
+    },
+    {
+      "path": "variants/sensebox_eye/web/68df3811689180951239ac65f7d94bdf225ed0ff8d14ca178d5cb04fefd82958.dat",
+      "mode": "100644",
+      "bytes": 384002,
+      "sha256": "68df3811689180951239ac65f7d94bdf225ed0ff8d14ca178d5cb04fefd82958"
+    },
+    {
+      "path": "variants/sensebox_eye/web/6f0db8ec18ed9bffe013c42a9fcb4742cd4e16c9a562373bfb853209a72fda9e.dat",
+      "mode": "100644",
+      "bytes": 12617,
+      "sha256": "6f0db8ec18ed9bffe013c42a9fcb4742cd4e16c9a562373bfb853209a72fda9e"
+    },
+    {
+      "path": "variants/sensebox_eye/web/80167ea0a58cb49b8bdc495ec91a108053861ed9a5782843deb65b5a2cc47548.dat",
+      "mode": "100644",
+      "bytes": 301,
+      "sha256": "80167ea0a58cb49b8bdc495ec91a108053861ed9a5782843deb65b5a2cc47548"
+    },
+    {
+      "path": "variants/sensebox_eye/web/846c269993da2a21f37bbc46537fee547ce0cb53bf547c1d909dc341c33bca91.dat",
+      "mode": "100644",
+      "bytes": 26745,
+      "sha256": "846c269993da2a21f37bbc46537fee547ce0cb53bf547c1d909dc341c33bca91"
+    },
+    {
+      "path": "variants/sensebox_eye/web/84d1f065f73d675d7c38ebf6712677e8d1608dc0bbe7d9f199154199b26df3ce.dat",
+      "mode": "100644",
+      "bytes": 1094,
+      "sha256": "84d1f065f73d675d7c38ebf6712677e8d1608dc0bbe7d9f199154199b26df3ce"
+    },
+    {
+      "path": "variants/sensebox_eye/web/8d92dfd010ad6608aef171cb40528f05bcc9d4108f44510cdcbfc5450c2683f7.dat",
+      "mode": "100644",
+      "bytes": 9553,
+      "sha256": "8d92dfd010ad6608aef171cb40528f05bcc9d4108f44510cdcbfc5450c2683f7"
+    },
+    {
+      "path": "variants/sensebox_eye/web/9a41f95b4e2293c19369b032aa311524e2750146cc6ef758ff5fdca2787f35ea.dat",
+      "mode": "100644",
+      "bytes": 322,
+      "sha256": "9a41f95b4e2293c19369b032aa311524e2750146cc6ef758ff5fdca2787f35ea"
+    },
+    {
+      "path": "variants/sensebox_eye/web/a0681bc5133dc765329987a86bddbf8b1537c3a47c74701d2e10ef63e0cd6516.dat",
+      "mode": "100644",
+      "bytes": 24720,
+      "sha256": "a0681bc5133dc765329987a86bddbf8b1537c3a47c74701d2e10ef63e0cd6516"
+    },
+    {
+      "path": "variants/sensebox_eye/web/bb83be384ebc967242967b6bc8817bdb2aaa8b72e4e198a87f605a548a92bddf.dat",
+      "mode": "100644",
+      "bytes": 1011864,
+      "sha256": "bb83be384ebc967242967b6bc8817bdb2aaa8b72e4e198a87f605a548a92bddf"
+    },
+    {
+      "path": "variants/sensebox_eye/web/cbfb578271a4053c5cc3d1f2d2fe918b6947ecd0ea10710ff3d6d7bd70d9656d.dat",
+      "mode": "100644",
+      "bytes": 1093,
+      "sha256": "cbfb578271a4053c5cc3d1f2d2fe918b6947ecd0ea10710ff3d6d7bd70d9656d"
+    },
+    {
+      "path": "variants/sensebox_eye/web/ce629f9fc99c76c8841a663a44cd5482a950671562960f7614def87269f4469e.dat",
+      "mode": "100644",
+      "bytes": 31433,
+      "sha256": "ce629f9fc99c76c8841a663a44cd5482a950671562960f7614def87269f4469e"
+    },
+    {
+      "path": "variants/sensebox_eye/web/d72c187f9a1534fb7873c6a2e7b6244ec13960b5bedad16756ffe7a095b69a76.dat",
+      "mode": "100644",
+      "bytes": 232808,
+      "sha256": "d72c187f9a1534fb7873c6a2e7b6244ec13960b5bedad16756ffe7a095b69a76"
+    },
+    {
+      "path": "variants/sensebox_eye/web/e107e3dd8bbc39e535cc77fbc1d8c4d727f5848b8c778a623cb40b763fd9361a.dat",
+      "mode": "100644",
+      "bytes": 31183,
+      "sha256": "e107e3dd8bbc39e535cc77fbc1d8c4d727f5848b8c778a623cb40b763fd9361a"
+    },
+    {
+      "path": "variants/sensebox_eye/web/e8cc82cfeaee0806b9f38644f00db4de622bea2260310e6e701f783205ab9aec.dat",
+      "mode": "100644",
+      "bytes": 80727,
+      "sha256": "e8cc82cfeaee0806b9f38644f00db4de622bea2260310e6e701f783205ab9aec"
+    },
+    {
+      "path": "variants/sensebox_eye/web/ec5692ad154aa00bc9c9a46d0dac952d0a2444116ab07199ed607e1cb133c072.dat",
+      "mode": "100644",
+      "bytes": 604,
+      "sha256": "ec5692ad154aa00bc9c9a46d0dac952d0a2444116ab07199ed607e1cb133c072"
+    },
+    {
+      "path": "variants/sensebox_eye/web/f217b4d03eefeed743133435795f8f8ae2d9d1fd7a95b72e20823d3ccf432a02.dat",
+      "mode": "100644",
+      "bytes": 398,
+      "sha256": "f217b4d03eefeed743133435795f8f8ae2d9d1fd7a95b72e20823d3ccf432a02"
+    },
+    {
+      "path": "variants/sensebox_eye/web/f6f15a451761e0c675d6a90f6f02a65835a338b4844f62b0e9fda48425b63a00.dat",
+      "mode": "100644",
+      "bytes": 1169,
+      "sha256": "f6f15a451761e0c675d6a90f6f02a65835a338b4844f62b0e9fda48425b63a00"
+    },
+    {
+      "path": "variants/sensebox_eye/web/fe76bc28cd40440e0b35a2f6ca2b4683877642b493717c862ae9dc8fe0b8ea7d.dat",
+      "mode": "100644",
+      "bytes": 32812,
+      "sha256": "fe76bc28cd40440e0b35a2f6ca2b4683877642b493717c862ae9dc8fe0b8ea7d"
+    },
+    {
+      "path": "variants/sensebox_eye/web/manifest.json",
+      "mode": "100644",
+      "bytes": 7002,
+      "sha256": "ba2b4bf6ac839320847ba382b01e75e8338d60449c331bc967d088d032f80920"
     },
     {
       "path": "variants/sensecap_indicator-espnow/SCIndicatorDisplay.h",
@@ -5301,5 +5458,6 @@
       "bytes": 735,
       "sha256": "ff8b6a3e6a79727045d9a5db855c272d1b7e263125ab49be4a6b347cb92e822f"
     }
-  ]
+  ],
+  "integrated_display_branch": "https://github.com/Lafarik/SafeMS/commit/802d6008aefe919588147c4ee70aecda692df3fe"
 }

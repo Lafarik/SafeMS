@@ -1,0 +1,183 @@
+{
+  "source": "https://github.com/notfall-ms/pwa",
+  "revision": "08bcd73214b11736ddc4e039d5f7c21ee1933940",
+  "version": "1.1.1",
+  "build": "eb53125efbc2",
+  "files": [
+    {
+      "url": "/LICENSE-pwa.txt",
+      "file": "cbfb578271a4053c5cc3d1f2d2fe918b6947ecd0ea10710ff3d6d7bd70d9656d.dat",
+      "size": 1093,
+      "sha256": "cbfb578271a4053c5cc3d1f2d2fe918b6947ecd0ea10710ff3d6d7bd70d9656d",
+      "mime": "text/plain; charset=utf-8"
+    },
+    {
+      "url": "/assets/LOGO.png",
+      "file": "846c269993da2a21f37bbc46537fee547ce0cb53bf547c1d909dc341c33bca91.dat",
+      "size": 26745,
+      "sha256": "846c269993da2a21f37bbc46537fee547ce0cb53bf547c1d909dc341c33bca91",
+      "mime": "image/png"
+    },
+    {
+      "url": "/assets/LOGO.svg",
+      "file": "3aeebfec6a45f4add3c3352c12a9430133ef8592a99be4b3ba5f2c42a13d0909.dat",
+      "size": 31183,
+      "sha256": "3aeebfec6a45f4add3c3352c12a9430133ef8592a99be4b3ba5f2c42a13d0909",
+      "mime": "image/svg+xml"
+    },
+    {
+      "url": "/assets/LOGO_OK.png",
+      "file": "fe76bc28cd40440e0b35a2f6ca2b4683877642b493717c862ae9dc8fe0b8ea7d.dat",
+      "size": 32812,
+      "sha256": "fe76bc28cd40440e0b35a2f6ca2b4683877642b493717c862ae9dc8fe0b8ea7d",
+      "mime": "image/png"
+    },
+    {
+      "url": "/assets/LOGO_OK.svg",
+      "file": "ce629f9fc99c76c8841a663a44cd5482a950671562960f7614def87269f4469e.dat",
+      "size": 31433,
+      "sha256": "ce629f9fc99c76c8841a663a44cd5482a950671562960f7614def87269f4469e",
+      "mime": "image/svg+xml"
+    },
+    {
+      "url": "/assets/bootstrap.bundle.min.js",
+      "file": "e8cc82cfeaee0806b9f38644f00db4de622bea2260310e6e701f783205ab9aec.dat",
+      "size": 80727,
+      "sha256": "e8cc82cfeaee0806b9f38644f00db4de622bea2260310e6e701f783205ab9aec",
+      "mime": "application/javascript"
+    },
+    {
+      "url": "/assets/bootstrap.min.css",
+      "file": "d72c187f9a1534fb7873c6a2e7b6244ec13960b5bedad16756ffe7a095b69a76.dat",
+      "size": 232808,
+      "sha256": "d72c187f9a1534fb7873c6a2e7b6244ec13960b5bedad16756ffe7a095b69a76",
+      "mime": "text/css"
+    },
+    {
+      "url": "/assets/github.svg",
+      "file": "f6f15a451761e0c675d6a90f6f02a65835a338b4844f62b0e9fda48425b63a00.dat",
+      "size": 1169,
+      "sha256": "f6f15a451761e0c675d6a90f6f02a65835a338b4844f62b0e9fda48425b63a00",
+      "mime": "image/svg+xml"
+    },
+    {
+      "url": "/assets/linkedin.svg",
+      "file": "84d1f065f73d675d7c38ebf6712677e8d1608dc0bbe7d9f199154199b26df3ce.dat",
+      "size": 1094,
+      "sha256": "84d1f065f73d675d7c38ebf6712677e8d1608dc0bbe7d9f199154199b26df3ce",
+      "mime": "image/svg+xml"
+    },
+    {
+      "url": "/assets/logo-favicon.svg",
+      "file": "e107e3dd8bbc39e535cc77fbc1d8c4d727f5848b8c778a623cb40b763fd9361a.dat",
+      "size": 31183,
+      "sha256": "e107e3dd8bbc39e535cc77fbc1d8c4d727f5848b8c778a623cb40b763fd9361a",
+      "mime": "image/svg+xml"
+    },
+    {
+      "url": "/assets/logo.svg",
+      "file": "e107e3dd8bbc39e535cc77fbc1d8c4d727f5848b8c778a623cb40b763fd9361a.dat",
+      "size": 31183,
+      "sha256": "e107e3dd8bbc39e535cc77fbc1d8c4d727f5848b8c778a623cb40b763fd9361a",
+      "mime": "image/svg+xml"
+    },
+    {
+      "url": "/assets/main.595e72d3.css",
+      "file": "52c4110961cdcbe98b04bf9f4a90c74d720428164c28cf18653b1e3f4605c969.dat",
+      "size": 9738,
+      "sha256": "52c4110961cdcbe98b04bf9f4a90c74d720428164c28cf18653b1e3f4605c969",
+      "mime": "text/css"
+    },
+    {
+      "url": "/assets/main.eeaf81cd.js",
+      "file": "68df3811689180951239ac65f7d94bdf225ed0ff8d14ca178d5cb04fefd82958.dat",
+      "size": 384002,
+      "sha256": "68df3811689180951239ac65f7d94bdf225ed0ff8d14ca178d5cb04fefd82958",
+      "mime": "application/javascript"
+    },
+    {
+      "url": "/assets/notfall-ms-192.png",
+      "file": "581f312460aabf969efacd16501491bffbdbfc320bf6dec3714084507b5ad331.dat",
+      "size": 10758,
+      "sha256": "581f312460aabf969efacd16501491bffbdbfc320bf6dec3714084507b5ad331",
+      "mime": "image/png"
+    },
+    {
+      "url": "/assets/notfall-ms-512.png",
+      "file": "a0681bc5133dc765329987a86bddbf8b1537c3a47c74701d2e10ef63e0cd6516.dat",
+      "size": 24720,
+      "sha256": "a0681bc5133dc765329987a86bddbf8b1537c3a47c74701d2e10ef63e0cd6516",
+      "mime": "image/png"
+    },
+    {
+      "url": "/assets/pager.json",
+      "file": "80167ea0a58cb49b8bdc495ec91a108053861ed9a5782843deb65b5a2cc47548.dat",
+      "size": 301,
+      "sha256": "80167ea0a58cb49b8bdc495ec91a108053861ed9a5782843deb65b5a2cc47548",
+      "mime": "application/json"
+    },
+    {
+      "url": "/assets/pwa-192.png",
+      "file": "3a447047bd13773649d9ab7b1041aa1f435378154bd4f5b8163fb5d2a4e0fdbc.dat",
+      "size": 668,
+      "sha256": "3a447047bd13773649d9ab7b1041aa1f435378154bd4f5b8163fb5d2a4e0fdbc",
+      "mime": "image/png"
+    },
+    {
+      "url": "/assets/pwa-512.png",
+      "file": "0992a0b4d841d916a7023414d8960ca6389ca9fdde62d8757c1361efaeabc53f.dat",
+      "size": 4233,
+      "sha256": "0992a0b4d841d916a7023414d8960ca6389ca9fdde62d8757c1361efaeabc53f",
+      "mime": "image/png"
+    },
+    {
+      "url": "/documents/Blackout_Flyer.pdf",
+      "file": "bb83be384ebc967242967b6bc8817bdb2aaa8b72e4e198a87f605a548a92bddf.dat",
+      "size": 1011864,
+      "sha256": "bb83be384ebc967242967b6bc8817bdb2aaa8b72e4e198a87f605a548a92bddf",
+      "mime": "application/pdf"
+    },
+    {
+      "url": "/documents/beispiel.txt",
+      "file": "f217b4d03eefeed743133435795f8f8ae2d9d1fd7a95b72e20823d3ccf432a02.dat",
+      "size": 398,
+      "sha256": "f217b4d03eefeed743133435795f8f8ae2d9d1fd7a95b72e20823d3ccf432a02",
+      "mime": "text/plain; charset=utf-8"
+    },
+    {
+      "url": "/documents/notfall.md",
+      "file": "6f0db8ec18ed9bffe013c42a9fcb4742cd4e16c9a562373bfb853209a72fda9e.dat",
+      "size": 12617,
+      "sha256": "6f0db8ec18ed9bffe013c42a9fcb4742cd4e16c9a562373bfb853209a72fda9e",
+      "mime": "text/plain; charset=utf-8"
+    },
+    {
+      "url": "/index.html",
+      "file": "8d92dfd010ad6608aef171cb40528f05bcc9d4108f44510cdcbfc5450c2683f7.dat",
+      "size": 9553,
+      "sha256": "8d92dfd010ad6608aef171cb40528f05bcc9d4108f44510cdcbfc5450c2683f7",
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "url": "/kiosk-info.json",
+      "file": "9a41f95b4e2293c19369b032aa311524e2750146cc6ef758ff5fdca2787f35ea.dat",
+      "size": 322,
+      "sha256": "9a41f95b4e2293c19369b032aa311524e2750146cc6ef758ff5fdca2787f35ea",
+      "mime": "application/json"
+    },
+    {
+      "url": "/manifest.webmanifest",
+      "file": "ec5692ad154aa00bc9c9a46d0dac952d0a2444116ab07199ed607e1cb133c072.dat",
+      "size": 604,
+      "sha256": "ec5692ad154aa00bc9c9a46d0dac952d0a2444116ab07199ed607e1cb133c072",
+      "mime": "application/manifest+json"
+    },
+    {
+      "url": "/sw.js",
+      "file": "5d94f35ef4f0a9cb4b2e5f4863af8198a14169ce7eae3688a9ebdc45e6dfeaea.dat",
+      "size": 4166,
+      "sha256": "5d94f35ef4f0a9cb4b2e5f4863af8198a14169ce7eae3688a9ebdc45e6dfeaea",
+      "mime": "application/javascript"
+    }
+  ]
+}

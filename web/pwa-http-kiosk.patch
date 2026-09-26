@@ -1,0 +1,167 @@
+diff --git a/src/frontend/components/pwa/documents/documents.spec.ts b/src/frontend/components/pwa/documents/documents.spec.ts
+index 110dbc5..11bccf2 100644
+--- a/src/frontend/components/pwa/documents/documents.spec.ts
++++ b/src/frontend/components/pwa/documents/documents.spec.ts
+@@ -29,6 +29,18 @@ beforeEach(() => {
+         '<div data-pwa-documents></div><p data-pwa-documents-status></p><span data-pwa-offline></span>';
+ });
+ 
++test('shows kiosk documents without CacheStorage and does not promise phone offline storage', async () => {
++    Object.defineProperty(window, 'caches', { configurable: true, value: undefined });
++    Object.defineProperty(globalThis, 'fetch', {
++        configurable: true,
++        value: jest.fn().mockResolvedValue({ ok: true, status: 200, text: async () => 'From the box' }),
++    });
++    await showDocuments(status, true);
++    expect(document.querySelector('pre')?.textContent).toBe('From the box');
++    expect(document.querySelector('.pwa-document-badge')?.textContent).toBe('Auf dieser Box');
++    expect(document.querySelector('[data-pwa-offline]')?.textContent).toBe('WLAN-Zugriff auf die Box');
++});
++
+ test('renders cached TXT content as text rather than HTML', async () => {
+     const match = jest.fn().mockResolvedValue({
+         text: async () => '<script>bad()</script> Sample',
+diff --git a/src/frontend/components/pwa/documents/documents.ts b/src/frontend/components/pwa/documents/documents.ts
+index adc21b9..06db57c 100644
+--- a/src/frontend/components/pwa/documents/documents.ts
++++ b/src/frontend/components/pwa/documents/documents.ts
+@@ -5,7 +5,8 @@ import { renderMarkdown } from './markdown/markdown';
+ 
+ const renderDocument = async (
+     url: string,
+-    response: Response
++    response: Response,
++    localOnly = false
+ ): Promise<HTMLElement> => {
+     const article = document.createElement('article');
+     const link = document.createElement('a');
+@@ -13,7 +14,7 @@ const renderDocument = async (
+     link.textContent = '📄 ' + decodeURIComponent(url.split('/').pop() || url);
+     const badge = document.createElement('span');
+     badge.className = 'pwa-document-badge';
+-    badge.textContent = '✓ Offline';
++    badge.textContent = localOnly ? 'Auf dieser Box' : '✓ Offline';
+     article.append(link, badge);
+     if (/\.txt$/i.test(url)) {
+         const preview = document.createElement('pre');
+@@ -27,20 +28,20 @@ const renderDocument = async (
+ };
+ 
+ /** 🎯 Read and display documents from the active offline cache. */
+-export const showDocuments = async (status: PwaStatus): Promise<void> => {
++export const showDocuments = async (status: PwaStatus, localOnly = false): Promise<void> => {
+     const container = document.querySelector('[data-pwa-documents]');
+-    const cache = await caches.open(status.cacheName);
++    const cache = localOnly ? null : await caches.open(status.cacheName);
+     const documents = await Promise.all(
+         status.documents.map(async (url) => {
+             try {
+-                let response = await cache.match(url);
++                let response = await cache?.match(url);
+                 if (!response) {
+                     const fresh = await fetch(url);
+                     if (!fresh.ok || fresh.status !== 200) return null;
+-                    await cache.put(url, fresh.clone());
++                    if (cache) await cache.put(url, fresh.clone());
+                     response = fresh;
+                 }
+-                return await renderDocument(url, response);
++                return await renderDocument(url, response, localOnly);
+             } catch {
+                 return null;
+             }
+@@ -53,11 +54,11 @@ export const showDocuments = async (status: PwaStatus): Promise<void> => {
+     const complete = count === status.documents.length;
+     setStatus(
+         '[data-pwa-documents-status]',
+-        `▤ ${count}/${status.documents.length} gesichert`
++        localOnly ? `▤ ${count}/${status.documents.length} auf der Box` : `▤ ${count}/${status.documents.length} gesichert`
+     );
+     setStatus(
+         '[data-pwa-offline]',
+-        complete
++        localOnly ? 'WLAN-Zugriff auf die Box' : complete
+             ? `✓ ${count} offline`
+             : `⚠ ${count}/${status.documents.length} offline`
+     );
+diff --git a/src/frontend/components/pwa/registration/registration.spec.ts b/src/frontend/components/pwa/registration/registration.spec.ts
+index 6b7aac4..b404791 100644
+--- a/src/frontend/components/pwa/registration/registration.spec.ts
++++ b/src/frontend/components/pwa/registration/registration.spec.ts
+@@ -14,6 +14,21 @@ const status = {
+     cacheName: 'notfall-ms-sample',
+     documents: ['/documents/beispiel.txt'],
+ };
++
++test('loads box documents on HTTP without attempting service worker registration', async () => {
++    Object.defineProperty(window, 'isSecureContext', { configurable: true, value: false });
++    document.body.innerHTML = '<button data-pwa-install>Install</button>';
++    const register = jest.fn();
++    Object.defineProperty(navigator, 'serviceWorker', { configurable: true, value: { register } });
++    Object.defineProperty(globalThis, 'fetch', {
++        configurable: true,
++        value: jest.fn().mockResolvedValue({ ok: true, json: async () => status }),
++    });
++    await setupRegistration();
++    expect(showDocuments).toHaveBeenCalledWith(status, true);
++    expect(register).not.toHaveBeenCalled();
++    expect(document.querySelector<HTMLButtonElement>('[data-pwa-install]')?.hidden).toBe(true);
++});
+ const worker = {
+     postMessage: jest.fn((message, ports) => {
+         if (message.type === 'GET_STATUS') ports[0].deliver(status);
+diff --git a/src/frontend/components/pwa/registration/registration.ts b/src/frontend/components/pwa/registration/registration.ts
+index eeec234..e0b1327 100644
+--- a/src/frontend/components/pwa/registration/registration.ts
++++ b/src/frontend/components/pwa/registration/registration.ts
+@@ -39,7 +39,19 @@ const showError = (): void => {
+ /** 🎯 Register the worker and track its lifecycle. */
+ export const setupRegistration = async (development = false): Promise<void> => {
+     if (!('serviceWorker' in navigator) || !window.isSecureContext) {
+-        showError();
++        try {
++            const response = await fetch('/kiosk-info.json', { cache: 'no-store' });
++            if (!response.ok) throw new Error('No local kiosk');
++            const status: PwaStatus = await response.json();
++            if (!Array.isArray(status.documents)) throw new Error('Invalid kiosk metadata');
++            await showDocuments(status, true);
++            setStatus('[data-pwa-version]', `◈ v${status.version} · Box`);
++            setStatus('[data-pwa-install-help]', 'Die Dokumente sind über dieses WLAN verfügbar. Zum Behalten bitte herunterladen. Eine Offline-App-Installation benötigt HTTPS.');
++            const button = document.querySelector<HTMLButtonElement>('[data-pwa-install]');
++            if (button) { button.disabled = true; button.hidden = true; }
++        } catch {
++            showError();
++        }
+         return;
+     }
+     let controlled = !!navigator.serviceWorker.controller;
+diff --git a/src/frontend/templates/base.template.njk b/src/frontend/templates/base.template.njk
+index f376cc7..f9e6c7d 100644
+--- a/src/frontend/templates/base.template.njk
++++ b/src/frontend/templates/base.template.njk
+@@ -10,7 +10,7 @@
+     <meta name="theme-color" content="#0d6efd">
+     <title>{{title or metadata.title}}</title>
+     <link rel="manifest" href="/manifest.webmanifest">
+-    <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
++    <link rel="icon" href="/assets/logo-favicon.svg" type="image/svg+xml">
+     <link rel="apple-touch-icon" href="/assets/notfall-ms-192.png">
+     <link href="/assets/bootstrap.min.css" rel="stylesheet" type="text/css">
+ 
+@@ -87,4 +87,4 @@
+         <script type="module" src="{{config.HOST_VITE}}/{{config.ENTRY_FILE}}"></script>
+     {% endif %}
+ </body>
+-</html>
+\ No newline at end of file
++</html>
+diff --git a/src/setup/pwa/files/files.ts b/src/setup/pwa/files/files.ts
+index 3636b35..d26a575 100644
+--- a/src/setup/pwa/files/files.ts
++++ b/src/setup/pwa/files/files.ts
+@@ -11,4 +11,4 @@ export const listFiles = (directory: string): string[] =>
+ 
+ /** 🎯 Encode a relative file path as a URL. */
+ export const toUrl = (path: string): string =>
+-    '/' + path.split('/').map(encodeURIComponent).join('/');
++    '/' + path.replace(/\\/g, '/').split('/').map(encodeURIComponent).join('/');

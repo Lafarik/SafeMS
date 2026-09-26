@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0d6efd">
+    <title>notfall.ms – Notfalldokumente</title>
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" href="/assets/logo-favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/assets/notfall-ms-192.png">
+    <link href="/assets/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    
+        
+        <link rel="stylesheet" href="/assets/main.595e72d3.css"></link>
+    
+
+</head>
+
+
+
+<body>
+    <aside class="pwa-status" aria-label="App-Status">
+    <a class="pwa-brand" href="/" aria-label="notfall.ms Startseite">✚ <span>notfall<span class="pwa-brand-suffix">.ms</span></span></a>
+    <div class="pwa-indicators">
+        <a class="pwa-chip pwa-todo-link" href="/#checklist" data-todo-count aria-label="Offene Vorsorgeaufgaben"></a>
+        <span class="pwa-chip" data-pwa-version title="App-Version">◈ …</span>
+        <span class="pwa-chip" data-pwa-network role="status" aria-label="Verbindungsstatus"></span>
+        <span class="pwa-chip" data-pwa-offline role="status" title="Offline-Verfügbarkeit">◷ Sichern …</span>
+        <button class="pwa-update" type="button" data-pwa-update hidden title="Neue Version installieren">↻ Update</button>
+        <button class="pwa-chip pwa-cache-reset" type="button" data-cache-reset>↻ Cache</button>
+    </div>
+</aside>
+
+    
+        
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="mainNav" aria-labelledby="mainNavLabel">
+            <div class="offcanvas-header border-bottom">
+                <div>
+                    <p class="text-muted text-uppercase small mb-1">Navigation</p>
+                    <h2 class="offcanvas-title h5 mb-0" id="mainNavLabel">Start</h2>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Schließen"></button>
+            </div>
+            <div class="offcanvas-body">
+                <p class="text-muted small mb-3">/</p>
+                <ul class="navbar-nav gap-2">
+                    
+                        <li class="nav-item">
+                            <a
+                                class="nav-link active fw-semibold"
+                                href="/"
+                                aria-current="page">
+                                <span class="me-2">🏠</span>
+                                Start
+                            </a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    
+
+    <div class="container xx">
+
+        
+            
+<div class="pwa-logo logo--default">
+    <img
+    class="logo"
+     width="240"
+    src="/assets/LOGO.svg"
+    alt="notfall.ms"
+/>
+</div>
+<div class="pwa-logo logo--ok">
+
+<img
+    class="logo"
+     width="240"
+    src="/assets/LOGO_OK.svg"
+    alt="notfall.ms"
+/>
+</div>
+<div class="pwa-install">
+    <button type="button" class="pwa-install-button" data-pwa-install>↓ App installieren</button>
+    <p class="pwa-install-help" data-pwa-install-help role="status"></p>
+</div>
+
+<section class="preparedness-card pager" aria-labelledby="pager-title">
+    <div class="preparedness-heading"><h2 id="pager-title">📟 Stadt-Pager</h2><span class="preparedness-pill" data-pager-status role="status">◷ Laden …</span></div>
+    <div data-pager-messages aria-live="polite"></div>
+    <p class="preparedness-caption">Kopple einen kompatiblen Bluetooth-Sender, um Nachrichten aus deiner Nähe zu laden. Ohne Verbindung bleiben gespeicherte Nachrichten verfügbar. Wenn noch keine empfangen wurden, erscheint eine Beispielnachricht.</p>
+    <button type="button" data-pager-pair>
+        <svg class="pager-bluetooth-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+        <span data-pager-pair-label>Bluetooth koppeln</span>
+    </button>
+    <p class="preparedness-caption" data-pager-bluetooth-status role="status"></p>
+    <label for="pager-interval">Nachrichten automatisch laden</label>
+    <select id="pager-interval" data-pager-interval aria-describedby="pager-interval-help">
+        <option value="0">Nur manuell</option>
+        <option value="15">Alle 15 Sekunden</option>
+        <option value="30">Alle 30 Sekunden</option>
+        <option value="60" selected>Jede Minute</option>
+        <option value="300">Alle 5 Minuten</option>
+    </select>
+    <p id="pager-interval-help" class="preparedness-caption" data-pager-interval-help>Automatisch nur bei geöffneter, sichtbarer App und bestehender Bluetooth-Verbindung.</p>
+    <button type="button" data-pager-refresh>↻ Nachrichten aktualisieren</button>
+</section>
+
+<section class="pwa-documents" aria-labelledby="documents-heading">
+    <div class="pwa-documents-heading">
+        <div><span class="pwa-eyebrow">DEINE UNTERLAGEN</span><h1 id="documents-heading">Für den Fall der Fälle<span>.</span></h1></div>
+        <span class="pwa-document-count" data-pwa-documents-status role="status">◷ Laden …</span>
+    </div>
+    <div data-pwa-documents></div>
+</section>
+
+
+<section class="preparedness-card" id="checklist" aria-labelledby="checklist-title">
+    <div class="preparedness-heading"><div><span class="pwa-eyebrow">SCHRITT FÜR SCHRITT</span><h2 id="checklist-title">Deine Vorsorge</h2></div><span class="preparedness-pill" data-todo-count role="status"></span></div>
+    <p class="preparedness-caption">Beispielaufgaben für deinen persönlichen Notfallplan.</p>
+    <progress data-todo-progress aria-label="Erledigte Vorsorgeaufgaben" value="0" max="6"></progress>
+    <div class="preparedness-heading"><span data-todo-score></span><span class="preparedness-pill" data-todo-badge></span></div>
+    <div data-checklist></div>
+    <p class="preparedness-caption" data-todo-reward role="status"></p>
+    <div class="preparedness-actions"><button type="button" data-reminder-demo>🔔 Demo-Erinnerung</button><a href="https://www.bbk.bund.de/DE/Warnung-Vorsorge/Vorsorge/Ratgeber-Checkliste/ratgeber-checkliste_node.html" target="_blank" rel="noopener noreferrer">BBK-Checklisten ↗</a></div>
+</section>
+
+<section class="preparedness-card" aria-labelledby="location-title">
+    <div class="preparedness-heading"><h2 id="location-title">⌖ Dein Ortsteil</h2><span class="preparedness-pill">Freiwillig</span></div>
+    <label for="area-select">Ortsteil in Münster</label>
+    <select id="area-select" data-area-select><option value="">Ohne Ortsangabe</option></select>
+    <div class="preparedness-actions"><button type="button" data-locate>⌖ Standort einmalig bestimmen</button><button type="button" data-location-clear>× Ortsangabe löschen</button></div>
+    <p class="preparedness-caption" data-location-status role="status">Standortfreigabe ist optional. Genaue Koordinaten werden nicht gespeichert.</p>
+    <a href="https://opendata.stadt-muenster.de/dataset/geokoordinaten-der-stadtteil-grenzen-geometriedaten-der-kleinr%C3%A4umigen-gebietsgliederung" target="_blank" rel="noopener noreferrer">Gebietsdaten: Stadt Münster ↗</a>
+</section>
+
+<section id="tracking" class="preparedness-card" aria-labelledby="tracking-title">
+    <div class="preparedness-heading"><h2 id="tracking-title">Deine Rückmeldung zählt</h2><span class="preparedness-pill" data-tracking-status role="status">○ Tracking aus</span></div>
+    <p class="preparedness-caption">Deine erste wichtige Aufgabe: Bereite deine Rückmeldung vor, damit die Stadt künftig weiß, dass du sicher bist. Das Tracking ist freiwillig. Diese Demo speichert nur auf deinem Gerät und sendet noch keine Sicherheitsmeldung an die Stadt.</p>
+    <button type="button" data-tracking-toggle aria-pressed="false">○ Demo-Tracking aktivieren</button>
+    <details class="tracking-details"><summary>Welche Daten?</summary><p data-tracking-summary></p><small data-tracking-hash></small><p class="preparedness-caption">Zufälliger Kennwert, Stadtbezirk, Installationsstatus und Anzahl erledigter Aufgaben. Ausschalten löscht die lokalen Demo-Daten.</p></details>
+</section>
+
+<aside class="demo-reminder" data-reminder hidden aria-label="Simulierte Erinnerung">
+    <div><strong>🔔 Vorsorge · Demo</strong><button type="button" data-reminder-close aria-label="Erinnerung schließen">×</button></div>
+    <p data-reminder-text role="status"></p>
+    <a href="#checklist" data-reminder-link>Zur Checkliste →</a>
+</aside>
+
+
+        
+    </div>
+
+    
+    
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+
+
+<footer class="footer">
+    <div class="container text-center">
+        <span class="text-muted">2026 Made with ❤️ by the team of notfall.ms - AI generated</span><br />
+    </div>
+</footer>
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+
+    <script src="/assets/bootstrap.bundle.min.js"></script>
+
+    
+    
+        
+        <script type="module" src="/assets/main.eeaf81cd.js"></script>
+        <script nomodule src="/assets/main.eeaf81cd.js"></script>
+    
+</body>
+</html>

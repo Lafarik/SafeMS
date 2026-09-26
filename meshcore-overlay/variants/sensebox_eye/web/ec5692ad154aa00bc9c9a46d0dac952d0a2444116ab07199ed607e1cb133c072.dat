@@ -1,0 +1,24 @@
+{
+    "name": "notfall.ms – Notfalldokumente",
+    "short_name": "notfall.ms",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#0d6efd",
+    "icons": [
+        {
+            "src": "/assets/notfall-ms-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/assets/notfall-ms-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ],
+    "id": "/"
+}

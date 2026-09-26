@@ -84,3 +84,18 @@ den aktuellen Flashinhalt. Backups koennen Schluessel oder WLAN-Daten enthalten.
 - Der Nutzer hat anschliessend am Handy erfolgreich `http://192.168.4.1/` aufgerufen und die SafeMS-Testseite bestaetigt. Der manuelle Webseitenabruf ist damit bestaetigt; die automatische Captive-Portal-Erkennung ist noch nicht gesondert geprueft.
 - Bluetooth ist im geflashten Build aktiviert. Der anschliessende Scan erkannte die Ziel-Box bisher nicht erneut; bei bestehender App-Verbindung wird die Werbung gestoppt. Eine aktuelle Handy-Bestaetigung steht aus.
 - Noch offen: Mesh-Fernaktivierung, authentisierte Meldungsuebernahme, QR-Anzeige, Mehrbenutzer-Dauertest und gezielter Funk-Link.
+
+## Offizielle PWA und Display-Branch
+
+- Eingebauter PWA-Quellstand `notfall-ms/pwa@08bcd73214b11736ddc4e039d5f7c21ee1933940`. Alle 25 Webrouten einschliesslich drei Dokumenten, Logo, CSS und JavaScript liegen im Programm-Flash. Der Blackout-Flyer hat 1.011.864 Bytes.
+- WLAN umbenannt in **notfall.ms INFO**. Webseite weiterhin `http://192.168.4.1/`. Die bisherige SafeMS-Testseite wird durch die offizielle PWA-Oberflaeche ersetzt.
+- Lokaler HTTP-Fallback fuer die Dokumentliste: kein Service Worker oder CacheStorage erforderlich, keine falsche Zusage einer Speicherung auf dem Handy. 21 gezielte Jest-Tests bestanden.
+- Browserpruefung mit den eingebetteten Dateien als lokalen HTTP-Antworten: drei Dokumente, offizielles Logo und PDF vorhanden; keine JavaScript-Fehler und keine fehlenden Ressourcen. Das ist ein Browser-Fixture-Test, kein Hardware-Netzwerktest.
+- Erstes PWA-Image erfolgreich auf COM7 geflasht und Hash-verifiziert. USB antwortete danach mit Laufzeit 41/45 s, Fehlerflags 0 und Warteschlange 0.
+- Display-Branch `802d600` integriert: SSD1306, 128x64, I2C `0x3D`, SDA GPIO2 / SCL GPIO1, Reset-Pin -1. Die Anpassung ist im gebauten Firmwareordner und im Overlay enthalten.
+- Branch-Korrekturen: ungueltige Adafruit-Aufrufe am MeshCore-Wrapper entfallen zugunsten der zentralen Display-Initialisierung; Companion-UI, Displayquellen und Bibliotheken werden mitgebaut. Rotation wird nach erfolgreichem Start gesetzt. Globale Defaults anderer OLED-/ST7789-Boards werden nicht geaendert.
+- Ohne erkanntes OLED arbeitet die Box weiter. Fuer den Kiosktest ist der Display-Autotimer ausgeschaltet. Die sichtbare Ausgabe muss am angeschlossenen Display kontrolliert werden.
+- Kombinierter PWA/OLED/BLE/USB/WLAN-Build erfolgreich: 99.076 Bytes statischer RAM, 3.819.429 Bytes Programm-Flash (58,3 % der Anwendungs-Partition).
+- Vollstaendiger PWA-Ursprung als Quellarchiv, nachvollziehbarer Anpassungs-Patch, Lizenz, Build- und Verpackungsskripte liegen ebenfalls im Repository.
+- Abschliessend auch den kombinierten Display/PWA-Build auf COM7 geschrieben; Flash-Hash geprueft. Danach USB-Laufzeit 81/84 s, Fehlerflags 0, Queue 0, RX 1, TX 0 und RX-Fehler 0.
+- Der Nutzer bestaetigt am Handy im WLAN **notfall.ms INFO**: offizielle Oberflaeche und Blackout-PDF funktionieren. Sichtbare OLED-Ausgabe und Bluetooth-Kopplung bleiben gesondert zu pruefen; im aktuellen Scan wurde die Ziel-Box nicht als neues BLE-Geraet gefunden.
