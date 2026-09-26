@@ -70,8 +70,14 @@ zu den bisherigen MeshCore-Statusseiten. Der Code wird offline vorgeneriert,
 ohne neue QR-Bibliothek auf dem ESP32. Neu erzeugen: `pip install qrcode`, dann
 `python scripts/generate_wifi_qr.py`.
 
-Auf dem 128x64-OLED passt Version 2-L mit einem Pixel pro Modul und vollstaendiger
-Vier-Modul-Ruhezone. Der dekodierte gerenderte QR wurde geprueft; der praktische
-Scanabstand haengt von Handy und Display ab. Der WLAN-QR verbindet mit dem Netz;
+Auf dem 128x64-OLED wird Version 2-L mit **2x2 Pixeln pro Modul** dargestellt.
+Das eigentliche QR-Datenfeld ist damit 50x50 statt 25x25 Pixel gross, die weisse
+Flaeche 66x64 Pixel. SSID und Adresse stehen rechts. Die weisse Ruhezone betraegt
+horizontal acht, vertikal sieben Pixel. Fuer normgerechte vier Module waeren
+vertikal ebenfalls acht Pixel und damit 66 Displayzeilen erforderlich; diese
+zwei fehlenden Zeilen sind der Kompromiss fuer gleichmaessig groessere Module.
+Der exakt gerenderte Code wurde bei nativen 128x64 Pixeln und drei vergroesserten
+Bildgroessen mit ZXing korrekt dekodiert. Der praktische Scanabstand haengt von
+Handy und Display ab. Der WLAN-QR verbindet mit dem Netz;
 das automatische Oeffnen des Captive Portals haengt vom Handy ab. Manueller
 Einstieg ist weiterhin `http://192.168.4.1/`.

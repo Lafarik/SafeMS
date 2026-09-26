@@ -18,4 +18,4 @@ static const uint32_t safeMSWifiQrRows[25] = {
 ''' + ',\n'.join('  0x%08xUL' % row for row in rows) + '\n};\n'
 target = Path(__file__).resolve().parents[1] / 'firmware/variants/sensebox_eye/SafeMSWifiQr.h'
 target.write_text(content, encoding='ascii')
-print('Generated version 2-L Wi-Fi QR, 25 modules plus four-module quiet zone')
+print('Generated version 2-L Wi-Fi QR, 25 modules; OLED layout controls scale and margins')

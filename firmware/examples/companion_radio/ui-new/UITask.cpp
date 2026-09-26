@@ -200,18 +200,19 @@ public:
     if (_page == HomePage::WLAN) {
       display.setTextSize(1);
       display.setColor(UIColor::primary_txt);
-      display.setCursor(0,0); display.print("WLAN verbinden");
-      // The complete 33x33 symbol fits with the required four-module quiet zone.
-      // Render dark modules on a light background, not an inverted QR.
-      display.fillRect(4,17,33,33);
+      // Uniform 2x2 modules improve readability on the small OLED. The 50px
+      // symbol has 8px horizontal / 7px vertical white margins: one pixel
+      // short of a four-module quiet zone vertically on this 64px display.
+      display.fillRect(0,0,66,64);
       display.setColor(UIColor::window_bkg);
       for (int y=0;y<25;++y) for (int x=0;x<25;++x)
-        if (safeMSWifiQrRows[y] & (uint32_t(1)<<x)) display.fillRect(8+x,21+y,1,1);
+        if (safeMSWifiQrRows[y] & (uint32_t(1)<<x)) display.fillRect(8+2*x,7+2*y,2,2);
       display.setColor(UIColor::primary_txt);
-      display.setCursor(46,18); display.print("notfall.ms");
-      display.setCursor(46,29); display.print("INFO");
-      display.setCursor(46,42); display.print("192.168.4.1");
-      display.setCursor(0,56); display.print("Taste: Mesh-Status");
+      display.setCursor(68,0); display.print("SCAN WLAN");
+      display.setCursor(68,17); display.print("notfall.ms");
+      display.setCursor(68,27); display.print("INFO");
+      display.setCursor(68,44); display.print("192.168.");
+      display.setCursor(68,54); display.print("4.1");
       return 1000;
     }
 #endif

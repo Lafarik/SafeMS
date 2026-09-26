@@ -125,3 +125,18 @@ den aktuellen Flashinhalt. Backups koennen Schluessel oder WLAN-Daten enthalten.
   Funkparameter unveraendert. BLE, USB, WLAN und OLED bleiben im selben Build.
 - Der echte Meldungsspeicher war beim USB-Test leer. Gezielte Funkmeldung von
   zweitem Knoten und Anzeige auf dem Handy sind zur Bestaetigung angefragt.
+
+## Groesserer WLAN-QR
+
+- OLED-Datenfeld auf 50x50 Pixel vergroessert: einheitliche 2x2-Pixel-Module,
+  SSID und IP-Adresse rechts daneben. Oben/unten jeweils sieben Pixel weisser
+  Rand; die Begrenzung gegenueber der Vier-Modul-Ruhezone ist in `live-pager.md`
+  dokumentiert. Hotspotname und QR-Nutzdaten bleiben unveraendert.
+- Exakt gerenderte Headerdaten mit schwarzem Displayhintergrund und Beschriftung
+  bei nativen 128x64 sowie 2x/4x/8x Bildgroessen erfolgreich mit ZXing dekodiert.
+  Synthetischer Test mit leichter Unschaerfe und Drehung ebenfalls erfolgreich;
+  ein echter Handy-Scan bleibt gesondert zu bestaetigen.
+- Build erfolgreich: 101.564 Bytes RAM, 3.841.253 Bytes Programm-Flash.
+  3.841.664-Byte-Image auf COM7 geflasht und Schreib-Hash verifiziert.
+- Danach Kiosk-UTC erneut synchronisiert, alle 19 Geraete-Selbsttests bestanden.
+  USB-Laufzeit 2/5 s, Fehlerflags 0, Queue 0; Funkparameter unveraendert.

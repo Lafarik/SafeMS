@@ -717,8 +717,8 @@
     {
       "path": "examples/companion_radio/ui-new/UITask.cpp",
       "mode": "100644",
-      "bytes": 30297,
-      "sha256": "74199bfb6605ee299545cdf582cb23ba6bd7b5c8e6673eb99776db3d2cf4bc24"
+      "bytes": 30352,
+      "sha256": "dfc71f8f3329bbf3dd2494a3db327932a937aee680db3a75c513fe9783375fd8"
     },
     {
       "path": "examples/companion_radio/ui-new/UITask.h",
