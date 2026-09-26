@@ -1,0 +1,5305 @@
+{
+  "upstream_repository": "https://github.com/meshcore-dev/MeshCore",
+  "upstream_revision": "e94125987ed87497e706a0b54d1e80c709343980",
+  "upstream_file_count": 874,
+  "modified_upstream_paths": [
+    "examples/companion_radio/main.cpp",
+    "platformio.ini"
+  ],
+  "line_endings": "LF for UTF-8 text",
+  "default_environment": "SenseBox_Eye_companion_radio_ble_usb_wifi",
+  "files": [
+    {
+      "path": ".clang-format",
+      "mode": "100644",
+      "bytes": 2462,
+      "sha256": "980c81ae2c7fde86e35a47b3cdf5a2dc42f2ed8b98f8add5e2b659ae26c71e6a"
+    },
+    {
+      "path": ".devcontainer/devcontainer.json",
+      "mode": "100644",
+      "bytes": 1187,
+      "sha256": "2f66604056f33cac04866b94897e7349858b6dfed9fe47503afb3f759ebaad94"
+    },
+    {
+      "path": ".envrc",
+      "mode": "100644",
+      "bytes": 8,
+      "sha256": "5aa3cd865fb13cb88c1d749614b53120a92d16a922fe89a3009b0552097926a0"
+    },
+    {
+      "path": ".github/FUNDING.yml",
+      "mode": "100644",
+      "bytes": 21,
+      "sha256": "84edff80505970c6bc4fec35d096445347c2841ca2103c00c63cd7dee9717e75"
+    },
+    {
+      "path": ".github/actions/setup-build-environment/action.yml",
+      "mode": "100644",
+      "bytes": 1186,
+      "sha256": "342f5537938822d6551d0d1c71837a71529e2c96b41566a955c66a34e2d95649"
+    },
+    {
+      "path": ".github/workflows/build-companion-firmwares.yml",
+      "mode": "100644",
+      "bytes": 309,
+      "sha256": "3647f31811aed2e3e1db2dfc84c18f277c0b606793d63eb33299cc28656e9b40"
+    },
+    {
+      "path": ".github/workflows/build-repeater-firmwares.yml",
+      "mode": "100644",
+      "bytes": 304,
+      "sha256": "6049b820c10f39c88f3a0a18ea7df08ea61f2be5a60ad7e71648a43441f1084c"
+    },
+    {
+      "path": ".github/workflows/build-room-server-firmwares.yml",
+      "mode": "100644",
+      "bytes": 319,
+      "sha256": "4b8b15daa8f034be049e73a9237674d0a4b3df6a2f94c155a4776f3f7f98f346"
+    },
+    {
+      "path": ".github/workflows/firmware-builder.yml",
+      "mode": "100644",
+      "bytes": 2538,
+      "sha256": "401a0a3e084c99ccd678d045fff2617d4e2742b245c144df25b2581b9031c29e"
+    },
+    {
+      "path": ".github/workflows/github-pages.yml",
+      "mode": "100644",
+      "bytes": 729,
+      "sha256": "f36920b7fec7228fac7fbe6312c77925c5229ce72b6a07f1e68439da610261c3"
+    },
+    {
+      "path": ".github/workflows/pr-build-check.yml",
+      "mode": "100644",
+      "bytes": 1444,
+      "sha256": "e51b8ea72e62abcfb7df45b5169271837318896baf8753cf2db8ee8032d679eb"
+    },
+    {
+      "path": ".github/workflows/run-unit-tests.yml",
+      "mode": "100644",
+      "bytes": 643,
+      "sha256": "23ad3823d422914800e169c4c6f06997841ff7861212e3f54c523c2ef5ba06d4"
+    },
+    {
+      "path": ".github/workflows/stale-bot.yml",
+      "mode": "100644",
+      "bytes": 1117,
+      "sha256": "3fb99e09f4a3c6b864262a086c5a944e4bf203ec40dbe8054cc9fc625893bf58"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "bytes": 255,
+      "sha256": "522597bade005ca5475ae427e50cfb7731b0de7ab0ca7d9865a5e9f3cfe6d58a"
+    },
+    {
+      "path": "CNAME",
+      "mode": "100644",
+      "bytes": 16,
+      "sha256": "45a45ba6faa362887a26351db42950de02bbd411395d54aa6bf90bd7a79bdb82"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "mode": "100644",
+      "bytes": 2142,
+      "sha256": "f27ac818206b31c9006ae393181a353f798f0e2ec0eb0abdc8b2ccd6c86057b8"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "bytes": 7714,
+      "sha256": "d629017e94d80c9df55575e357645ffba9ea0e53c500b7222929e76b97e7c45b"
+    },
+    {
+      "path": "RELEASE.md",
+      "mode": "100644",
+      "bytes": 545,
+      "sha256": "ee7b042aed4a5579bff8a12390ab6dcb896544b43e8acc5a9cb39201d2e4d022"
+    },
+    {
+      "path": "SAFEMS.md",
+      "mode": "100644",
+      "bytes": 2726,
+      "sha256": "56aa08c242782aa55fb11e6d14b8f610710dae88ec905b2f796c26fd3f4f5964"
+    },
+    {
+      "path": "SECURITY.md",
+      "mode": "100644",
+      "bytes": 1822,
+      "sha256": "8a0c4cfb6cccfc5938049e34ca3c5ae8a321ff07c52fb24590692bc96fca456c"
+    },
+    {
+      "path": "arch/esp32/AsyncElegantOTA/LICENSE",
+      "mode": "100644",
+      "bytes": 1068,
+      "sha256": "fda4204b1a38219a1c1fc57899ce8c3680347faeec05b46d5a62b5d66f6943dd"
+    },
+    {
+      "path": "arch/esp32/AsyncElegantOTA/keywords.txt",
+      "mode": "100644",
+      "bytes": 39,
+      "sha256": "1d8c3ff4639874b348b7c7fd5f04b3d265a426bc745350b0509b96cc47e00790"
+    },
+    {
+      "path": "arch/esp32/AsyncElegantOTA/library.properties",
+      "mode": "100644",
+      "bytes": 381,
+      "sha256": "f0d1c4046d6291382ccde2aeca9d61f69703592317bd621d8b5863167cdb834e"
+    },
+    {
+      "path": "arch/esp32/AsyncElegantOTA/src/AsyncElegantOTA.cpp",
+      "mode": "100644",
+      "bytes": 4753,
+      "sha256": "0c238f74acf46f1e674838810bd71fd0ce665e0b1f8b5948beb99cee9d45ab11"
+    },
+    {
+      "path": "arch/esp32/AsyncElegantOTA/src/AsyncElegantOTA.h",
+      "mode": "100644",
+      "bytes": 1102,
+      "sha256": "bcaa0cd6f06294c4508011c33036cdf3663588eca7558fd080f5444522dd12b4"
+    },
+    {
+      "path": "arch/esp32/AsyncElegantOTA/src/Hash.h",
+      "mode": "100644",
+      "bytes": 1323,
+      "sha256": "a41afc215664edb05b46481325f1bae59d56937d2a00d13369e4c573525ae161"
+    },
+    {
+      "path": "arch/esp32/AsyncElegantOTA/src/elegantWebpage.h",
+      "mode": "100644",
+      "bytes": 194339,
+      "sha256": "76aaba9815603f7efc086ec5038ea013c97d4223e9a33e910ae00c03cfd4624e"
+    },
+    {
+      "path": "arch/stm32/Adafruit_LittleFS_stm32/README.md",
+      "mode": "100644",
+      "bytes": 129,
+      "sha256": "9860f9bad03d04ece2434f59b90fe80f1591b42dd5e1c1750a525bf23bf24107"
+    },
+    {
+      "path": "arch/stm32/Adafruit_LittleFS_stm32/library.properties",
+      "mode": "100644",
+      "bytes": 341,
+      "sha256": "7e377d7f49b226d64e4fca39bbc2bd8c4cec51211d2608f62903b0d9ca92fe74"
+    },
+    {
+      "path": "arch/stm32/Adafruit_LittleFS_stm32/src/Adafruit_LittleFS.cpp",
+      "mode": "100644",
+      "bytes": 6931,
+      "sha256": "701cb5f4483f6c0c6f9004e0ecd34b8ac0b57a42003525d34ca9b040a38389cb"
+    },
+    {
+      "path": "arch/stm32/Adafruit_LittleFS_stm32/src/Adafruit_LittleFS.h",
+      "mode": "100644",
+      "bytes": 3828,
+      "sha256": "72d1c4a0985f3cc52334afaeee579228febb4b1cf1fdf2ee23ff8d9223aa8297"
+    },
+    {
+      "path": "arch/stm32/Adafruit_LittleFS_stm32/src/Adafruit_LittleFS_File.cpp",
+      "mode": "100644",
+      "bytes": 8649,
+      "sha256": "6c5766b0206d8cb4acf1a166ed834f6e87e3723c10471a18ff4edc6e9e401b7e"
+    },
+    {
+      "path": "arch/stm32/Adafruit_LittleFS_stm32/src/Adafruit_LittleFS_File.h",
+      "mode": "100644",
+      "bytes": 2973,
+      "sha256": "5d11f74d832d1776d5d453729bc02f33b8cbef9c448d68ecd3dc50672bf2f4b1"
+    },
+    {
+      "path": "arch/stm32/Adafruit_LittleFS_stm32/src/littlefs/LICENSE.md",
+      "mode": "100644",
+      "bytes": 1479,
+      "sha256": "b2b93a3be96b3142dc381d10e72e5208ef3318bf530110e854c33704698e126a"
+    },
+    {
+      "path": "arch/stm32/Adafruit_LittleFS_stm32/src/littlefs/README.md",
+      "mode": "100644",
+      "bytes": 6577,
+      "sha256": "c4a161a4527d32c692c8d75045782d1ff0d24c3211550844e0360ebad085c566"
+    },
+    {
+      "path": "arch/stm32/Adafruit_LittleFS_stm32/src/littlefs/lfs.c",
+      "mode": "100644",
+      "bytes": 70875,
+      "sha256": "21a07094466e132114c92654caea747335782465e17f11d677f2f0ae45415b2f"
+    },
+    {
+      "path": "arch/stm32/Adafruit_LittleFS_stm32/src/littlefs/lfs.h",
+      "mode": "100644",
+      "bytes": 15556,
+      "sha256": "4b5eac0ad8d72be2c8fe1e2b529d9ad4683ccf692acfbe7cea4b04e145751f26"
+    },
+    {
+      "path": "arch/stm32/Adafruit_LittleFS_stm32/src/littlefs/lfs_util.c",
+      "mode": "100644",
+      "bytes": 857,
+      "sha256": "e8de372d8ee7ad90543a3165f74baa76d0abb9077c76099a80d2dbd0a6e04149"
+    },
+    {
+      "path": "arch/stm32/Adafruit_LittleFS_stm32/src/littlefs/lfs_util.h",
+      "mode": "100644",
+      "bytes": 5260,
+      "sha256": "df330109600aaf8d199e7366879cb111ffda2463caf919507a191f6ff5a7f468"
+    },
+    {
+      "path": "arch/stm32/build_hex.py",
+      "mode": "100644",
+      "bytes": 298,
+      "sha256": "a201e4a4942d3a3a937b1ecb318d4467f43dbaeec8db5cc2cab599b353d5cc57"
+    },
+    {
+      "path": "bin/uf2conv/uf2conv.py",
+      "mode": "100644",
+      "bytes": 12603,
+      "sha256": "435c47342c67a0e9a5c93677fb427387f8f6217f6902b0e64e6481879a5bb03c"
+    },
+    {
+      "path": "bin/uf2conv/uf2families.json",
+      "mode": "100644",
+      "bytes": 8435,
+      "sha256": "6e18789b11c98ab59776c7db232c5f58ab636ef4237adbc89d385ae95548f273"
+    },
+    {
+      "path": "boards/ESP32-S3-WROOM-1-N4.json",
+      "mode": "100644",
+      "bytes": 1086,
+      "sha256": "c8568cfc2a27aeb8e304728a06443c8d25075e2cb4ec5d080929bc70c6cbb501"
+    },
+    {
+      "path": "boards/ebyte_eora-s3.json",
+      "mode": "100644",
+      "bytes": 1049,
+      "sha256": "e3588baf38a64cbbc414b28132987834aa62602413cb6e1742998a24d0d3bad9"
+    },
+    {
+      "path": "boards/esp32-s3-zero.json",
+      "mode": "100644",
+      "bytes": 969,
+      "sha256": "68f31177ad86c1bcd9bf0faf82bade6d8a76b4856b983f57b9e9ea65a26aa167"
+    },
+    {
+      "path": "boards/heltec-rc32.json",
+      "mode": "100644",
+      "bytes": 1106,
+      "sha256": "36b86d56e36ebc276bbb61c0ffa44f43796a8dd8204c8ade8194c4511b3e1724"
+    },
+    {
+      "path": "boards/heltec_e213.json",
+      "mode": "100644",
+      "bytes": 1103,
+      "sha256": "8db01803a3292cbe9a655b92c6a9be17e12a7b79a3f1e87541ec2461117cf243"
+    },
+    {
+      "path": "boards/heltec_e290.json",
+      "mode": "100644",
+      "bytes": 1103,
+      "sha256": "06e041e69b8837675b13e6e5c22f1e632a029ecb0228d60f4b7b1060f905aec9"
+    },
+    {
+      "path": "boards/heltec_mesh_pocket.json",
+      "mode": "100644",
+      "bytes": 1382,
+      "sha256": "66c2a6a22d603455a9d79dcb0b39a146194bf41df2d86796a9c23031be81f25c"
+    },
+    {
+      "path": "boards/heltec_mesh_solar.json",
+      "mode": "100644",
+      "bytes": 1282,
+      "sha256": "f73a286b0251dc02c7e878ce54c86194cfc8a4dca120a13bfe7b2cd4e08620dc"
+    },
+    {
+      "path": "boards/heltec_t096.json",
+      "mode": "100644",
+      "bytes": 1277,
+      "sha256": "1ebfc2f3bc9e88abbe6304a87d0b2b217944372b62317064d90af365501178c8"
+    },
+    {
+      "path": "boards/heltec_t1.json",
+      "mode": "100644",
+      "bytes": 1252,
+      "sha256": "c3051a1215249f03c7849dd73a87d24aa7ed437d8c885cc89c0ada60b47026f5"
+    },
+    {
+      "path": "boards/heltec_t114.json",
+      "mode": "100644",
+      "bytes": 1276,
+      "sha256": "5721eb1498c8c4c1b9e9506d316170772378da17cdde78b83ad52d3d7793231f"
+    },
+    {
+      "path": "boards/heltec_t190.json",
+      "mode": "100644",
+      "bytes": 1103,
+      "sha256": "24f8c107bbb5bb45c985423b4d890d8fc662530fe69a25a9ad25cf175100156d"
+    },
+    {
+      "path": "boards/heltec_tower_v2.json",
+      "mode": "100644",
+      "bytes": 1252,
+      "sha256": "e71bda481a8401bf5c7a5d628c96c60bc4aaef674bf96f85e319c69dc753a9a4"
+    },
+    {
+      "path": "boards/heltec_tracker_v2.json",
+      "mode": "100644",
+      "bytes": 1006,
+      "sha256": "1daa48c5e796109e58258c9fd7778794ea40c30354023edacb5a8c609ff5f77c"
+    },
+    {
+      "path": "boards/heltec_v4.json",
+      "mode": "100644",
+      "bytes": 1120,
+      "sha256": "80694b47d56203ee30d6fec68761394826857cc115b7b2a06ea2b4de06528e65"
+    },
+    {
+      "path": "boards/heltec_v4_r8.json",
+      "mode": "100644",
+      "bytes": 1121,
+      "sha256": "43a43a23d3be51281258f4ed9106f062e5b1f4ddd760540f8473f44a9ee041d1"
+    },
+    {
+      "path": "boards/keepteen_lt1.json",
+      "mode": "100644",
+      "bytes": 1630,
+      "sha256": "04a6aeaa3f44a792d2b9b873e2502f137bff64a8c10e366973bccbbbc00d02a0"
+    },
+    {
+      "path": "boards/lilygo_t_impulse_plus_nrf52840.json",
+      "mode": "100644",
+      "bytes": 1330,
+      "sha256": "8e77e7ea99d42af054f605448c02d1331237ceec6bf049b0c98b77a9276602d8"
+    },
+    {
+      "path": "boards/meshnology_w12.json",
+      "mode": "100644",
+      "bytes": 1143,
+      "sha256": "892e9b5c96e69da94c0a58aa89005097ecadb348985b1bbf9f278997ea510875"
+    },
+    {
+      "path": "boards/meshtiny.json",
+      "mode": "100644",
+      "bytes": 1409,
+      "sha256": "e1b6881f7f3bbfa586bf4d1551fa0e27440ff566589059bc1e9e9e29ef0ff64a"
+    },
+    {
+      "path": "boards/minewsemi_me25ls01.json",
+      "mode": "100644",
+      "bytes": 1350,
+      "sha256": "fb9fee0b8e4bcc93d6bf97a72ca00d52f82bb4d4143858e6791e33dc3cc98717"
+    },
+    {
+      "path": "boards/nano-g2-ultra.json",
+      "mode": "100644",
+      "bytes": 1738,
+      "sha256": "1255cb15729501231c7d38d3fa8336b7ccba00c9b77f3d4dc445d64af5a5d042"
+    },
+    {
+      "path": "boards/nrf52840_s140_v6.ld",
+      "mode": "100644",
+      "bytes": 824,
+      "sha256": "3148913a3db708243bff6ed6dc0d0a3eeaa4ecad3981f646fa2b9ba77b150fcd"
+    },
+    {
+      "path": "boards/nrf52840_s140_v6_extrafs.ld",
+      "mode": "100644",
+      "bytes": 824,
+      "sha256": "fa92b157926c41223fd313417106d0f2dfa8caac49d490f583aa3689da9afb4b"
+    },
+    {
+      "path": "boards/nrf52840_s140_v7.ld",
+      "mode": "100644",
+      "bytes": 824,
+      "sha256": "92ffccc42a856615ad662fca8f0634976d3df77863f713fea3827a0a35cd232f"
+    },
+    {
+      "path": "boards/nrf52840_s140_v7_extrafs.ld",
+      "mode": "100644",
+      "bytes": 824,
+      "sha256": "8d6c6ffebfde2320f241f2789f2f8b0784f142306eff4e2fadc1ac4d1150b487"
+    },
+    {
+      "path": "boards/promicro_nrf52840.json",
+      "mode": "100644",
+      "bytes": 1678,
+      "sha256": "3845a59c3fe8b81ae1d40390c52855723f4ecde5e974c9743f0432543e522831"
+    },
+    {
+      "path": "boards/rak3172.json",
+      "mode": "100644",
+      "bytes": 906,
+      "sha256": "7c344e2517ed29c17adb13c4fd41c007a4d6819736c5573d5b9f629ed31ea33e"
+    },
+    {
+      "path": "boards/rak3401.json",
+      "mode": "100644",
+      "bytes": 1411,
+      "sha256": "392bb5d4d5be231416ce880f850427a2655b19f7cc12ab10681beb73519444df"
+    },
+    {
+      "path": "boards/rak4631.json",
+      "mode": "100644",
+      "bytes": 1411,
+      "sha256": "1ec1da4ad31650aadfb8350e145e56baf9aaa89e34a6f0293c0f9d1ff4fc62c7"
+    },
+    {
+      "path": "boards/seeed-mesh-tracker-x1.json",
+      "mode": "100644",
+      "bytes": 1406,
+      "sha256": "c1a7fb9445fb5e5a83fb7ddcbbca135fae1b3de906c2c99edfa9ed6a0f6e87b6"
+    },
+    {
+      "path": "boards/seeed-wio-tracker-l1.json",
+      "mode": "100644",
+      "bytes": 1363,
+      "sha256": "1062f7dd69dba47239bffe5fa666e83e08fb65a4a319b3374bd2265bea273899"
+    },
+    {
+      "path": "boards/seeed-xiao-afruitnrf52-nrf52840.json",
+      "mode": "100644",
+      "bytes": 1334,
+      "sha256": "12c5b78b9c583e769b03a40492c1cecfd665afd976ff79fa499ef06c6740c743"
+    },
+    {
+      "path": "boards/seeed_sensecap_solar.json",
+      "mode": "100644",
+      "bytes": 1317,
+      "sha256": "d0729f5a9970aec5ba2e0186cfa76c01550a7e007f9a63652ed53d1b6db6772a"
+    },
+    {
+      "path": "boards/station-g2.json",
+      "mode": "100644",
+      "bytes": 1037,
+      "sha256": "c939ddfe361851ac86313b907f506b08a836f33234bae9500ea17d2666b30715"
+    },
+    {
+      "path": "boards/station-g3-esp32.json",
+      "mode": "100644",
+      "bytes": 1035,
+      "sha256": "78edad91c10ef3250d09ba63a0db7249b896a817db7158638cd60f28467bb31a"
+    },
+    {
+      "path": "boards/t-deck.json",
+      "mode": "100644",
+      "bytes": 938,
+      "sha256": "943c6a648be39862dfcf3b2c6fa07620e95a3fc0b90be0c40bf5ace129b1b118"
+    },
+    {
+      "path": "boards/t-echo.json",
+      "mode": "100644",
+      "bytes": 1320,
+      "sha256": "9518d453547c18411410ff7561393730dde2a5e48b848f7a2e6cf314813274ea"
+    },
+    {
+      "path": "boards/t3_s3_v1_x.json",
+      "mode": "100644",
+      "bytes": 979,
+      "sha256": "e67d3223e9d59f55a41725ea643ea137558344eb5ef50e57270b0f5e6e8e5b7d"
+    },
+    {
+      "path": "boards/t_beam_1w.json",
+      "mode": "100644",
+      "bytes": 1183,
+      "sha256": "e932cb9edabf8e84366bc10efff48f33ee8ecc5651e3faa413063d1b4c837a34"
+    },
+    {
+      "path": "boards/t_beams3_supreme.json",
+      "mode": "100644",
+      "bytes": 1158,
+      "sha256": "2e9503ca38ff6704111b3df7e3d7c390a65b779b323fc1ab2c616786ee15810a"
+    },
+    {
+      "path": "boards/thinknode_m1.json",
+      "mode": "100644",
+      "bytes": 1383,
+      "sha256": "b03b1967c5620b40cbf6789cdebe02b73812536802f1205fd29d6b6e5b5f1ed8"
+    },
+    {
+      "path": "boards/thinknode_m3.json",
+      "mode": "100644",
+      "bytes": 1353,
+      "sha256": "1b570bd288c3d0732779a5d3fe31b2bf3cce66b1c3bfac7d17e96b1815719769"
+    },
+    {
+      "path": "boards/thinknode_m6.json",
+      "mode": "100644",
+      "bytes": 1387,
+      "sha256": "d75f9294dcc8dc93c7b7e06b9ce93e96c438d31d263e330f86814898271041f7"
+    },
+    {
+      "path": "boards/thinknode_m7.json",
+      "mode": "100644",
+      "bytes": 1070,
+      "sha256": "28d689f8113246a06c120f23ce2d9982643e3687f20b62a296bc3beaf0cde0c4"
+    },
+    {
+      "path": "boards/thinknode_m9.json",
+      "mode": "100755",
+      "bytes": 1283,
+      "sha256": "6a18366f4b356534ff8bfe55d6f49342d9f21f23b65c4fb7f0b589b96cb807da"
+    },
+    {
+      "path": "boards/tiny_relay.json",
+      "mode": "100644",
+      "bytes": 914,
+      "sha256": "71346457beb0bb3610d6e22c25077bda203eead83d78f57aa7faaca7d98cd20f"
+    },
+    {
+      "path": "boards/tracker-t1000-e.json",
+      "mode": "100644",
+      "bytes": 1365,
+      "sha256": "25ee8b59fa04b0f2097ffaf7fc0fca3c5bb432f1afa4fe9a71827ac63b9e3845"
+    },
+    {
+      "path": "build.sh",
+      "mode": "100755",
+      "bytes": 9556,
+      "sha256": "00225d039c5ae7c2a9fdd86e178701d21c671b879df8d3380c4167d66b6410fc"
+    },
+    {
+      "path": "build_as_lib.py",
+      "mode": "100644",
+      "bytes": 2288,
+      "sha256": "cb13b79b788de46b5da51791db068be7728af90a8aae88c1c460d900f52483f0"
+    },
+    {
+      "path": "create-uf2.py",
+      "mode": "100644",
+      "bytes": 751,
+      "sha256": "a728f1b0080f9ce8c20737238cd4b566cbfb7fecf9cc50bc39a04756e98de045"
+    },
+    {
+      "path": "default.nix",
+      "mode": "100644",
+      "bytes": 233,
+      "sha256": "66d4f61b84d73d91870ff7c73a22fd8df7ae64f02ec79c9e5792afbda1143418"
+    },
+    {
+      "path": "docs/_assets/meshcore.svg",
+      "mode": "100644",
+      "bytes": 6019,
+      "sha256": "8ebef75c4055c0bf6b7b839249c665a3675c78f0d3dcee8d0da32b9d472e9f5e"
+    },
+    {
+      "path": "docs/_assets/meshcore_tm.svg",
+      "mode": "100644",
+      "bytes": 7274,
+      "sha256": "7b38de146d51a70338df98c8143e20ac804b239a9bc0ef433e5bce3b31183905"
+    },
+    {
+      "path": "docs/_stylesheets/extra.css",
+      "mode": "100644",
+      "bytes": 317,
+      "sha256": "f48eb9092db6958537c87dee966a9bffa1eb7dc8c4222925db6d1e0abfb3550d"
+    },
+    {
+      "path": "docs/cli_commands.md",
+      "mode": "100644",
+      "bytes": 28153,
+      "sha256": "469a6a9368a93c3c0df7075aec8d6bc4f4ba46c6ac84b3182992d49503104189"
+    },
+    {
+      "path": "docs/companion_protocol.md",
+      "mode": "100644",
+      "bytes": 34325,
+      "sha256": "dcbcc465d6f65e3474014e2e29dcffd114ddc84721dbf327e7f61ff2dee94269"
+    },
+    {
+      "path": "docs/docs.md",
+      "mode": "100644",
+      "bytes": 297,
+      "sha256": "c615c219b36089c2fa8b31e44ee64ecd24be6c01e2e41273f151d51df5272106"
+    },
+    {
+      "path": "docs/faq.md",
+      "mode": "100644",
+      "bytes": 63848,
+      "sha256": "2499eb62384745dfbe0819d951a5af107d7e42657c59f021ac2e63d61733cd6a"
+    },
+    {
+      "path": "docs/index.md",
+      "mode": "100644",
+      "bytes": 507,
+      "sha256": "2a628be9e3bbef645befc8979d8f40b843c8c6b799d0197bcc7107b0dcc47adc"
+    },
+    {
+      "path": "docs/kiss_modem_protocol.md",
+      "mode": "100644",
+      "bytes": 14784,
+      "sha256": "33d6c35a40d25788859585b69c1d8866d8e3fd0b08b58890b3e25d2ec8aa7cd4"
+    },
+    {
+      "path": "docs/nrf52_power_management.md",
+      "mode": "100644",
+      "bytes": 10894,
+      "sha256": "978454bc0283b48a829b290aac1e6f728269e5cb50f28525ee7f3ddc9a1804f3"
+    },
+    {
+      "path": "docs/number_allocations.md",
+      "mode": "100644",
+      "bytes": 1890,
+      "sha256": "aa525be6141dfe1a2c48a341551b3735727e06581f7fb37aea4b229e3e54d7f0"
+    },
+    {
+      "path": "docs/packet_format.md",
+      "mode": "100644",
+      "bytes": 8834,
+      "sha256": "b1937c3581833a678671c2001976489d3bee5500fd0a367ef34f7f0a18bb2bb5"
+    },
+    {
+      "path": "docs/payloads.md",
+      "mode": "100644",
+      "bytes": 14923,
+      "sha256": "2bda7b2905f48743bd92ec42e03b2af0d037c8c161636665fbe50c1fc451a4ee"
+    },
+    {
+      "path": "docs/qr_codes.md",
+      "mode": "100644",
+      "bytes": 954,
+      "sha256": "a6d38a93cfe8e78689f0eb0fbb3d7a55f44fe9cd733edd370d36c7e71ed6fad0"
+    },
+    {
+      "path": "docs/stats_binary_frames.md",
+      "mode": "100644",
+      "bytes": 11813,
+      "sha256": "1c2746c5a24f4fad53cd11a9c076559a0cf78d028a65b96940908186d79ce492"
+    },
+    {
+      "path": "docs/terminal_chat_cli.md",
+      "mode": "100644",
+      "bytes": 1682,
+      "sha256": "eb46c12ee6436517ee6f1624f097c5f1ac2c873c5ca7d1b3fe98884c503a7991"
+    },
+    {
+      "path": "examples/companion_radio/AbstractUITask.h",
+      "mode": "100644",
+      "bytes": 1366,
+      "sha256": "6b508446a2e2f5155f02dc2734ee8afdf4fea33a08f1ff807a0b32a9c10a4af2"
+    },
+    {
+      "path": "examples/companion_radio/DataStore.cpp",
+      "mode": "100644",
+      "bytes": 19838,
+      "sha256": "a2f6bdd542c281a688d4d508904ff00780412e5bc6f52ecb214afd965a35d4f9"
+    },
+    {
+      "path": "examples/companion_radio/DataStore.h",
+      "mode": "100644",
+      "bytes": 2063,
+      "sha256": "86a5ed20c76f215f2a72c2e93a142d93fd30d1fa3014b7b3b16ee67c364c99d1"
+    },
+    {
+      "path": "examples/companion_radio/MyMesh.cpp",
+      "mode": "100644",
+      "bytes": 84669,
+      "sha256": "3c746cc6cab9ca6f9c623ff861f02c14a3b3849b78559d1d5cadb019136687da"
+    },
+    {
+      "path": "examples/companion_radio/MyMesh.h",
+      "mode": "100644",
+      "bytes": 9193,
+      "sha256": "3d0085370d8a1303d07c60038d210e9e46bc3b9f9c3ecacd099762527e2ad45b"
+    },
+    {
+      "path": "examples/companion_radio/NodePrefs.h",
+      "mode": "100644",
+      "bytes": 5278,
+      "sha256": "7efcc507a527106796e650f2c2bc59d13eecbb291f49d5ecd89e7ccb1eda4902"
+    },
+    {
+      "path": "examples/companion_radio/main.cpp",
+      "mode": "100644",
+      "bytes": 7292,
+      "sha256": "236fd25aff6bedf14a6eb7522968d8a4f8ebbe2e77482a89ad85ff71228b1f78"
+    },
+    {
+      "path": "examples/companion_radio/ui-new/UITask.cpp",
+      "mode": "100644",
+      "bytes": 29297,
+      "sha256": "bdc915c9eac1032a6224cecdef6f6fbaa99baa5b85641e1521144d388b3b7541"
+    },
+    {
+      "path": "examples/companion_radio/ui-new/UITask.h",
+      "mode": "100644",
+      "bytes": 2421,
+      "sha256": "2750afa3fd9065c9185d7c6ef173548a4ceb5ff183a4bec465d1888b34df65a3"
+    },
+    {
+      "path": "examples/companion_radio/ui-new/icons.h",
+      "mode": "100644",
+      "bytes": 4989,
+      "sha256": "e97ec649252f518bc501e8123c548d402b46d0fae8e4983838d571442ff5e501"
+    },
+    {
+      "path": "examples/companion_radio/ui-orig/Button.cpp",
+      "mode": "100644",
+      "bytes": 3653,
+      "sha256": "91eaa1400f351e306b3f7520b217567866f2b2c3afb7988d8de8fb5c16f61847"
+    },
+    {
+      "path": "examples/companion_radio/ui-orig/Button.h",
+      "mode": "100644",
+      "bytes": 2337,
+      "sha256": "3cb6f412cd674d5e652143d5355682738572b9901e37e32b802e0df462f6eb93"
+    },
+    {
+      "path": "examples/companion_radio/ui-orig/UITask.cpp",
+      "mode": "100644",
+      "bytes": 18985,
+      "sha256": "a28be8831a0de61cc20f93fbdd0e86319cabc99a70267ec461dcc06c3193826e"
+    },
+    {
+      "path": "examples/companion_radio/ui-orig/UITask.h",
+      "mode": "100644",
+      "bytes": 1983,
+      "sha256": "7f85b26a24d975aca91ee12d4d0ef0bd83734fa8cba2544b92954293884720f3"
+    },
+    {
+      "path": "examples/companion_radio/ui-tiny/ScrollingStatusBar.h",
+      "mode": "100644",
+      "bytes": 3749,
+      "sha256": "5e91ecc3c636c0209dc30e0d232a667c5ce90f1700fbe1007f0917d3d8489b35"
+    },
+    {
+      "path": "examples/companion_radio/ui-tiny/UITask.cpp",
+      "mode": "100644",
+      "bytes": 24829,
+      "sha256": "901c46d0a60de9df018de0d44fcb6c785dcc8a3116d58f7c26dba0c4a9dbe2ad"
+    },
+    {
+      "path": "examples/companion_radio/ui-tiny/UITask.h",
+      "mode": "100644",
+      "bytes": 2608,
+      "sha256": "f6248a233bfce930b7cfbec097f255d9392be04cdcffdc1804b3ff5a237bac68"
+    },
+    {
+      "path": "examples/companion_radio/ui-tiny/u8g2_icons.h",
+      "mode": "100644",
+      "bytes": 5866,
+      "sha256": "c212b950f6de53b213390867e996a6da3688b0cba0e97c8edd35bab32a7ae65a"
+    },
+    {
+      "path": "examples/kiss_modem/KissModem.cpp",
+      "mode": "100644",
+      "bytes": 19026,
+      "sha256": "8a9a1370c124b9de5187d5273b120e40ff4a263b05e2b355b64810e97edde94e"
+    },
+    {
+      "path": "examples/kiss_modem/KissModem.h",
+      "mode": "100644",
+      "bytes": 7395,
+      "sha256": "b0863d02e2808ff1995633540e6482d398f8ac1802068eefc3949720ab78b6dd"
+    },
+    {
+      "path": "examples/kiss_modem/main.cpp",
+      "mode": "100644",
+      "bytes": 4116,
+      "sha256": "07d563008b4d5cb42f3481b095dd350f6f918823aa372894f9ca76d9d03ea2ac"
+    },
+    {
+      "path": "examples/simple_repeater/MyMesh.cpp",
+      "mode": "100644",
+      "bytes": 50223,
+      "sha256": "63502d70170e8475fded43464348d043914258ec2a726345bf113cf071bcc338"
+    },
+    {
+      "path": "examples/simple_repeater/MyMesh.h",
+      "mode": "100644",
+      "bytes": 8447,
+      "sha256": "601dcc9d37eef96915cff3ff687260aaa49625eb8971bddf068cd9ea48194953"
+    },
+    {
+      "path": "examples/simple_repeater/RateLimiter.h",
+      "mode": "100644",
+      "bytes": 515,
+      "sha256": "fd7455112532a26f33aff20bf60d8cc63166c73eba1dacd422ec23d55dec7ebd"
+    },
+    {
+      "path": "examples/simple_repeater/UITask.cpp",
+      "mode": "100644",
+      "bytes": 5325,
+      "sha256": "859b4d19732572b8f2008280bfd0cb58e912c52f1f43de7032afb9b21f2098c0"
+    },
+    {
+      "path": "examples/simple_repeater/UITask.h",
+      "mode": "100644",
+      "bytes": 626,
+      "sha256": "cec0ad9364c8b3536f849d277c92167b6a697dceb79d0b7557d1341ae5c2d6d7"
+    },
+    {
+      "path": "examples/simple_repeater/main.cpp",
+      "mode": "100644",
+      "bytes": 5317,
+      "sha256": "3df2d5b64987d4c9cf45da104aae0364ea7a3ff5eccc5f33ab4ee18eb60b4aa7"
+    },
+    {
+      "path": "examples/simple_room_server/MyMesh.cpp",
+      "mode": "100644",
+      "bytes": 41672,
+      "sha256": "4492075d97967b0cb65c41f73dd75b52b537ed90bcabe7f879dace44049e319b"
+    },
+    {
+      "path": "examples/simple_room_server/MyMesh.h",
+      "mode": "100644",
+      "bytes": 7188,
+      "sha256": "cdd90aa9f2217ce171f130c5c12244a33da4958ca94cecbcafb85fcff62314c4"
+    },
+    {
+      "path": "examples/simple_room_server/UITask.cpp",
+      "mode": "100644",
+      "bytes": 4543,
+      "sha256": "0e850cc4261d3da46350b0fcf02c3c2b8baf366fac59cede7829ce51bd7fd5aa"
+    },
+    {
+      "path": "examples/simple_room_server/UITask.h",
+      "mode": "100644",
+      "bytes": 488,
+      "sha256": "177278c87af4a241050653b10fedfa41e906712319440a28fc7c41522d6e5dac"
+    },
+    {
+      "path": "examples/simple_room_server/main.cpp",
+      "mode": "100644",
+      "bytes": 3780,
+      "sha256": "ccd019c9a6d445134b3e6fe81854fb524167901ea7c7356cdc60d5a721736a1e"
+    },
+    {
+      "path": "examples/simple_secure_chat/main.cpp",
+      "mode": "100644",
+      "bytes": 19846,
+      "sha256": "9824d5e8060f14a2a4153be65f2634af856d8a255df45b9b74e39b174deee3be"
+    },
+    {
+      "path": "examples/simple_sensor/SensorMesh.cpp",
+      "mode": "100644",
+      "bytes": 35051,
+      "sha256": "3d6bdb8ce1cda61539ab8e40838b80b055d37f85fd37b5c53e18069db53bb7f0"
+    },
+    {
+      "path": "examples/simple_sensor/SensorMesh.h",
+      "mode": "100644",
+      "bytes": 6876,
+      "sha256": "29ae52d47c5eb8437d8f7163298d8f616fc87d4f2dc1cc0858f17faf9a42f796"
+    },
+    {
+      "path": "examples/simple_sensor/TimeSeriesData.cpp",
+      "mode": "100644",
+      "bytes": 1333,
+      "sha256": "21e7f75831c7bb970633ef088e74fd3379d60d9c27c9a7ffdab45dd11ac57001"
+    },
+    {
+      "path": "examples/simple_sensor/TimeSeriesData.h",
+      "mode": "100644",
+      "bytes": 829,
+      "sha256": "0b7ee3d24e0c8a8b0e769a8e54b77338edff2532bbd99ee40473ac8aad062f36"
+    },
+    {
+      "path": "examples/simple_sensor/UITask.cpp",
+      "mode": "100644",
+      "bytes": 4538,
+      "sha256": "62687c6057b0a2400f37a3f8075dab082a672d1481481d600c218a518b8fe372"
+    },
+    {
+      "path": "examples/simple_sensor/UITask.h",
+      "mode": "100644",
+      "bytes": 488,
+      "sha256": "177278c87af4a241050653b10fedfa41e906712319440a28fc7c41522d6e5dac"
+    },
+    {
+      "path": "examples/simple_sensor/main.cpp",
+      "mode": "100644",
+      "bytes": 4345,
+      "sha256": "f13b0e9909821394e33d9db55b985c14ead81e322584a6bbbe486d85c4559eb2"
+    },
+    {
+      "path": "include/README",
+      "mode": "100644",
+      "bytes": 1386,
+      "sha256": "af0e186680b645fa539e1db9ec876c13bc54478bbd967c1a916bf486f15a11c4"
+    },
+    {
+      "path": "lib/README",
+      "mode": "100644",
+      "bytes": 1037,
+      "sha256": "5ccf01dc5777aa95fb4489f4bcbac3ab8d0372151d2c194c8bfc464e180c807f"
+    },
+    {
+      "path": "lib/ed25519/add_scalar.c",
+      "mode": "100644",
+      "bytes": 2171,
+      "sha256": "385c8e4759bcb63924c2e593b9c4621f1cd6176942d3a52176c00dbcf2b9761d"
+    },
+    {
+      "path": "lib/ed25519/ed_25519.h",
+      "mode": "100644",
+      "bytes": 1416,
+      "sha256": "9022487fe9120bbd4dc35dc717efc2177d22222c275ef46c9463653bf03026b2"
+    },
+    {
+      "path": "lib/ed25519/fe.c",
+      "mode": "100644",
+      "bytes": 38843,
+      "sha256": "71082937da43def6ecaf7811c23410bd8ea763969dfec67383f8129b12b1926d"
+    },
+    {
+      "path": "lib/ed25519/fe.h",
+      "mode": "100644",
+      "bytes": 980,
+      "sha256": "0476ae2ebb86978d1e0b9fbeb63dcddd7566d6b74806db47dda7688df74aaafb"
+    },
+    {
+      "path": "lib/ed25519/fixedint.h",
+      "mode": "100644",
+      "bytes": 2518,
+      "sha256": "451fd529865e7fc69156f4cbe7c548857704ae4913768ad9ed7103656efdfc17"
+    },
+    {
+      "path": "lib/ed25519/ge.c",
+      "mode": "100644",
+      "bytes": 10373,
+      "sha256": "c3bb834817edea83d843828a75af19867b93144d15140eadfd9784d40cf11409"
+    },
+    {
+      "path": "lib/ed25519/ge.h",
+      "mode": "100644",
+      "bytes": 1683,
+      "sha256": "b16be2ea1731d9212933e7beeaef6882145fdcdaebdff9996efb5cf97faa2651"
+    },
+    {
+      "path": "lib/ed25519/key_exchange.c",
+      "mode": "100644",
+      "bytes": 1818,
+      "sha256": "885157d0d3a635e405669f621a2c6ee24d48d8ee2b39f097f9a642681fe164a4"
+    },
+    {
+      "path": "lib/ed25519/keypair.c",
+      "mode": "100644",
+      "bytes": 561,
+      "sha256": "9639f460c01191b738a4e3e206c5ee6bd232591b68f920ba3b097de7b80bbf77"
+    },
+    {
+      "path": "lib/ed25519/license.txt",
+      "mode": "100644",
+      "bytes": 874,
+      "sha256": "f68d76b9c1c2271422e55134ea94cf71f2ac3fc3ed6a7ec6b83a1a0538753214"
+    },
+    {
+      "path": "lib/ed25519/precomp_data.h",
+      "mode": "100644",
+      "bytes": 97800,
+      "sha256": "c7d63a8b7ecd7bc6a3ac2b826a540a69dee0fc7e8bf3b00ef5dd98ce00a7c224"
+    },
+    {
+      "path": "lib/ed25519/sc.c",
+      "mode": "100644",
+      "bytes": 22867,
+      "sha256": "c1bdb840416b34e79ceb7472d1a4ac4b1407c47b4c982cad981c72142ef42407"
+    },
+    {
+      "path": "lib/ed25519/sc.h",
+      "mode": "100644",
+      "bytes": 267,
+      "sha256": "b0ef537b4d4dad7bd2910e2a663a02a7ac25b473511a929c3c609d82f9bdf87d"
+    },
+    {
+      "path": "lib/ed25519/seed.c",
+      "mode": "100644",
+      "bytes": 645,
+      "sha256": "b12cfc7b3099788a58ba5fa8def57cc4744f968978b9c561c084ee1838ae3cb1"
+    },
+    {
+      "path": "lib/ed25519/sha512.c",
+      "mode": "100644",
+      "bytes": 11088,
+      "sha256": "b34128b950036777c299943d624bd830a234a65932c394fdf455e4948258fb6d"
+    },
+    {
+      "path": "lib/ed25519/sha512.h",
+      "mode": "100644",
+      "bytes": 489,
+      "sha256": "647ed5784d4dcd682b9c42add2e39107582efb4df9e1362c8e5120613eb9a0ce"
+    },
+    {
+      "path": "lib/ed25519/sign.c",
+      "mode": "100644",
+      "bytes": 828,
+      "sha256": "1f28f5864ee084c9d624d73f00f45b2b82c093c1e775306ffe43671e3b76d425"
+    },
+    {
+      "path": "lib/ed25519/verify.c",
+      "mode": "100644",
+      "bytes": 1368,
+      "sha256": "18c43d45e99ec4a922f3ed3b13eeb0309df62324c7ee9ca707eb5d65d8b66ad7"
+    },
+    {
+      "path": "lib/nrf52/include/ble.h",
+      "mode": "100644",
+      "bytes": 33186,
+      "sha256": "564ba0a39d39981290729da5a3c51714fd9170d1ea553cf5fdff23a6e00c88f0"
+    },
+    {
+      "path": "lib/nrf52/include/ble_err.h",
+      "mode": "100644",
+      "bytes": 3819,
+      "sha256": "3a33c272f5f3a952d0985ccaf5dfb6976596a58063ee49d16962fd55e6969892"
+    },
+    {
+      "path": "lib/nrf52/include/ble_gap.h",
+      "mode": "100644",
+      "bytes": 167924,
+      "sha256": "07ebeadbcfc4fa6f643237c97cef1e39d20c605bea466f0e5a8e44a310fd4f82"
+    },
+    {
+      "path": "lib/nrf52/include/ble_gatt.h",
+      "mode": "100644",
+      "bytes": 12749,
+      "sha256": "f03494fc8d0c47f9fab172489df545fc2c7e821a931005721d2ac682257deddc"
+    },
+    {
+      "path": "lib/nrf52/include/ble_gattc.h",
+      "mode": "100644",
+      "bytes": 38921,
+      "sha256": "ad45aba9869432f9bbef7b45bb6ece28182476c7dec9e3b3f8ed83970382179c"
+    },
+    {
+      "path": "lib/nrf52/include/ble_gatts.h",
+      "mode": "100644",
+      "bytes": 50464,
+      "sha256": "309dabaf75e95d46dbf73e694d77ce6c9edf7ee1fdda0bc4ac77a75923d6d403"
+    },
+    {
+      "path": "lib/nrf52/include/ble_hci.h",
+      "mode": "100644",
+      "bytes": 6375,
+      "sha256": "61f96a40c8e064771d47cd530707a7d94fe56ced0c463fc245a3a107de7d79f6"
+    },
+    {
+      "path": "lib/nrf52/include/ble_l2cap.h",
+      "mode": "100644",
+      "bytes": 26331,
+      "sha256": "0a1944aa71f7649adcb01b074eab724723df5c2df614207aaf1e364b9c7ec90c"
+    },
+    {
+      "path": "lib/nrf52/include/ble_ranges.h",
+      "mode": "100644",
+      "bytes": 6654,
+      "sha256": "85ff720d832563ff372241a494fdbb7a139ec202ee3808715122bf1c2ab81761"
+    },
+    {
+      "path": "lib/nrf52/include/ble_types.h",
+      "mode": "100644",
+      "bytes": 12243,
+      "sha256": "e6d6ab2ba07a6a1cc1ed7171f74267c0b9c36b016b0d00ba9d9b8557512e9285"
+    },
+    {
+      "path": "lib/nrf52/include/nrf52/nrf_mbr.h",
+      "mode": "100644",
+      "bytes": 11383,
+      "sha256": "79af845fcaf5725c39852ffee67e075392598c2ccb944a1b47d5586c6e29de4c"
+    },
+    {
+      "path": "lib/nrf52/include/nrf_error.h",
+      "mode": "100644",
+      "bytes": 4591,
+      "sha256": "e0b2a0aea6d28ca2f8215a66fb8816ae17852d505283e4d70863a7dc86f88fc5"
+    },
+    {
+      "path": "lib/nrf52/include/nrf_error_sdm.h",
+      "mode": "100644",
+      "bytes": 2867,
+      "sha256": "06ff592f41b31ca4b9a465355d12bb0783d21efa328198169f1c0cc7992c459f"
+    },
+    {
+      "path": "lib/nrf52/include/nrf_error_soc.h",
+      "mode": "100644",
+      "bytes": 3644,
+      "sha256": "809df4e68f850f420a57c5e30b99fe93b58c69845a8cefdd58f14a75d9654598"
+    },
+    {
+      "path": "lib/nrf52/include/nrf_nvic.h",
+      "mode": "100644",
+      "bytes": 15304,
+      "sha256": "4505df359460dc12df197ab00cb523c0eb3214f379e1a0c24ae3bdc2070ea210"
+    },
+    {
+      "path": "lib/nrf52/include/nrf_sdm.h",
+      "mode": "100644",
+      "bytes": 18285,
+      "sha256": "d422fdae7719177b9311bd10a33252e9338f2a60803a0712867f24cefe6895fe"
+    },
+    {
+      "path": "lib/nrf52/include/nrf_soc.h",
+      "mode": "100644",
+      "bytes": 53624,
+      "sha256": "32f1e3bcd646ca960f4a9cb2e393f4bc8e13d77aa1530e15de78561678d4a3fc"
+    },
+    {
+      "path": "lib/nrf52/include/nrf_svc.h",
+      "mode": "100644",
+      "bytes": 3581,
+      "sha256": "c8c9d41951a05ad7c87694bcd9659cdd15366dbd2fc199372362dbfbca485ffd"
+    },
+    {
+      "path": "lib/nrf52/s140_nrf52_7.3.0_API/include/ble.h",
+      "mode": "100755",
+      "bytes": 33362,
+      "sha256": "beb1fa3a11015c11f354f87850814dd9dda813b051df1371608cf19e43360a1a"
+    },
+    {
+      "path": "lib/nrf52/s140_nrf52_7.3.0_API/include/ble_err.h",
+      "mode": "100755",
+      "bytes": 3806,
+      "sha256": "0df3908f4fbc40fecea73614546aaf72d8bcd494b1d42a09525284f0cc66ed68"
+    },
+    {
+      "path": "lib/nrf52/s140_nrf52_7.3.0_API/include/ble_gap.h",
+      "mode": "100755",
+      "bytes": 180450,
+      "sha256": "6386bfdc0042fea2cb5db523b9840629f73baf7706a3db81f2222bd484b2162b"
+    },
+    {
+      "path": "lib/nrf52/s140_nrf52_7.3.0_API/include/ble_gatt.h",
+      "mode": "100755",
+      "bytes": 12735,
+      "sha256": "7c7d979e879bcddaef1c1fc820dec3ceb2025d576c9d3503988d54383dee8ff7"
+    },
+    {
+      "path": "lib/nrf52/s140_nrf52_7.3.0_API/include/ble_gattc.h",
+      "mode": "100755",
+      "bytes": 40508,
+      "sha256": "a7f0a67f1ea413c2e0dae684955eba57f9a0a5986eac65ffc348429f3b7808e2"
+    },
+    {
+      "path": "lib/nrf52/s140_nrf52_7.3.0_API/include/ble_gatts.h",
+      "mode": "100755",
+      "bytes": 51816,
+      "sha256": "3ee81c197675b14ed8a235956c0b0774d9071350f32736113758ddcefe4b26ff"
+    },
+    {
+      "path": "lib/nrf52/s140_nrf52_7.3.0_API/include/ble_hci.h",
+      "mode": "100755",
+      "bytes": 6362,
+      "sha256": "cac15746c05bbb77026a5d4055946f8772271dee040f7107c8ad08e814ba17d0"
+    },
+    {
+      "path": "lib/nrf52/s140_nrf52_7.3.0_API/include/ble_l2cap.h",
+      "mode": "100755",
+      "bytes": 26427,
+      "sha256": "62587b7dbdc4fdc3b5885f47b2667fb6a5bf0f17b4c6e17fe9c8c9f8b92c8b62"
+    },
+    {
+      "path": "lib/nrf52/s140_nrf52_7.3.0_API/include/ble_ranges.h",
+      "mode": "100755",
+      "bytes": 6641,
+      "sha256": "551db8f9e4f83d614f8f0d51a98b1fccfeb8cd3d7283dbad71aa8cfb414cc015"
+    },
+    {
+      "path": "lib/nrf52/s140_nrf52_7.3.0_API/include/ble_types.h",
+      "mode": "100755",
+      "bytes": 12230,
+      "sha256": "05680dc6a2b39bde20c4ab4faeba7e89bf560a42902579da86d741cd81458a1d"
+    },
+    {
+      "path": "lib/nrf52/s140_nrf52_7.3.0_API/include/nrf52/nrf_mbr.h",
+      "mode": "100755",
+      "bytes": 11383,
+      "sha256": "79af845fcaf5725c39852ffee67e075392598c2ccb944a1b47d5586c6e29de4c"
+    },
+    {
+      "path": "lib/nrf52/s140_nrf52_7.3.0_API/include/nrf_error.h",
+      "mode": "100755",
+      "bytes": 4578,
+      "sha256": "65f8c8b99939bf600f071cdfe9f3e6075236112f9783239eb2003b29186444d3"
+    },
+    {
+      "path": "lib/nrf52/s140_nrf52_7.3.0_API/include/nrf_error_sdm.h",
+      "mode": "100755",
+      "bytes": 2854,
+      "sha256": "392100c29bc2326450fe24b6803da5f2d8f2751ab4e223ce47101ca2fb388b2f"
+    },
+    {
+      "path": "lib/nrf52/s140_nrf52_7.3.0_API/include/nrf_error_soc.h",
+      "mode": "100755",
+      "bytes": 3631,
+      "sha256": "7be975376970216ab4a919930225722a7459d2875cd4a51afa9ac9baa200a0de"
+    },
+    {
+      "path": "lib/nrf52/s140_nrf52_7.3.0_API/include/nrf_nvic.h",
+      "mode": "100755",
+      "bytes": 15291,
+      "sha256": "2ad07ad32370a4061f6bef814dbd197a5ec1840fc952c38d2066abf08ba141d3"
+    },
+    {
+      "path": "lib/nrf52/s140_nrf52_7.3.0_API/include/nrf_sdm.h",
+      "mode": "100755",
+      "bytes": 18537,
+      "sha256": "2cd7ddbceb99c6d271d4c6ee6827d13095085e4433442b063291fd1833bcb4c4"
+    },
+    {
+      "path": "lib/nrf52/s140_nrf52_7.3.0_API/include/nrf_soc.h",
+      "mode": "100755",
+      "bytes": 53672,
+      "sha256": "f814b36a7b19e1f4d225eb1c884ca52dcf14b78f76185906c69f950133a7e914"
+    },
+    {
+      "path": "lib/nrf52/s140_nrf52_7.3.0_API/include/nrf_svc.h",
+      "mode": "100755",
+      "bytes": 4042,
+      "sha256": "e0c7f00892b883a7cd656f773fb09483c51fdf24d3899bff2b4019a4db4a1b7c"
+    },
+    {
+      "path": "library.json",
+      "mode": "100644",
+      "bytes": 389,
+      "sha256": "e1c6340cafdc41b1c00824360fdc2bc3a10aa6e08403405be21ae6223426558c"
+    },
+    {
+      "path": "license.txt",
+      "mode": "100644",
+      "bytes": 1087,
+      "sha256": "3426328fb2c024c0374ec18e6f587bf0f35782bf04c5d3e90b52d282b156489d"
+    },
+    {
+      "path": "logo/meshcore.afdesign",
+      "mode": "100644",
+      "bytes": 20497,
+      "sha256": "a80813d81bbf773fd49794b78bbd47544ddcfcdcc73993a12076673aa39bf2b6"
+    },
+    {
+      "path": "logo/meshcore.png",
+      "mode": "100644",
+      "bytes": 12486,
+      "sha256": "213e62e68e5113acd5a55eaf298b9e7b480f24d75126bf701370f77114f52cd4"
+    },
+    {
+      "path": "logo/meshcore.svg",
+      "mode": "100644",
+      "bytes": 6019,
+      "sha256": "8ebef75c4055c0bf6b7b839249c665a3675c78f0d3dcee8d0da32b9d472e9f5e"
+    },
+    {
+      "path": "logo/meshcore_tm.svg",
+      "mode": "100644",
+      "bytes": 7274,
+      "sha256": "7b38de146d51a70338df98c8143e20ac804b239a9bc0ef433e5bce3b31183905"
+    },
+    {
+      "path": "merge-bin.py",
+      "mode": "100644",
+      "bytes": 1245,
+      "sha256": "9a5b0a84da4980d2c8594ae70a4d15a0637cc570a0addcb2c676aa9f825841b1"
+    },
+    {
+      "path": "mkdocs.yml",
+      "mode": "100644",
+      "bytes": 457,
+      "sha256": "9cc6dd5a26ac546a2e532912dedb634d21cb14ebd3e69b9c0d7aeaf2b8fb9a19"
+    },
+    {
+      "path": "platformio.ini",
+      "mode": "100644",
+      "bytes": 5596,
+      "sha256": "c343fa85b0f8024b1555577c1feea7a6146dd44ffd6baed71621ab81c575c983"
+    },
+    {
+      "path": "src/Dispatcher.cpp",
+      "mode": "100644",
+      "bytes": 13352,
+      "sha256": "6dd0103b5760898c2c9d07f64f203e8501645b44338544dfa9b7f041feb67db1"
+    },
+    {
+      "path": "src/Dispatcher.h",
+      "mode": "100644",
+      "bytes": 6398,
+      "sha256": "a137dde32fce21a29101773aa0019d73bb722050374a7d48c179484a48d47974"
+    },
+    {
+      "path": "src/Identity.cpp",
+      "mode": "100644",
+      "bytes": 5415,
+      "sha256": "e94463f11b804cf2f670ccdb7ccb7689b0cf845ef84a8a6078a60c3051499822"
+    },
+    {
+      "path": "src/Identity.h",
+      "mode": "100644",
+      "bytes": 3377,
+      "sha256": "d5ec3c37606c636776571419282d845f2bcc1f3996b271eb4141558eaf0a15fc"
+    },
+    {
+      "path": "src/Mesh.cpp",
+      "mode": "100644",
+      "bytes": 27777,
+      "sha256": "63cffc2438c1537dbe73c993c2331ae91b3adb14a6cad78222a939d5c73f757f"
+    },
+    {
+      "path": "src/Mesh.h",
+      "mode": "100644",
+      "bytes": 9796,
+      "sha256": "1d89b7fd54b5316179a9e26cbc38c403f5d34bb93a7133fc7486a959663683d6"
+    },
+    {
+      "path": "src/MeshCore.h",
+      "mode": "100644",
+      "bytes": 3971,
+      "sha256": "4db7a707fe9915919a5a802021d3523d7e2e12c33156f9de5d5f685b64b0185f"
+    },
+    {
+      "path": "src/Packet.cpp",
+      "mode": "100644",
+      "bytes": 2431,
+      "sha256": "6f401a4abe57b67aae6ce54172a8cd5cfa64f801c2186894d4bf28aaf30b52e0"
+    },
+    {
+      "path": "src/Packet.h",
+      "mode": "100644",
+      "bytes": 4905,
+      "sha256": "cd29311f7a9b0e52dc9c55f599718bfdcbdf3cc9b96ed247099c9d72ba774e99"
+    },
+    {
+      "path": "src/Utils.cpp",
+      "mode": "100644",
+      "bytes": 6967,
+      "sha256": "5f84b666e7c73744cb8dedc60b6749bdabfd0fbbb5b988f36a6b4bf4b3997ed8"
+    },
+    {
+      "path": "src/Utils.h",
+      "mode": "100644",
+      "bytes": 3435,
+      "sha256": "76b0d60b27610f186dff1765aa4be72de806208f4930f8000bfea3d7b917d885"
+    },
+    {
+      "path": "src/helpers/AbstractBridge.h",
+      "mode": "100644",
+      "bytes": 1040,
+      "sha256": "771161cb7606d69362d69ee0bf77c91c0634c5194451fbcf5974483b07a25038"
+    },
+    {
+      "path": "src/helpers/AdvertDataHelpers.cpp",
+      "mode": "100644",
+      "bytes": 2418,
+      "sha256": "ba1b2026117c4615f2064ea0de1568ca57008348b94021dec77d342db23fbd7e"
+    },
+    {
+      "path": "src/helpers/AdvertDataHelpers.h",
+      "mode": "100644",
+      "bytes": 2205,
+      "sha256": "c871a8e7e0e366c357da52e2994e009d4e7c14cd714b06ea5632b82bccf6dc0c"
+    },
+    {
+      "path": "src/helpers/ArduinoHelpers.h",
+      "mode": "100644",
+      "bytes": 973,
+      "sha256": "940fed68792ad34bd68bd63f65133ef25b019d960cc04720361b6ef944f131c0"
+    },
+    {
+      "path": "src/helpers/ArduinoSerialInterface.cpp",
+      "mode": "100644",
+      "bytes": 1932,
+      "sha256": "b4f3b8ddebf2f4e80b9e72105d5dc172158a7f35bfe18132b3ead10471bbd93a"
+    },
+    {
+      "path": "src/helpers/ArduinoSerialInterface.h",
+      "mode": "100644",
+      "bytes": 787,
+      "sha256": "72ad64a163e159a028de651ed5ac381ed358f7a8c843c95f8a4ce17cd5894846"
+    },
+    {
+      "path": "src/helpers/AutoDiscoverRTCClock.cpp",
+      "mode": "100644",
+      "bytes": 2887,
+      "sha256": "6eea0258aefea446beabc0c8374b99dc650d9b5d81e620cd6ba2b6a4753e9301"
+    },
+    {
+      "path": "src/helpers/AutoDiscoverRTCClock.h",
+      "mode": "100644",
+      "bytes": 516,
+      "sha256": "61b9bcf6d5cece7bb692e0bc3548f0684c481a63c4b4a3c6a396c9588f6065dc"
+    },
+    {
+      "path": "src/helpers/BaseChatMesh.cpp",
+      "mode": "100644",
+      "bytes": 36843,
+      "sha256": "c0f33e7bc2c7ff8acab9969121af5fc7328059a9b3159b15dfa8a8bd6a50c6a9"
+    },
+    {
+      "path": "src/helpers/BaseChatMesh.h",
+      "mode": "100644",
+      "bytes": 9180,
+      "sha256": "adfc1879f6ba828ba6a2ddd923a6009a3a1e3a13c65b1d05eae318afab9c714d"
+    },
+    {
+      "path": "src/helpers/BaseSerialInterface.h",
+      "mode": "100644",
+      "bytes": 513,
+      "sha256": "fe7a91144e612121022bf975b061e0e2c70cc9ba5fdb7d57345877dc53ff2a86"
+    },
+    {
+      "path": "src/helpers/ChannelDetails.h",
+      "mode": "100644",
+      "bytes": 128,
+      "sha256": "e2d894feb97311b7dc887311acb0884860f3d4b2c59ff4c7005697a524a82d76"
+    },
+    {
+      "path": "src/helpers/ClientACL.cpp",
+      "mode": "100644",
+      "bytes": 4676,
+      "sha256": "25aa30575ef30100979d606ffbde11f0a1bda82066738664e6d797ed43026067"
+    },
+    {
+      "path": "src/helpers/ClientACL.h",
+      "mode": "100644",
+      "bytes": 1721,
+      "sha256": "7e4e49b7e2992a97a08673dacd66089d7b31477b9f6f271dc5327db4c2104d15"
+    },
+    {
+      "path": "src/helpers/CommonCLI.cpp",
+      "mode": "100644",
+      "bytes": 47862,
+      "sha256": "74a99fb883124b63a2c05432f32a41f9519658272aba84a55c29cee9025472f9"
+    },
+    {
+      "path": "src/helpers/CommonCLI.h",
+      "mode": "100644",
+      "bytes": 9101,
+      "sha256": "20529b95314a322042fbfb9cc0fb8148a284bbe221ecd5fe5dd67bc35567e3bc"
+    },
+    {
+      "path": "src/helpers/ConfigSerializer.cpp",
+      "mode": "100644",
+      "bytes": 10518,
+      "sha256": "7982c4df50670e50fc6587937260a928ebc96a9af92f82289db5dd92cbe1dcc9"
+    },
+    {
+      "path": "src/helpers/ConfigSerializer.h",
+      "mode": "100644",
+      "bytes": 1808,
+      "sha256": "f5cd0635588d8c23237f42260349561eff76a6aa2143116c090e220f8985ce40"
+    },
+    {
+      "path": "src/helpers/ContactInfo.h",
+      "mode": "100644",
+      "bytes": 813,
+      "sha256": "9ec3c199d73871174c73a1cecfd3c4293fda3be2628b96370d6063c107484e18"
+    },
+    {
+      "path": "src/helpers/ESP32Board.cpp",
+      "mode": "100644",
+      "bytes": 2360,
+      "sha256": "b54b1bf3a8f31992ddca93ea175a70d8495fc07bb67565e3f029cb48c628604a"
+    },
+    {
+      "path": "src/helpers/ESP32Board.h",
+      "mode": "100644",
+      "bytes": 5694,
+      "sha256": "0d17ab6d334656a42db7cec82c5e6b6e0bc0f49d03a5abfaf7d7ba781a266a58"
+    },
+    {
+      "path": "src/helpers/ExternalWatchdogManager.h",
+      "mode": "100644",
+      "bytes": 313,
+      "sha256": "22c54c44decb070fb52648ddb95e73ec0e3a70f1850e1c265ca2768d5c9b3e0b"
+    },
+    {
+      "path": "src/helpers/IdentityStore.cpp",
+      "mode": "100644",
+      "bytes": 2442,
+      "sha256": "4593bc7aa79aaa85ecdab01d9d9aa8f6b3ef4e85db8f70433fa4ace44fec7975"
+    },
+    {
+      "path": "src/helpers/IdentityStore.h",
+      "mode": "100644",
+      "bytes": 838,
+      "sha256": "aa57ca20ba9eae43255e9a289b343f0a8581a1b1ac7a2c2154f958723b4ad207"
+    },
+    {
+      "path": "src/helpers/MeshadventurerBoard.h",
+      "mode": "100644",
+      "bytes": 1164,
+      "sha256": "70a3791e6d2f37781f6ce050f73172297dc8db158a6a9d126da7dbe96a1ad91a"
+    },
+    {
+      "path": "src/helpers/MultiSerialInterface.h",
+      "mode": "100644",
+      "bytes": 4286,
+      "sha256": "f6bd5194164226296524c402270966d412d650554d4d9268048493aa2986b143"
+    },
+    {
+      "path": "src/helpers/NRF52Board.cpp",
+      "mode": "100644",
+      "bytes": 14354,
+      "sha256": "da46ff3e1ca063d68d799e89bd9290a05c75631f8065a8c535a17a8e6d5f3c48"
+    },
+    {
+      "path": "src/helpers/NRF52Board.h",
+      "mode": "100644",
+      "bytes": 2979,
+      "sha256": "4d6ce18d3581fe2fc1d3b2e85b3854fdf1d77d6c08de52539c44e8dad9290043"
+    },
+    {
+      "path": "src/helpers/RTC_RX8130CE.cpp",
+      "mode": "100644",
+      "bytes": 4474,
+      "sha256": "0e72ba9b2f3703a15f0875fa00e3a67a501166177cfca0f7e07cfea554f9408b"
+    },
+    {
+      "path": "src/helpers/RTC_RX8130CE.h",
+      "mode": "100644",
+      "bytes": 722,
+      "sha256": "a14048f56a6036fec7abac1f7dd9293faaba67257e51fa7fa5b25b94bb63eab9"
+    },
+    {
+      "path": "src/helpers/RefCountedDigitalPin.h",
+      "mode": "100644",
+      "bytes": 589,
+      "sha256": "a38a251e6cc5a37450f88830cd30781241ca44003a51c8cfb53243f6c9f9f8ea"
+    },
+    {
+      "path": "src/helpers/RegionMap.cpp",
+      "mode": "100644",
+      "bytes": 10913,
+      "sha256": "6213a919adee623e7c48cafa58d5d80b0ac17f3059be1f2e2cd190ec11e78649"
+    },
+    {
+      "path": "src/helpers/RegionMap.h",
+      "mode": "100644",
+      "bytes": 1997,
+      "sha256": "e97474ca8141f52b0a3717ddc1a5f6bbeecdfbc9703559c3f4162bfee0ed0b61"
+    },
+    {
+      "path": "src/helpers/RoutingPolicy.h",
+      "mode": "100644",
+      "bytes": 3048,
+      "sha256": "eb27724f1c2964f7cba6020d1f808cb39ae3d94dbbd5b31bdcc3a5aa02bc48b0"
+    },
+    {
+      "path": "src/helpers/SensorManager.h",
+      "mode": "100644",
+      "bytes": 1406,
+      "sha256": "85b501266beab87424cd1e5f7108cb3e97f2574b26faeebc3d592c5206785003"
+    },
+    {
+      "path": "src/helpers/SimpleMeshTables.h",
+      "mode": "100644",
+      "bytes": 1914,
+      "sha256": "c4bf90c3340990817121ebdd3bf5492d9d6c4f5a6861b623faeaed8ed5991cad"
+    },
+    {
+      "path": "src/helpers/StaticPoolPacketManager.cpp",
+      "mode": "100644",
+      "bytes": 3582,
+      "sha256": "d6851c9e3191300e838ee9c3b46a43b5f9a42f15ff16173fba66d1ba5fa888cd"
+    },
+    {
+      "path": "src/helpers/StaticPoolPacketManager.h",
+      "mode": "100644",
+      "bytes": 1237,
+      "sha256": "da5b8a568199acdfbd4e6683a4ac415315e829ca84231e6c666cc3e55476d45b"
+    },
+    {
+      "path": "src/helpers/StatsFormatHelper.h",
+      "mode": "100644",
+      "bytes": 1852,
+      "sha256": "33ce7cf0a5dfbe273d8fad6d130076fec9a786ead891e7f795355ae62c56cd8e"
+    },
+    {
+      "path": "src/helpers/TransportKeyStore.cpp",
+      "mode": "100644",
+      "bytes": 2207,
+      "sha256": "56564ab3ea22569c4673c6c7135ef97d5d884b7d9e521b7a8306b6bb00b04eaf"
+    },
+    {
+      "path": "src/helpers/TransportKeyStore.h",
+      "mode": "100644",
+      "bytes": 820,
+      "sha256": "741b9b36f21ac6a530167308309f8eb8e67fb01622448d92e3196f2d29925481"
+    },
+    {
+      "path": "src/helpers/TxtDataHelpers.cpp",
+      "mode": "100644",
+      "bytes": 3336,
+      "sha256": "b848b13f665a976980d4b6dc8262e400033fbac726c519c606fa8e46f06228d5"
+    },
+    {
+      "path": "src/helpers/TxtDataHelpers.h",
+      "mode": "100644",
+      "bytes": 838,
+      "sha256": "1800f4167dccbb4e105ccd4733ea992420a835782870f1d5898fd948bed1ef41"
+    },
+    {
+      "path": "src/helpers/UTF8Helpers.h",
+      "mode": "100644",
+      "bytes": 1505,
+      "sha256": "df7d355f04da79f5a5efe5df594c8ad25fbec624ba50aea31aad658abf7b2caa"
+    },
+    {
+      "path": "src/helpers/bridges/BridgeBase.cpp",
+      "mode": "100644",
+      "bytes": 1366,
+      "sha256": "abe3f46c2b4445ef16de4ea55972f53e1b52b54f3a45643d3106973ca2ba3f6b"
+    },
+    {
+      "path": "src/helpers/bridges/BridgeBase.h",
+      "mode": "100644",
+      "bytes": 3980,
+      "sha256": "2a1f18462204541a8fe15e2e3e2a86e1d779f8d5ff42743e1560f8b1955ed56c"
+    },
+    {
+      "path": "src/helpers/bridges/ESPNowBridge.cpp",
+      "mode": "100644",
+      "bytes": 6568,
+      "sha256": "1b164bbae64ddc2ce7e51321cae8a1a4088b6a2959bd257c936754d5f2c5bb5a"
+    },
+    {
+      "path": "src/helpers/bridges/ESPNowBridge.h",
+      "mode": "100644",
+      "bytes": 4948,
+      "sha256": "e3e385c81269cf06a90a5a5b07d82e7e12adf38331357b2a1ac1a92721047597"
+    },
+    {
+      "path": "src/helpers/bridges/RS232Bridge.cpp",
+      "mode": "100644",
+      "bytes": 4924,
+      "sha256": "90e45c4fee7935ca9359fbb660ab281ffdeea8b25b612f17addded79c3195086"
+    },
+    {
+      "path": "src/helpers/bridges/RS232Bridge.h",
+      "mode": "100644",
+      "bytes": 5236,
+      "sha256": "655a1efec0f5f5e51f4a330069a682bcf4b28cb4de8b405201f1ffe810f6cecd"
+    },
+    {
+      "path": "src/helpers/esp32/ESPNOWRadio.cpp",
+      "mode": "100644",
+      "bytes": 2919,
+      "sha256": "06ae34f52c40ee129d9d67615f9efaabe1ba12422038c8871a873283ae22aee9"
+    },
+    {
+      "path": "src/helpers/esp32/ESPNOWRadio.h",
+      "mode": "100644",
+      "bytes": 1606,
+      "sha256": "13ee37c7fa7259972244908db5d12de1b174d65eb71a21da80d0b9d73ed6aca0"
+    },
+    {
+      "path": "src/helpers/esp32/SerialBLEInterface.cpp",
+      "mode": "100644",
+      "bytes": 7663,
+      "sha256": "b71d92584d188c6b7fb6ca66276eeadef93636ac3b196aaa08f45de16064cb06"
+    },
+    {
+      "path": "src/helpers/esp32/SerialBLEInterface.h",
+      "mode": "100644",
+      "bytes": 2946,
+      "sha256": "596cc889dfa00f0cedddbcb0d2bf54bd3bbda7a608d58cf723c88ee84a38de2c"
+    },
+    {
+      "path": "src/helpers/esp32/SerialWifiInterface.cpp",
+      "mode": "100644",
+      "bytes": 4823,
+      "sha256": "b5f9390be9cfbe7633228f17d85b96f575866af933e149cb635337e15fa5ab23"
+    },
+    {
+      "path": "src/helpers/esp32/SerialWifiInterface.h",
+      "mode": "100644",
+      "bytes": 1689,
+      "sha256": "bc30bf701e70ca9f650175a1f01abd932e737be5b991a9a23c5ab8afa1f45ee3"
+    },
+    {
+      "path": "src/helpers/esp32/TBeamBoard.cpp",
+      "mode": "100644",
+      "bytes": 12406,
+      "sha256": "74f9f56a4126cfbf3fd453bdb18940a6645c84b81afb7d5972b96dda6f25c59f"
+    },
+    {
+      "path": "src/helpers/esp32/TBeamBoard.h",
+      "mode": "100644",
+      "bytes": 4892,
+      "sha256": "1964802064568b5102374876f131181226c4adbbecd1202b6f99606cf18a5a0b"
+    },
+    {
+      "path": "src/helpers/ethernet/EthernetInterface.h",
+      "mode": "100644",
+      "bytes": 383,
+      "sha256": "7d62ea1b30b605b5478879d0dfcbc36b0bddbc4f05b56afe119ee7cd2c01ae3a"
+    },
+    {
+      "path": "src/helpers/ethernet/RAK13800/RAK13800EthernetInterface.cpp",
+      "mode": "100644",
+      "bytes": 3361,
+      "sha256": "4972e1b0aaa0ecb814bbc37f3d8832adf8150448587af19f9a83d4859011f0a5"
+    },
+    {
+      "path": "src/helpers/ethernet/RAK13800/RAK13800EthernetInterface.h",
+      "mode": "100644",
+      "bytes": 608,
+      "sha256": "5dd753be70303eda359ddfc80d25b73dd12d2f00d3a9b9c72cee07c1f9b457ea"
+    },
+    {
+      "path": "src/helpers/ethernet/SerialEthernetInterface.cpp",
+      "mode": "100644",
+      "bytes": 3790,
+      "sha256": "90fc5f3a8aaa793ddbbe0b06364ac35d54f5dd43423dbd7a9beb328e933d1f7b"
+    },
+    {
+      "path": "src/helpers/ethernet/SerialEthernetInterface.h",
+      "mode": "100644",
+      "bytes": 1893,
+      "sha256": "c1753eb3843b6286dc6da210d1f964c0bba14615d2e10d6b8632d11c354b9599"
+    },
+    {
+      "path": "src/helpers/ethernet/ch390/CH390EthernetInterface.cpp",
+      "mode": "100644",
+      "bytes": 2686,
+      "sha256": "720358ccd6b9bde910ceb5556bb119d8170716fc85a87761ec74b612ca60226f"
+    },
+    {
+      "path": "src/helpers/ethernet/ch390/CH390EthernetInterface.h",
+      "mode": "100644",
+      "bytes": 611,
+      "sha256": "c771673d9209e768070503a9848e5094ed7409ef534b210e15808b14563b28fa"
+    },
+    {
+      "path": "src/helpers/nrf52/EthernetCLI.h",
+      "mode": "100644",
+      "bytes": 5134,
+      "sha256": "6693a3c7e0ae41acb798bb59a93f3ab0eae93d236618a77c32219565d8695d3f"
+    },
+    {
+      "path": "src/helpers/nrf52/EthernetMac.h",
+      "mode": "100644",
+      "bytes": 294,
+      "sha256": "bfb4f8fa09c74ee6e9740f9b7b6f765cdc00c1f2475842f87b719d2b5255cbe1"
+    },
+    {
+      "path": "src/helpers/nrf52/SerialBLEInterface.cpp",
+      "mode": "100644",
+      "bytes": 14415,
+      "sha256": "c80afe5a50b20a63ae077f4d67bef9d49fa6123f7c0b85de2183d9a57ebbf93e"
+    },
+    {
+      "path": "src/helpers/nrf52/SerialBLEInterface.h",
+      "mode": "100644",
+      "bytes": 2430,
+      "sha256": "e616896e9a95de1042c3c89e1e90afc2d373f5e87a04994dca433ea79ea6410d"
+    },
+    {
+      "path": "src/helpers/radiolib/CustomLLCC68.h",
+      "mode": "100644",
+      "bytes": 4808,
+      "sha256": "175dc7018aa52f81a9c23f1b560150ba70c577d2645a6aa3b4c17de61d35127a"
+    },
+    {
+      "path": "src/helpers/radiolib/CustomLLCC68Wrapper.h",
+      "mode": "100644",
+      "bytes": 1726,
+      "sha256": "cbf89c6d62afc10a9fc886b2d775856836e751b5ff4c5b017545ccaa7d43302e"
+    },
+    {
+      "path": "src/helpers/radiolib/CustomLR1110.h",
+      "mode": "100644",
+      "bytes": 3471,
+      "sha256": "4f1f9458bc1b5205d3c0f11c8ee90c7081d099511847f3eed4bd363abff5d0df"
+    },
+    {
+      "path": "src/helpers/radiolib/CustomLR1110Wrapper.h",
+      "mode": "100644",
+      "bytes": 2061,
+      "sha256": "5d2e2725db9a4da2de1f78e1f8d14476f5b52d9310a586138c3f31c0b217e19a"
+    },
+    {
+      "path": "src/helpers/radiolib/CustomLR2021.h",
+      "mode": "100644",
+      "bytes": 4368,
+      "sha256": "023c2c1e99e48e04c7ce947c99da7a867ea23ef5e6745e0310ce9e39e62232f1"
+    },
+    {
+      "path": "src/helpers/radiolib/CustomLR2021Wrapper.h",
+      "mode": "100644",
+      "bytes": 3668,
+      "sha256": "6e4ea7d621f3a30a5b6e096a2a5242b1d58017b394dcd037dce37aa963452d8a"
+    },
+    {
+      "path": "src/helpers/radiolib/CustomSTM32WLx.h",
+      "mode": "100644",
+      "bytes": 2616,
+      "sha256": "bb3b31b667cc3475de69d994005ea073559d499a8c92189c1124f55757a57af7"
+    },
+    {
+      "path": "src/helpers/radiolib/CustomSTM32WLxWrapper.h",
+      "mode": "100644",
+      "bytes": 1550,
+      "sha256": "46567818afbd1304e6a368fd0ea68a56b2081e64fc4575613b23f3f384635cfe"
+    },
+    {
+      "path": "src/helpers/radiolib/CustomSX1262.h",
+      "mode": "100644",
+      "bytes": 5523,
+      "sha256": "06c15c5eb8aa74e19a34801624fdfe566cdbffb97a50ae988e005a4bc9d18f5a"
+    },
+    {
+      "path": "src/helpers/radiolib/CustomSX1262Wrapper.h",
+      "mode": "100644",
+      "bytes": 1880,
+      "sha256": "fa04caf6932975e68f428099ba0f5fc2676fca203803c2e07d2ee2a338ea07ae"
+    },
+    {
+      "path": "src/helpers/radiolib/CustomSX1268.h",
+      "mode": "100644",
+      "bytes": 4813,
+      "sha256": "5d15dda21dfe6f2361a63d48eb8abdf4e02fa46e832e2d3076dacc6f5a371bcf"
+    },
+    {
+      "path": "src/helpers/radiolib/CustomSX1268Wrapper.h",
+      "mode": "100644",
+      "bytes": 1795,
+      "sha256": "e62416203d95ad35033243648572c99b6b5bd166e96ebc4b85c67bf299568e4c"
+    },
+    {
+      "path": "src/helpers/radiolib/CustomSX1276.h",
+      "mode": "100644",
+      "bytes": 2594,
+      "sha256": "9ddeb1b92e89eb7cc01d48b21b8f8e540921df4ee785e7d7a910d90b323c8276"
+    },
+    {
+      "path": "src/helpers/radiolib/CustomSX1276Wrapper.h",
+      "mode": "100644",
+      "bytes": 1212,
+      "sha256": "caecb9cc77fd6b0a42c07d5b0df6689cb8cbbaed407769fa808accbff11c8eef"
+    },
+    {
+      "path": "src/helpers/radiolib/LR11x0Reset.h",
+      "mode": "100644",
+      "bytes": 766,
+      "sha256": "35d030fc4097bb55194d7f333fd49d1ca0ed659c4dbff4f2d73843da6cb868ff"
+    },
+    {
+      "path": "src/helpers/radiolib/RadioLibWrappers.cpp",
+      "mode": "100644",
+      "bytes": 8092,
+      "sha256": "314f91808133fe6ae447da5634d0ddb6f922ae1792abba797cbc41320f2a2ff2"
+    },
+    {
+      "path": "src/helpers/radiolib/RadioLibWrappers.h",
+      "mode": "100644",
+      "bytes": 3557,
+      "sha256": "1c8a7dc5d7fcb9598254d166bbe5c0cb2259d1d8e596d1917709182776a96226"
+    },
+    {
+      "path": "src/helpers/radiolib/SX126xReset.h",
+      "mode": "100644",
+      "bytes": 1245,
+      "sha256": "a5ebb4f41e031fc8159fa4c5af2223ddea5c3e6dc56614718657e7807d3b44e5"
+    },
+    {
+      "path": "src/helpers/sensors/EnvironmentSensorManager.cpp",
+      "mode": "100644",
+      "bytes": 29927,
+      "sha256": "9933cd7b713c351fb848b798e105a2ede6f7d759c6d8fd612e0b50cdbc4d34c1"
+    },
+    {
+      "path": "src/helpers/sensors/EnvironmentSensorManager.h",
+      "mode": "100644",
+      "bytes": 1620,
+      "sha256": "650b8920a403dc970df5f0d514ae2fbc731588d6fdbc31dad4d27b919584e2aa"
+    },
+    {
+      "path": "src/helpers/sensors/LPPDataHelpers.h",
+      "mode": "100644",
+      "bytes": 6753,
+      "sha256": "864c273e1add95005a32b518d6476de23ad6f41bd929d8da9a289b3ebdda38d2"
+    },
+    {
+      "path": "src/helpers/sensors/LocationProvider.h",
+      "mode": "100644",
+      "bytes": 664,
+      "sha256": "042a181598ce5d224d2fecda2b0f750adb71563218578f14cb9d301a89a88597"
+    },
+    {
+      "path": "src/helpers/sensors/MicroNMEALocationProvider.h",
+      "mode": "100644",
+      "bytes": 4805,
+      "sha256": "a4c6f62fe0b255e6f7eb2c0708cf68c3a5c9e698cdb31eaf715220674610aab1"
+    },
+    {
+      "path": "src/helpers/sensors/RAK12035_SoilMoisture.cpp",
+      "mode": "100644",
+      "bytes": 22639,
+      "sha256": "f8d8f1bc47480fb2db3098f4b47f81ba43b8677242689993234da79dfee6795d"
+    },
+    {
+      "path": "src/helpers/sensors/RAK12035_SoilMoisture.h",
+      "mode": "100644",
+      "bytes": 3371,
+      "sha256": "61d14781ecd726af809721027a5b23c0f69ada53544a04ad77ba001de0663057"
+    },
+    {
+      "path": "src/helpers/stm32/InternalFileSystem.cpp",
+      "mode": "100644",
+      "bytes": 5115,
+      "sha256": "4792a8576bfd7a80acb92058276a4bde49cc1d956353f4fce5cc9904f0fe4627"
+    },
+    {
+      "path": "src/helpers/stm32/InternalFileSystem.h",
+      "mode": "100644",
+      "bytes": 1826,
+      "sha256": "9b8b5e2e47d108047dba3176a64bdd49778bf2e15525d09054c2a22b2b29e839"
+    },
+    {
+      "path": "src/helpers/stm32/STM32Board.h",
+      "mode": "100644",
+      "bytes": 961,
+      "sha256": "2714cc8af1ab1fa4200af3070eb567b273a1f31d8c2f01b07f32c2d102cc7a97"
+    },
+    {
+      "path": "src/helpers/ui/DRV2605Vibration.cpp",
+      "mode": "100644",
+      "bytes": 1170,
+      "sha256": "af1942e651f37d7b4f0416896b47f3b8dfa3b4819a9be45d48d8c904b0e20c7a"
+    },
+    {
+      "path": "src/helpers/ui/DRV2605Vibration.h",
+      "mode": "100644",
+      "bytes": 1019,
+      "sha256": "34f1239b6a730667508bd992b662b2b08613abe8a798053e9a2a70f518be6e9b"
+    },
+    {
+      "path": "src/helpers/ui/DisplayDriver.h",
+      "mode": "100644",
+      "bytes": 3744,
+      "sha256": "42e128d09921f8d34dc103a870f78fbbe17558191c0470a5632c18401374b6ff"
+    },
+    {
+      "path": "src/helpers/ui/E213Display.cpp",
+      "mode": "100644",
+      "bytes": 5138,
+      "sha256": "8b6150d037c82551be944b4cfa74cac8bc98326a4d9bc88d8990ff7cc9efd3c7"
+    },
+    {
+      "path": "src/helpers/ui/E213Display.h",
+      "mode": "100644",
+      "bytes": 1382,
+      "sha256": "4aeff44604285620bacfad66695bcf7ef78bca2a7396b371543d66c679e65378"
+    },
+    {
+      "path": "src/helpers/ui/E290Display.cpp",
+      "mode": "100644",
+      "bytes": 4031,
+      "sha256": "9a8706acdd77fc02e3d9cfc26b1a6f9b8d0fa785e4d84d1005203a6aca707a1d"
+    },
+    {
+      "path": "src/helpers/ui/E290Display.h",
+      "mode": "100644",
+      "bytes": 1291,
+      "sha256": "aebf1f2ff21cb1eb9354f8d0ec07766a94ad8e9562283e3d1f02cd7caf4e1d05"
+    },
+    {
+      "path": "src/helpers/ui/GenericVibration.cpp",
+      "mode": "100644",
+      "bytes": 726,
+      "sha256": "cdfeec37653d18150e463bc8e6085f157c87b9fee6780deff261edcefa7c688f"
+    },
+    {
+      "path": "src/helpers/ui/GenericVibration.h",
+      "mode": "100644",
+      "bytes": 773,
+      "sha256": "ae7902aa7e0542804bbd44960f9615e02da0244172cc31843b592801ecac16b7"
+    },
+    {
+      "path": "src/helpers/ui/GxEPDDisplay.cpp",
+      "mode": "100644",
+      "bytes": 5169,
+      "sha256": "f01c7bb4552e14cf6b0c83704da7680b45dc335b3b2457894368b9b53c3218da"
+    },
+    {
+      "path": "src/helpers/ui/GxEPDDisplay.h",
+      "mode": "100644",
+      "bytes": 1899,
+      "sha256": "37ad6e51f50ab6e69971e8212da4307d5c41a9c71afdebabfe939bc7920850eb"
+    },
+    {
+      "path": "src/helpers/ui/LGFXDisplay.cpp",
+      "mode": "100644",
+      "bytes": 2480,
+      "sha256": "94422656fd926f2a0ab04c7e54b3c445516ae14663a073ee80db4c6625262c3c"
+    },
+    {
+      "path": "src/helpers/ui/LGFXDisplay.h",
+      "mode": "100644",
+      "bytes": 1069,
+      "sha256": "7899e46ddfdd32c3d23a5ff3e8918c9ebef3dc044786112846fff12d6d455a83"
+    },
+    {
+      "path": "src/helpers/ui/MomentaryButton.cpp",
+      "mode": "100644",
+      "bytes": 3836,
+      "sha256": "a0978daa8e02aa8ed2eccbc00795843ae1dd485ddbbe592615dc832581fe01db"
+    },
+    {
+      "path": "src/helpers/ui/MomentaryButton.h",
+      "mode": "100644",
+      "bytes": 966,
+      "sha256": "6358a0fb16925b7cea8b3abf779d0e2a0e95bee8b61fecc129a417c6fde1f432"
+    },
+    {
+      "path": "src/helpers/ui/NV3001BDisplay.cpp",
+      "mode": "100644",
+      "bytes": 15104,
+      "sha256": "15ed9262779ad8f01ed330e9ffcf2e4f65de7d33071a99547d7dfc8bb4650d20"
+    },
+    {
+      "path": "src/helpers/ui/NV3001BDisplay.h",
+      "mode": "100644",
+      "bytes": 2054,
+      "sha256": "b503cb64c9e88743728c65fada1f6bfe222a952c9a1fad4bf4a236f480c6c286"
+    },
+    {
+      "path": "src/helpers/ui/NullDisplayDriver.cpp",
+      "mode": "100644",
+      "bytes": 338,
+      "sha256": "cd3e0e3df9b2b18671cbd6ba5dabd5de55e598fb75bb01d89f2fe0ea71550562"
+    },
+    {
+      "path": "src/helpers/ui/NullDisplayDriver.h",
+      "mode": "100644",
+      "bytes": 855,
+      "sha256": "92f1c9134bb30b374504d358269e7e91e8e342c7e0d841444b22f5022e0e6407"
+    },
+    {
+      "path": "src/helpers/ui/OLEDDisplay.cpp",
+      "mode": "100644",
+      "bytes": 33523,
+      "sha256": "eb318a33949ec290ad0b6e2eb88b0b8d5389a9d5fe544d43d6bd820437e5dae4"
+    },
+    {
+      "path": "src/helpers/ui/OLEDDisplay.h",
+      "mode": "100644",
+      "bytes": 12105,
+      "sha256": "020c084e49d3b80acdc162953dae601dfdfe1f83f64bd64f4db4610b769bd765"
+    },
+    {
+      "path": "src/helpers/ui/OLEDDisplayFonts.cpp",
+      "mode": "100644",
+      "bytes": 105803,
+      "sha256": "81a5e8acf0b66482ba15498e44211b1068174170fb49aeaaa5d5cde37c8da8dd"
+    },
+    {
+      "path": "src/helpers/ui/OLEDDisplayFonts.h",
+      "mode": "100644",
+      "bytes": 284,
+      "sha256": "0ba64fde0d53e4cc6b3d110017ea7a60ff3b9ec12ce27d0ac2d21734764efbe5"
+    },
+    {
+      "path": "src/helpers/ui/RotaryInput.h",
+      "mode": "100644",
+      "bytes": 275,
+      "sha256": "3e39187084160eacfea9ea5e8338e53469c6a9711f784d252a943223e00da8bf"
+    },
+    {
+      "path": "src/helpers/ui/SH1106Display.cpp",
+      "mode": "100644",
+      "bytes": 2994,
+      "sha256": "a10f42aee01dac36ee4be8208d46d2b3b55dfadefafc9302c049e3d8e842ef73"
+    },
+    {
+      "path": "src/helpers/ui/SH1106Display.h",
+      "mode": "100644",
+      "bytes": 1143,
+      "sha256": "df80885355b9d8b0a9cf0805b5e77e83bde2222841c7178901717db499bb0988"
+    },
+    {
+      "path": "src/helpers/ui/SSD1306Display.cpp",
+      "mode": "100644",
+      "bytes": 2690,
+      "sha256": "2afc033ee6d160cab18b3c21d8cddb5b80d9d89d2e1b273c308ad498f9d14344"
+    },
+    {
+      "path": "src/helpers/ui/SSD1306Display.h",
+      "mode": "100644",
+      "bytes": 1390,
+      "sha256": "8b8dc60aefa6b54956b16f9e191bdde85a1618ba37710e9d3148789533f3167a"
+    },
+    {
+      "path": "src/helpers/ui/ST7735Display.cpp",
+      "mode": "100644",
+      "bytes": 20981,
+      "sha256": "e653eaad2588f354b3e73f8d6262ea82a45593d7ef3fbe368a3585c1baa328a7"
+    },
+    {
+      "path": "src/helpers/ui/ST7735Display.h",
+      "mode": "100644",
+      "bytes": 1427,
+      "sha256": "9d632db009b88e6a76ec77e1f8074a8503d567f8a1771c72619c24322ae97c16"
+    },
+    {
+      "path": "src/helpers/ui/ST7789Display.cpp",
+      "mode": "100644",
+      "bytes": 5199,
+      "sha256": "e78e28b9a8fb98b778d23c3a6b25a324c8d7fe1df665c7e9e5de5bc771edfdcd"
+    },
+    {
+      "path": "src/helpers/ui/ST7789Display.h",
+      "mode": "100644",
+      "bytes": 1546,
+      "sha256": "6673aee75e751a9daaa233eed5f23bbbf3e49bc90814e0c0f2301ff84a0883d9"
+    },
+    {
+      "path": "src/helpers/ui/ST7789LCDDisplay.cpp",
+      "mode": "100644",
+      "bytes": 4099,
+      "sha256": "291c3e5bafe70e33cf2ae859060f471fcd6a22982fe6e355c34679d2e465e808"
+    },
+    {
+      "path": "src/helpers/ui/ST7789LCDDisplay.h",
+      "mode": "100644",
+      "bytes": 1927,
+      "sha256": "cf3c34294f02f623e6114c2833f1209e63aa1f471e29ad540158e4d709b6b883"
+    },
+    {
+      "path": "src/helpers/ui/ST7789Spi.h",
+      "mode": "100644",
+      "bytes": 13662,
+      "sha256": "6c4f5485c2a8dec7394fd2d944d253e3c74ac076035abf741a48ae93db97088a"
+    },
+    {
+      "path": "src/helpers/ui/U8g2Display.cpp",
+      "mode": "100644",
+      "bytes": 348,
+      "sha256": "71bacdba1008a6bd7df9e54abbf160f89a458bd3d632952ddf6ed5d1349fa959"
+    },
+    {
+      "path": "src/helpers/ui/U8g2Display.h",
+      "mode": "100644",
+      "bytes": 2924,
+      "sha256": "7045071bba6d5e4b990b0ff24ea9d4d3c8a39e890fbdf82b07adf954cd164333"
+    },
+    {
+      "path": "src/helpers/ui/UIScreen.h",
+      "mode": "100644",
+      "bytes": 645,
+      "sha256": "cb55310bbd6085092d42272023b47353db699fc454dfeb860680e4a9c35de41d"
+    },
+    {
+      "path": "src/helpers/ui/buzzer.cpp",
+      "mode": "100644",
+      "bytes": 1298,
+      "sha256": "e62cd404647aba7eef722a988f5913f2068887d6ec544cb0aa244317a8050f8d"
+    },
+    {
+      "path": "src/helpers/ui/buzzer.h",
+      "mode": "100644",
+      "bytes": 1074,
+      "sha256": "2538ab87587211cc9bff983f7fe060164ecad31928a68fdd9376d2e67e6ddb2a"
+    },
+    {
+      "path": "test/mocks/AES.h",
+      "mode": "100644",
+      "bytes": 351,
+      "sha256": "9e6625fd2469b2b4b4ba4c66f31a79cfe56b375ebab5cc23ef01df96435bcefb"
+    },
+    {
+      "path": "test/mocks/Arduino.h",
+      "mode": "100644",
+      "bytes": 238,
+      "sha256": "fd948518b714ac53a4edfc69a3ad802c401e87136710be73ba658cc713795ca1"
+    },
+    {
+      "path": "test/mocks/CayenneLPP.h",
+      "mode": "100644",
+      "bytes": 212,
+      "sha256": "8fbf7f30a4a8f27e10ef8c6a9baaf553bc1a7048ea96bfcf070c5661ff82fea7"
+    },
+    {
+      "path": "test/mocks/Identity.h",
+      "mode": "100644",
+      "bytes": 698,
+      "sha256": "12593aa7065a3634f82b59c9e2b56d0514164c008f56f1f80812f0e4eff642dd"
+    },
+    {
+      "path": "test/mocks/Mesh.h",
+      "mode": "100644",
+      "bytes": 694,
+      "sha256": "208896b3d6c0eceb7479ef167c146cdf8fc006a0441bd169b3b69f4da8586254"
+    },
+    {
+      "path": "test/mocks/SHA256.h",
+      "mode": "100644",
+      "bytes": 994,
+      "sha256": "533d17f0c2cdffb56e0c6e6242c273cac297d9ba7729cb3b300d0442861486b6"
+    },
+    {
+      "path": "test/mocks/Stream.h",
+      "mode": "100644",
+      "bytes": 2076,
+      "sha256": "0e60624db0241edf5d68023a14e4d7542f9fc3ed668a0af20f07b2838e0dd0da"
+    },
+    {
+      "path": "test/mocks/Utils.h",
+      "mode": "100644",
+      "bytes": 1005,
+      "sha256": "58b9473624af07ffe947e144cbeed53cb73f4bc5190574da39d57dfdf122e907"
+    },
+    {
+      "path": "test/mocks/helpers/SensorManager.h",
+      "mode": "100644",
+      "bytes": 197,
+      "sha256": "7afb4299dc0c22ca21b620f6e895461ceef679a4685da3f92c1aa380bb2c7583"
+    },
+    {
+      "path": "test/test_companion_node_prefs/test_companion_node_prefs.cpp",
+      "mode": "100644",
+      "bytes": 2570,
+      "sha256": "e5c5c5a4d44be8753d31ac903655601620ac6167610f17fb4468484a1dddaa95"
+    },
+    {
+      "path": "test/test_config_serializer/test_config_serializer.cpp",
+      "mode": "100644",
+      "bytes": 6734,
+      "sha256": "2c142c9c011a61813c22a7e6560257b017e22c7a784a1423dfb84e30f9853356"
+    },
+    {
+      "path": "test/test_kiss_modem/test_tx_backpressure.cpp",
+      "mode": "100644",
+      "bytes": 9250,
+      "sha256": "aededc0e0ce766430318c966d5d6d66b765fa0f719660fa55b45267612a4a2b3"
+    },
+    {
+      "path": "test/test_mesh_tables/test_simple_mesh_tables.cpp",
+      "mode": "100644",
+      "bytes": 3405,
+      "sha256": "9dac6896e74b1f8dad8e2a1860a26b666c5243ac8b34d9a4f6161766f8f44b8b"
+    },
+    {
+      "path": "test/test_routing_policy/test_routing_policy.cpp",
+      "mode": "100644",
+      "bytes": 4603,
+      "sha256": "1875ec7b0f071fb8dd1e99264305f9bb9b34e973f7ae0317fd827b8134c9e914"
+    },
+    {
+      "path": "test/test_utf8_helpers/test_utf8_helpers.cpp",
+      "mode": "100644",
+      "bytes": 1481,
+      "sha256": "1d14381ab3e5ecab8643307ca1067d272af8990c0c88ede5ec9022f49ce8d852"
+    },
+    {
+      "path": "test/test_utils/test_tohex.cpp",
+      "mode": "100644",
+      "bytes": 1306,
+      "sha256": "7996faffbda23e3849cdd9495df1d980840315212c352e64701f920cd7d8e93a"
+    },
+    {
+      "path": "variants/ebyte_eora_s3/platformio.ini",
+      "mode": "100644",
+      "bytes": 3818,
+      "sha256": "efb8e1226c74f0699ba1297be82bf2f526203ff9d1f1861acb0c9b59be4e0628"
+    },
+    {
+      "path": "variants/ebyte_eora_s3/target.cpp",
+      "mode": "100644",
+      "bytes": 1713,
+      "sha256": "aa8ee63f71f89936392585ee320cc1402222c2779e86d5a95c9a0e1c08b80f8e"
+    },
+    {
+      "path": "variants/ebyte_eora_s3/target.h",
+      "mode": "100644",
+      "bytes": 672,
+      "sha256": "73c38eb0a1d61d3703c265dde35847e6d807c773e8e30c88ad0040fdabd0ec3a"
+    },
+    {
+      "path": "variants/gat562_30s_mesh_kit/GAT56230SMeshKitBoard.cpp",
+      "mode": "100644",
+      "bytes": 1618,
+      "sha256": "a10111cadd9760b1e97239f9d3c912da081c1c8d7f4ae9ee39d46096245e3c10"
+    },
+    {
+      "path": "variants/gat562_30s_mesh_kit/GAT56230SMeshKitBoard.h",
+      "mode": "100644",
+      "bytes": 1176,
+      "sha256": "5f336dde847d0589f82cd59fee1f060e13fc9d1640fb6b7e5c864d152a865e63"
+    },
+    {
+      "path": "variants/gat562_30s_mesh_kit/platformio.ini",
+      "mode": "100644",
+      "bytes": 3488,
+      "sha256": "78647cef0eb95b244b8ebcb353fe17f66a0f2e57623799955ac0f7ce298fd511"
+    },
+    {
+      "path": "variants/gat562_30s_mesh_kit/target.cpp",
+      "mode": "100644",
+      "bytes": 1225,
+      "sha256": "261d9f733c517ba956fd2aea077ca0222966b62020544cf4c9f9caa52d89353c"
+    },
+    {
+      "path": "variants/gat562_30s_mesh_kit/target.h",
+      "mode": "100644",
+      "bytes": 804,
+      "sha256": "151aa62e9149513c6b0e314a2cb450090f9ee0ade29892421fa6e57cd905250f"
+    },
+    {
+      "path": "variants/gat562_30s_mesh_kit/variant.cpp",
+      "mode": "100644",
+      "bytes": 1409,
+      "sha256": "4c8b75c187b44e36105d36bd3b5d4fafefe6ebdfa70ffab7e1c77372c48d2d8e"
+    },
+    {
+      "path": "variants/gat562_30s_mesh_kit/variant.h",
+      "mode": "100644",
+      "bytes": 6442,
+      "sha256": "86dce7776244811b2ee12ffae96bca1d5cd05a62ee2e7513131af5dcc1c7d8cc"
+    },
+    {
+      "path": "variants/gat562_mesh_evb_pro/GAT562EVBProBoard.cpp",
+      "mode": "100644",
+      "bytes": 1416,
+      "sha256": "f3ac461fa132ea35a9167955fd3726402e97e869de31beeacbfa7e27c908c578"
+    },
+    {
+      "path": "variants/gat562_mesh_evb_pro/GAT562EVBProBoard.h",
+      "mode": "100644",
+      "bytes": 1163,
+      "sha256": "46afe20accaf13104189aec2754b394b2a23a3952c077a5371fad2f2a3431585"
+    },
+    {
+      "path": "variants/gat562_mesh_evb_pro/platformio.ini",
+      "mode": "100644",
+      "bytes": 1632,
+      "sha256": "aa70968645a4baf9463be8e6d568d4d24a74f23b5d81d80d1f730b87c3df4bf8"
+    },
+    {
+      "path": "variants/gat562_mesh_evb_pro/target.cpp",
+      "mode": "100644",
+      "bytes": 1072,
+      "sha256": "01a8c7321359eacafb07c3d64c463950a95295a768caeb5daa8377c5dcd7bc55"
+    },
+    {
+      "path": "variants/gat562_mesh_evb_pro/target.h",
+      "mode": "100644",
+      "bytes": 716,
+      "sha256": "2cea199f075bbb605f5fea78637c92129155262ef368c05dd939f96ef4bebab2"
+    },
+    {
+      "path": "variants/gat562_mesh_evb_pro/variant.cpp",
+      "mode": "100644",
+      "bytes": 1409,
+      "sha256": "4c8b75c187b44e36105d36bd3b5d4fafefe6ebdfa70ffab7e1c77372c48d2d8e"
+    },
+    {
+      "path": "variants/gat562_mesh_evb_pro/variant.h",
+      "mode": "100644",
+      "bytes": 5890,
+      "sha256": "70c9cab14488a159b6ec49ac460737fea358a2585390aa36bfc6364271fd6ad9"
+    },
+    {
+      "path": "variants/gat562_mesh_tracker_pro/GAT562MeshTrackerProBoard.cpp",
+      "mode": "100644",
+      "bytes": 1630,
+      "sha256": "fc579d786f15c072221de96f5875f83bb30a46606290dfd74fecbe69470c4a18"
+    },
+    {
+      "path": "variants/gat562_mesh_tracker_pro/GAT562MeshTrackerProBoard.h",
+      "mode": "100644",
+      "bytes": 1188,
+      "sha256": "ec4380d43b0c52a829aafdead2976987a6bb1dd52667c4b23ff93e82da4b147f"
+    },
+    {
+      "path": "variants/gat562_mesh_tracker_pro/platformio.ini",
+      "mode": "100644",
+      "bytes": 3408,
+      "sha256": "c58423049e7e8fc94e0ba340cf45265d1c596dac9cb7b6244594b5e1c53c2207"
+    },
+    {
+      "path": "variants/gat562_mesh_tracker_pro/target.cpp",
+      "mode": "100644",
+      "bytes": 1229,
+      "sha256": "b5f13db62bc36b29b60458163d469374852471599123327dd46ed814467bc5ad"
+    },
+    {
+      "path": "variants/gat562_mesh_tracker_pro/target.h",
+      "mode": "100644",
+      "bytes": 812,
+      "sha256": "3ace0531f13dddb62f5793aeac8a3b24e99506c3e1fe33854d5061aeccf9170d"
+    },
+    {
+      "path": "variants/gat562_mesh_tracker_pro/variant.cpp",
+      "mode": "100644",
+      "bytes": 1409,
+      "sha256": "4c8b75c187b44e36105d36bd3b5d4fafefe6ebdfa70ffab7e1c77372c48d2d8e"
+    },
+    {
+      "path": "variants/gat562_mesh_tracker_pro/variant.h",
+      "mode": "100644",
+      "bytes": 6379,
+      "sha256": "933cd6df7f10a63bb8379271ee1bc6449a0466a8e5e1ea24da5995a392b55320"
+    },
+    {
+      "path": "variants/gat562_mesh_watch13/GAT56MeshWatch13Board.cpp",
+      "mode": "100644",
+      "bytes": 1262,
+      "sha256": "8ff7c49b958eb76594c6e960026d10df6249849af299630e542e6c0d34196914"
+    },
+    {
+      "path": "variants/gat562_mesh_watch13/GAT56MeshWatch13Board.h",
+      "mode": "100644",
+      "bytes": 943,
+      "sha256": "91d25f712e6fe1642477a49b716db1a8890fe7ab72a8834385b147d2bd28fcea"
+    },
+    {
+      "path": "variants/gat562_mesh_watch13/platformio.ini",
+      "mode": "100644",
+      "bytes": 2704,
+      "sha256": "b40213c90444c01883198b8bb5c0e4c768a0aa9daa635b01a896020aa7dbeb1b"
+    },
+    {
+      "path": "variants/gat562_mesh_watch13/target.cpp",
+      "mode": "100644",
+      "bytes": 763,
+      "sha256": "a948ec8e7cf5af9a29ebcd7caaa3f63dd54b4ea5e1b1bdf7822b1c340449dbaf"
+    },
+    {
+      "path": "variants/gat562_mesh_watch13/target.h",
+      "mode": "100644",
+      "bytes": 760,
+      "sha256": "045621629cf1182f6b5c3dc4a153ab0767fb2594db1e842f85c23f5980febfd0"
+    },
+    {
+      "path": "variants/gat562_mesh_watch13/variant.cpp",
+      "mode": "100644",
+      "bytes": 1287,
+      "sha256": "e1974807c9280a74b93e2f0e1e5fef2485517e3a957a9e4eb86cc620006fc80a"
+    },
+    {
+      "path": "variants/gat562_mesh_watch13/variant.h",
+      "mode": "100644",
+      "bytes": 5524,
+      "sha256": "8f95be81197aa572ead730fb72b660912d67795f6f67ce48ce4aa175ce2d0c45"
+    },
+    {
+      "path": "variants/generic-e22/platformio.ini",
+      "mode": "100644",
+      "bytes": 4530,
+      "sha256": "cef5d88dbb2233e5c7a72c72d15d5d8d6d12dd38c8d63090cdab027b24e2aba8"
+    },
+    {
+      "path": "variants/generic-e22/target.cpp",
+      "mode": "100644",
+      "bytes": 774,
+      "sha256": "02fbcbb4f66b21cb668cf73b5924a6263a00f23c96ff1034c38fc9b21b92535a"
+    },
+    {
+      "path": "variants/generic-e22/target.h",
+      "mode": "100644",
+      "bytes": 516,
+      "sha256": "307768262fcea84a4e74f664071634cfb9694d7392fea0a5db5e2057c52be648"
+    },
+    {
+      "path": "variants/generic-e22/variant.h",
+      "mode": "100644",
+      "bytes": 2508,
+      "sha256": "dfe1529bdb55137064de8d885b0728308a91aa515666de002654b008b628fdfa"
+    },
+    {
+      "path": "variants/generic_espnow/platformio.ini",
+      "mode": "100644",
+      "bytes": 2181,
+      "sha256": "770c437332f9af4f3e79ec17ff0272fa08e13a0de1c248b3040a368443997d60"
+    },
+    {
+      "path": "variants/generic_espnow/target.cpp",
+      "mode": "100644",
+      "bytes": 713,
+      "sha256": "a74719c0d9e795b1cdefb0680a0384e4a5ab0264c80ac0edb606a9a3a9e3bd39"
+    },
+    {
+      "path": "variants/generic_espnow/target.h",
+      "mode": "100644",
+      "bytes": 303,
+      "sha256": "39d0dbc0c79b5063ae1f64d5fc52d419615c545fe14365ab736263dbae616058"
+    },
+    {
+      "path": "variants/heltec_ct62/HT-CT62Board.h",
+      "mode": "100644",
+      "bytes": 1378,
+      "sha256": "663daa8c31717528954de446daff4d04da8b40e310c1428c66780c9413ac6fff"
+    },
+    {
+      "path": "variants/heltec_ct62/platformio.ini",
+      "mode": "100644",
+      "bytes": 4065,
+      "sha256": "24ac1879daf72ca3676bdff49105100fbb91bbd4232925ee789af6a1a4795d65"
+    },
+    {
+      "path": "variants/heltec_ct62/target.cpp",
+      "mode": "100644",
+      "bytes": 550,
+      "sha256": "a6fde0285dc3306d05c4b991ba5cf7efc49db4985e39af3b69fac7b26453c327"
+    },
+    {
+      "path": "variants/heltec_ct62/target.h",
+      "mode": "100644",
+      "bytes": 466,
+      "sha256": "d8aed40488a41393b57ebc509fd44228784c8bceaaf96a5b241676d4b1763daa"
+    },
+    {
+      "path": "variants/heltec_e213/HeltecE213Board.cpp",
+      "mode": "100644",
+      "bytes": 1052,
+      "sha256": "c824a66abab8b39180a0cbb93e90ced0948316aaef4bf8ae61236062cff199ea"
+    },
+    {
+      "path": "variants/heltec_e213/HeltecE213Board.h",
+      "mode": "100644",
+      "bytes": 386,
+      "sha256": "663db57c3101822287bd5cda11f751f079f2a0fee971f0cc14acdd31f8ab1c02"
+    },
+    {
+      "path": "variants/heltec_e213/pins_arduino.h",
+      "mode": "100644",
+      "bytes": 1656,
+      "sha256": "1e6e7b1ab2799add273d15c2e933bfaff3f880a244aaa4326dfcc68b5ad91536"
+    },
+    {
+      "path": "variants/heltec_e213/platformio.ini",
+      "mode": "100644",
+      "bytes": 4768,
+      "sha256": "4ab168e3ac22c9939446cc51124e1db2e561450a634aad17c086d8652a20e1d3"
+    },
+    {
+      "path": "variants/heltec_e213/target.cpp",
+      "mode": "100644",
+      "bytes": 899,
+      "sha256": "25d7981de7820cdfd7cf06d06acbaebf30995614e35ce6e3afacdb2ee713bd28"
+    },
+    {
+      "path": "variants/heltec_e213/target.h",
+      "mode": "100644",
+      "bytes": 663,
+      "sha256": "52dc42c612bc1c2505b5b2062d4b159e931185d525484bbb89b4b99e6783849c"
+    },
+    {
+      "path": "variants/heltec_e290/HeltecE290Board.cpp",
+      "mode": "100644",
+      "bytes": 1052,
+      "sha256": "90b8605cc51ba15896cd7cfd864ba0b72a0c4dac09bf9f37e7a121c58b1f0d0c"
+    },
+    {
+      "path": "variants/heltec_e290/HeltecE290Board.h",
+      "mode": "100644",
+      "bytes": 388,
+      "sha256": "b2a3253646bbb47f2107de6fa8b0d121d710efc5f7739bb4a3fa5094b154e745"
+    },
+    {
+      "path": "variants/heltec_e290/pins_arduino.h",
+      "mode": "100644",
+      "bytes": 1656,
+      "sha256": "1e6e7b1ab2799add273d15c2e933bfaff3f880a244aaa4326dfcc68b5ad91536"
+    },
+    {
+      "path": "variants/heltec_e290/platformio.ini",
+      "mode": "100644",
+      "bytes": 4658,
+      "sha256": "2d22ace72df65532f8628c0a52dc262b8b721b8e682c26612172a0bfdda24876"
+    },
+    {
+      "path": "variants/heltec_e290/target.cpp",
+      "mode": "100644",
+      "bytes": 899,
+      "sha256": "e79778a36ce1e52c757b8f863ed388024c559e3dba07e6adc6bb34e71710d422"
+    },
+    {
+      "path": "variants/heltec_e290/target.h",
+      "mode": "100644",
+      "bytes": 663,
+      "sha256": "1fdb23f048200924752d304763050e6d4b7deabdb3377b716970bfb0b911fa37"
+    },
+    {
+      "path": "variants/heltec_mesh_solar/MeshSolarBoard.cpp",
+      "mode": "100644",
+      "bytes": 270,
+      "sha256": "4216be38312581b213e89b1d46ef8a89e55f050413939b564542e39f74a37b9b"
+    },
+    {
+      "path": "variants/heltec_mesh_solar/MeshSolarBoard.h",
+      "mode": "100644",
+      "bytes": 776,
+      "sha256": "bb03e4cb697ea8d7d0e38ad9ccf24e52819f63ee262e46c40dfd654992790603"
+    },
+    {
+      "path": "variants/heltec_mesh_solar/platformio.ini",
+      "mode": "100644",
+      "bytes": 3190,
+      "sha256": "e435de9c19eea6fcf81e94fe3ee5d06ccded97a1061c92a54d58ddf8a84120bd"
+    },
+    {
+      "path": "variants/heltec_mesh_solar/target.cpp",
+      "mode": "100644",
+      "bytes": 3633,
+      "sha256": "dc3e5ed7c0925b8f29d7e32d82725620a992936f620a114946164b14a67320a5"
+    },
+    {
+      "path": "variants/heltec_mesh_solar/target.h",
+      "mode": "100644",
+      "bytes": 1584,
+      "sha256": "2677f39ab9f41653853c706cd5b8e1dd01931826cb764ce02d5143f71cfcfa06"
+    },
+    {
+      "path": "variants/heltec_mesh_solar/variant.cpp",
+      "mode": "100644",
+      "bytes": 421,
+      "sha256": "b751b114b86ba9543f5ddb957ceb2ae8cdb906009852ace4b1bc2d8952887134"
+    },
+    {
+      "path": "variants/heltec_mesh_solar/variant.h",
+      "mode": "100644",
+      "bytes": 3753,
+      "sha256": "b6c5eb6f7d19165dec382d383869cc860c226d51768d24eaedf46d212917a21b"
+    },
+    {
+      "path": "variants/heltec_rc32/HeltecRC32Board.cpp",
+      "mode": "100644",
+      "bytes": 1578,
+      "sha256": "fbe6d01daa47b1e35ea3e500f34d0fbd84077da04d03e0192c58c5a82f00dfc7"
+    },
+    {
+      "path": "variants/heltec_rc32/HeltecRC32Board.h",
+      "mode": "100644",
+      "bytes": 739,
+      "sha256": "fdfa64693fd2f851da9df1c23e06234218fc2086b478acebbe23a91f55c2e1a9"
+    },
+    {
+      "path": "variants/heltec_rc32/HeltecRC32RotaryInput.cpp",
+      "mode": "100644",
+      "bytes": 3264,
+      "sha256": "ae0847b634f681b9bba0a4171216419444b51c7792f8cb8d65cd2687d2f822f2"
+    },
+    {
+      "path": "variants/heltec_rc32/HeltecRC32RotaryInput.h",
+      "mode": "100644",
+      "bytes": 748,
+      "sha256": "724d83432cf116ce7b47b4bd1cfbd51fec5a910cc1b58cab2f6729dc48132d3c"
+    },
+    {
+      "path": "variants/heltec_rc32/pins_arduino.h",
+      "mode": "100644",
+      "bytes": 1500,
+      "sha256": "452b1618eb781adeba92f7b324a65c4c0a4e12536fd36d766fd613062461d329"
+    },
+    {
+      "path": "variants/heltec_rc32/platformio.ini",
+      "mode": "100644",
+      "bytes": 9812,
+      "sha256": "aa6bd705beecdefc61e13d575fe4af57bd01c1af78e493b4c191dee1cdd2215f"
+    },
+    {
+      "path": "variants/heltec_rc32/target.cpp",
+      "mode": "100644",
+      "bytes": 1365,
+      "sha256": "59daf81596a064a54b9e2fdf76a6585b9868cbdd2197179a239ac4115eab61d5"
+    },
+    {
+      "path": "variants/heltec_rc32/target.h",
+      "mode": "100644",
+      "bytes": 940,
+      "sha256": "b637512ca29f8ff5cae5607e01d14c16e85e85ad22dad437da38c349f22be7db"
+    },
+    {
+      "path": "variants/heltec_rc32/variant.h",
+      "mode": "100644",
+      "bytes": 571,
+      "sha256": "0615a790a7a06cfb7464d40dae2d8afdb5833a06d0b29875249422e5bbf814e0"
+    },
+    {
+      "path": "variants/heltec_t096/LoRaFEMControl.cpp",
+      "mode": "100644",
+      "bytes": 1252,
+      "sha256": "d1a0516b091369c1effa78b65fd5e1dfded13592f0c31ee5a82d5eaac568552f"
+    },
+    {
+      "path": "variants/heltec_t096/LoRaFEMControl.h",
+      "mode": "100644",
+      "bytes": 606,
+      "sha256": "8b4e80f6987c5cd5462dc91bcc212e45da179040f9c6a695717970b226826f54"
+    },
+    {
+      "path": "variants/heltec_t096/T096Board.cpp",
+      "mode": "100644",
+      "bytes": 3704,
+      "sha256": "dde91d2f078f52c9a546b1a9808c8651a2a10241d8a00a96026771ce9b9e5403"
+    },
+    {
+      "path": "variants/heltec_t096/T096Board.h",
+      "mode": "100644",
+      "bytes": 857,
+      "sha256": "9b3e071660191ab15227b257656881ec874992b5acd4d183a99d05b9d43fad5c"
+    },
+    {
+      "path": "variants/heltec_t096/platformio.ini",
+      "mode": "100644",
+      "bytes": 4842,
+      "sha256": "fb7308da29971f16168a2faa7f9c7dc933404a4fd0b00446e6f8250fdb24a9f9"
+    },
+    {
+      "path": "variants/heltec_t096/target.cpp",
+      "mode": "100644",
+      "bytes": 1247,
+      "sha256": "38c81e67be325805ee0527fc0ff1cbc998089de4fcbf6bad37facb4c49f8a08b"
+    },
+    {
+      "path": "variants/heltec_t096/target.h",
+      "mode": "100644",
+      "bytes": 778,
+      "sha256": "a6087a4f1829888903f0e2dad32de465dd7ae4a430858c4fbc25ed9db6032071"
+    },
+    {
+      "path": "variants/heltec_t096/variant.cpp",
+      "mode": "100644",
+      "bytes": 372,
+      "sha256": "6b7248f9f7cd4b0ad655152bfd3d3855cd15f4d29f01bf92741ff2d067e0a923"
+    },
+    {
+      "path": "variants/heltec_t096/variant.h",
+      "mode": "100644",
+      "bytes": 3916,
+      "sha256": "94293f8805f344967cb4f20eb061fe5c22eaa7ffdbe6b8daeab5261584b53f6e"
+    },
+    {
+      "path": "variants/heltec_t1/T1Board.cpp",
+      "mode": "100644",
+      "bytes": 2712,
+      "sha256": "07b4d41a961956c41e57b36f342fb0ca9cdde4b23b57f3ee366276ac47ab6219"
+    },
+    {
+      "path": "variants/heltec_t1/T1Board.h",
+      "mode": "100644",
+      "bytes": 649,
+      "sha256": "e2f05a1d4aee80b66c51de9950d115708800eb4b9c6924ce9ec37fa9296178d0"
+    },
+    {
+      "path": "variants/heltec_t1/platformio.ini",
+      "mode": "100644",
+      "bytes": 3005,
+      "sha256": "620efd4e6acc4b50ede611f9760b3b7105a04ef735269c4a1ac46c57cff66043"
+    },
+    {
+      "path": "variants/heltec_t1/target.cpp",
+      "mode": "100644",
+      "bytes": 1160,
+      "sha256": "cba50a46ce84dab43bcef9605ca73dc38df234f492997847ecc57b3eb48f2c6a"
+    },
+    {
+      "path": "variants/heltec_t1/target.h",
+      "mode": "100644",
+      "bytes": 774,
+      "sha256": "db126feae4692d0d66be0adc57b4dd520655f87eaa190d791447cd358ce95367"
+    },
+    {
+      "path": "variants/heltec_t1/variant.cpp",
+      "mode": "100644",
+      "bytes": 372,
+      "sha256": "6b7248f9f7cd4b0ad655152bfd3d3855cd15f4d29f01bf92741ff2d067e0a923"
+    },
+    {
+      "path": "variants/heltec_t1/variant.h",
+      "mode": "100644",
+      "bytes": 5456,
+      "sha256": "9b48dc112febafde47c7c85ab4d46487e34211baece90feb2b26bc45587a0e9a"
+    },
+    {
+      "path": "variants/heltec_t114/T114Board.cpp",
+      "mode": "100644",
+      "bytes": 1600,
+      "sha256": "b74c4ee141669e71a98042b4c4ec457732aba367dfec7185c2fdd7828281ec3e"
+    },
+    {
+      "path": "variants/heltec_t114/T114Board.h",
+      "mode": "100644",
+      "bytes": 1287,
+      "sha256": "731a41d062496ea3a3ae57f5f4492a39550a3978e8edea107357125a20b9b450"
+    },
+    {
+      "path": "variants/heltec_t114/platformio.ini",
+      "mode": "100644",
+      "bytes": 7355,
+      "sha256": "26f21cbfa0d02ef33f9f6870fb4efe3fab16a10e2a9aeaa25403e4def5eca3e7"
+    },
+    {
+      "path": "variants/heltec_t114/target.cpp",
+      "mode": "100644",
+      "bytes": 1186,
+      "sha256": "316ac5d787fc50959fd3596b4165d8328e8aebddcf2b270f4acb215dd872f1a6"
+    },
+    {
+      "path": "variants/heltec_t114/target.h",
+      "mode": "100644",
+      "bytes": 817,
+      "sha256": "d34529723bdcf6bde66f6fbae78f8f931d743c70b020bfdc76e7247494ada08c"
+    },
+    {
+      "path": "variants/heltec_t114/variant.cpp",
+      "mode": "100644",
+      "bytes": 372,
+      "sha256": "6b7248f9f7cd4b0ad655152bfd3d3855cd15f4d29f01bf92741ff2d067e0a923"
+    },
+    {
+      "path": "variants/heltec_t114/variant.h",
+      "mode": "100644",
+      "bytes": 4263,
+      "sha256": "cd4c51e2ff144b945863f699f34002fb555acb4d1c9f63a25973dc031069deff"
+    },
+    {
+      "path": "variants/heltec_t190/HeltecT190Board.cpp",
+      "mode": "100644",
+      "bytes": 1066,
+      "sha256": "298779954d4a9b20b4960832e372f1013dc84ea9e49ccae5ae8547f82f940953"
+    },
+    {
+      "path": "variants/heltec_t190/HeltecT190Board.h",
+      "mode": "100644",
+      "bytes": 387,
+      "sha256": "427dac6ddc9640a48cd9a76033a631794ee826eaf39d3630acd293e3bb539ed0"
+    },
+    {
+      "path": "variants/heltec_t190/pins_arduino.h",
+      "mode": "100644",
+      "bytes": 1654,
+      "sha256": "d23ac5d427af13cdec375566b18308f22ec0588ecfde3bb3b1d517c15ae05453"
+    },
+    {
+      "path": "variants/heltec_t190/platformio.ini",
+      "mode": "100644",
+      "bytes": 4354,
+      "sha256": "8579c2c47109db9d4b5b1c12c961f4dfdc8e0cf0cdfb4d2945f1dc5cdfd706db"
+    },
+    {
+      "path": "variants/heltec_t190/target.cpp",
+      "mode": "100644",
+      "bytes": 878,
+      "sha256": "5bdcd965d3242024f2a1747b7d4fb67d45f17ab836f6d56ac17e3cd3f8440246"
+    },
+    {
+      "path": "variants/heltec_t190/target.h",
+      "mode": "100644",
+      "bytes": 665,
+      "sha256": "6d509c0fadf6cc6c0d14b8abaf8ab151323fd898877cfffb3d4fb33d6d7a2256"
+    },
+    {
+      "path": "variants/heltec_tower_v2/HeltecTowerV2Board.cpp",
+      "mode": "100644",
+      "bytes": 2796,
+      "sha256": "9cc517a2d3df70e38353a0641ac52778ea5b6968bb30ebb04ea10717dfaa0edb"
+    },
+    {
+      "path": "variants/heltec_tower_v2/HeltecTowerV2Board.h",
+      "mode": "100644",
+      "bytes": 576,
+      "sha256": "2ad9a5df45fa3bffe85d5d5b4646c33a7087890cb96b774398dd66b07e622ccc"
+    },
+    {
+      "path": "variants/heltec_tower_v2/LoRaFEMControl.cpp",
+      "mode": "100644",
+      "bytes": 892,
+      "sha256": "c65d8f227b88971b1c7961671f400b4a5ae26a6103c0a5117f486d11db5f791c"
+    },
+    {
+      "path": "variants/heltec_tower_v2/LoRaFEMControl.h",
+      "mode": "100644",
+      "bytes": 236,
+      "sha256": "06dffea8cdd014aabc5dfc91327003c15743b579c92fc368319f6e06a0096f5f"
+    },
+    {
+      "path": "variants/heltec_tower_v2/platformio.ini",
+      "mode": "100644",
+      "bytes": 3196,
+      "sha256": "c127cbbf9e7917a78c100a351d5a632dc0a9ee179a8f65a774a439c0702f28de"
+    },
+    {
+      "path": "variants/heltec_tower_v2/target.cpp",
+      "mode": "100644",
+      "bytes": 1706,
+      "sha256": "662700e857bcda412c9ba5e6467ed8a37be4b4e3f0483ebfec9a5d6fa55c7b06"
+    },
+    {
+      "path": "variants/heltec_tower_v2/target.h",
+      "mode": "100644",
+      "bytes": 1086,
+      "sha256": "75a66588b8c535f94ce46c8c21930eab38fee8c713eea57467246fa9cfac9b90"
+    },
+    {
+      "path": "variants/heltec_tower_v2/variant.cpp",
+      "mode": "100644",
+      "bytes": 1154,
+      "sha256": "abb86fac41280ff6dc74c1f318b79fcb8a2eb2cd7ea4a76c72b32fd0db356db4"
+    },
+    {
+      "path": "variants/heltec_tower_v2/variant.h",
+      "mode": "100644",
+      "bytes": 2971,
+      "sha256": "0071f36c6083bc87d51f31c73cd36eefd617999f9fbc95ecf8ab279942256bb2"
+    },
+    {
+      "path": "variants/heltec_tracker/platformio.ini",
+      "mode": "100644",
+      "bytes": 5727,
+      "sha256": "039485acf630291cca0bbede3c1c3837ae8873b5e7bbd4f674de6d84a7348bcd"
+    },
+    {
+      "path": "variants/heltec_tracker/target.cpp",
+      "mode": "100644",
+      "bytes": 3123,
+      "sha256": "e1c388c26fe709941d1caa96402716b0ec606c45d39f195d882e93b9e7a5dc71"
+    },
+    {
+      "path": "variants/heltec_tracker/target.h",
+      "mode": "100644",
+      "bytes": 1383,
+      "sha256": "8627cd4bcd40404765972eb42a6e3a2682ffd376644847a2debd1bc65044e014"
+    },
+    {
+      "path": "variants/heltec_tracker_v2/HeltecTrackerV2Board.cpp",
+      "mode": "100644",
+      "bytes": 2176,
+      "sha256": "bb7969153eb0ad263f380ba428d9442214a8ded73ef27e5f5da5b0f4b122f5d9"
+    },
+    {
+      "path": "variants/heltec_tracker_v2/HeltecTrackerV2Board.h",
+      "mode": "100644",
+      "bytes": 707,
+      "sha256": "35b06ed4d240bd7afa10ef2c921d83994ca031f34c25529f286f213c6a2b3b5e"
+    },
+    {
+      "path": "variants/heltec_tracker_v2/LoRaFEMControl.cpp",
+      "mode": "100644",
+      "bytes": 1588,
+      "sha256": "39b0b88c39d31455bbbfe7a6cc0edde72226210e6af515bd61e8bd04ecdce98d"
+    },
+    {
+      "path": "variants/heltec_tracker_v2/LoRaFEMControl.h",
+      "mode": "100644",
+      "bytes": 606,
+      "sha256": "8b4e80f6987c5cd5462dc91bcc212e45da179040f9c6a695717970b226826f54"
+    },
+    {
+      "path": "variants/heltec_tracker_v2/pins_arduino.h",
+      "mode": "100644",
+      "bytes": 1599,
+      "sha256": "0bd39c1d7edcbfd608263094458ee656b51dea3bb5c54942332f61edb21f7573"
+    },
+    {
+      "path": "variants/heltec_tracker_v2/platformio.ini",
+      "mode": "100644",
+      "bytes": 6513,
+      "sha256": "8cf2c902ec587fb2af8bbdb9c2d90155eb3ac84b3ab6c38ef618a5db2e271b29"
+    },
+    {
+      "path": "variants/heltec_tracker_v2/target.cpp",
+      "mode": "100644",
+      "bytes": 1237,
+      "sha256": "3056f4d4f07a45fd3c4d1075d032e48ad38f161e760063459c73b94604f21b9e"
+    },
+    {
+      "path": "variants/heltec_tracker_v2/target.h",
+      "mode": "100644",
+      "bytes": 749,
+      "sha256": "a3ad89abec43b070e1847b776bbe3dcfd1f6d63284ca5eba915256b733b468ef"
+    },
+    {
+      "path": "variants/heltec_v2/HeltecV2Board.h",
+      "mode": "100644",
+      "bytes": 1066,
+      "sha256": "52ca35826e4d5f33732dafbce999e177c1acfcdcedee79910c6c45dafbf82878"
+    },
+    {
+      "path": "variants/heltec_v2/platformio.ini",
+      "mode": "100644",
+      "bytes": 5697,
+      "sha256": "3b7219e4bec792d792927ed8ae7a8d2a4b726f5e4f602bbff71bf0a90486b4a8"
+    },
+    {
+      "path": "variants/heltec_v2/target.cpp",
+      "mode": "100644",
+      "bytes": 875,
+      "sha256": "208a6702a1fd9e924dd587c5fc4437befc884d3018bc3db14770f52ac9bc165b"
+    },
+    {
+      "path": "variants/heltec_v2/target.h",
+      "mode": "100644",
+      "bytes": 670,
+      "sha256": "b77a2ca1f9fffc62b8a933d2a49a50254e57aee375aa73070f8b5aa8cd803aab"
+    },
+    {
+      "path": "variants/heltec_v3/HeltecV3Board.h",
+      "mode": "100644",
+      "bytes": 1939,
+      "sha256": "4aa853af35151b980b93e26f24d736fd1cb79a8f331b5fc01f14840574931daa"
+    },
+    {
+      "path": "variants/heltec_v3/platformio.ini",
+      "mode": "100644",
+      "bytes": 10225,
+      "sha256": "ccb4f83b49520198b6ab7e27018e671f838d5f5c517636140f5f17a0b542b8ef"
+    },
+    {
+      "path": "variants/heltec_v3/target.cpp",
+      "mode": "100644",
+      "bytes": 1133,
+      "sha256": "63799ecfffc3e0b1cd3cb2cec6c2ba47ab10e876015be87bff1cdcbb6fa1d022"
+    },
+    {
+      "path": "variants/heltec_v3/target.h",
+      "mode": "100644",
+      "bytes": 735,
+      "sha256": "aa4f73a093ae13e50cd22dd01ebdb1d9bba5b444fd921a90f8c2fd1eb75a9398"
+    },
+    {
+      "path": "variants/heltec_v4/HeltecV4Board.cpp",
+      "mode": "100644",
+      "bytes": 2198,
+      "sha256": "3e3046bbd3279e38d27a8f0629ef4b2e943d86285841f73b9e18b5c7a337bf6a"
+    },
+    {
+      "path": "variants/heltec_v4/HeltecV4Board.h",
+      "mode": "100644",
+      "bytes": 1046,
+      "sha256": "9ae9114168657e71e8e85615e723a8187dac32041c35e1284229ca880aacc0e7"
+    },
+    {
+      "path": "variants/heltec_v4/LoRaFEMControl.cpp",
+      "mode": "100644",
+      "bytes": 3748,
+      "sha256": "211f2c958aa5e4b4c51e363a7478271e606497acd94bb670dc9c36c12ef143e7"
+    },
+    {
+      "path": "variants/heltec_v4/LoRaFEMControl.h",
+      "mode": "100644",
+      "bytes": 787,
+      "sha256": "66a2dbfdf06f34970d09b7e40b1df1e9b0403836c687bc05fc46a7095f535b61"
+    },
+    {
+      "path": "variants/heltec_v4/pins_arduino.h",
+      "mode": "100644",
+      "bytes": 1814,
+      "sha256": "e7a3e2d90ab23d69f0de69342d459f3c55ad5c1ba31917dcd32a5beb0eb83c99"
+    },
+    {
+      "path": "variants/heltec_v4/platformio.ini",
+      "mode": "100644",
+      "bytes": 12294,
+      "sha256": "8f0d43a9cece19d3f4b20c1fb2631d506e4cd4efe6ca37b478841ee80888c10b"
+    },
+    {
+      "path": "variants/heltec_v4/target.cpp",
+      "mode": "100644",
+      "bytes": 1139,
+      "sha256": "8a081faaf4ab73cbeec7c5ff00a622bfb203db786a8139901902220a0f5e5151"
+    },
+    {
+      "path": "variants/heltec_v4/target.h",
+      "mode": "100644",
+      "bytes": 851,
+      "sha256": "a1f8be580fbc0ebaa9d99c76caaa9d34702826eebb7a096f36a92d045fce48a8"
+    },
+    {
+      "path": "variants/heltec_v4_r8/HeltecV4R8Board.cpp",
+      "mode": "100644",
+      "bytes": 2144,
+      "sha256": "72fcaee18e6c251509f4a58013ec6d6996ab2874f1a4ad770a6d918bd0a7ded9"
+    },
+    {
+      "path": "variants/heltec_v4_r8/HeltecV4R8Board.h",
+      "mode": "100644",
+      "bytes": 1008,
+      "sha256": "6524d5ae2202f89be7f50b0e82776ca8dc71342c23823411e20985a9b08c4fc0"
+    },
+    {
+      "path": "variants/heltec_v4_r8/LoRaFEMControl.cpp",
+      "mode": "100644",
+      "bytes": 1529,
+      "sha256": "523bba86b8d6d8fc3152265d25b42ddbf36abcb81b3221ef4d289fbd907622ac"
+    },
+    {
+      "path": "variants/heltec_v4_r8/LoRaFEMControl.h",
+      "mode": "100644",
+      "bytes": 547,
+      "sha256": "e897204f3e9ca81a512c350d45bf85b66fe5ed54aeeab7b5629e391e228b74f6"
+    },
+    {
+      "path": "variants/heltec_v4_r8/pins_arduino.h",
+      "mode": "100644",
+      "bytes": 1389,
+      "sha256": "bc89caa3b9603aa6f772bbeaf9867c484c825ec43c3cff2854784b54954f7b12"
+    },
+    {
+      "path": "variants/heltec_v4_r8/platformio.ini",
+      "mode": "100644",
+      "bytes": 9541,
+      "sha256": "e7e69d238737cdb001b2eea80160714ee2ffd57bc7eecfa41af865cf63d17e02"
+    },
+    {
+      "path": "variants/heltec_v4_r8/target.cpp",
+      "mode": "100644",
+      "bytes": 1162,
+      "sha256": "732ce1c376392d8fd16ffd4cacfd9f5421fb4471497e324f84a2662cf1bdfb58"
+    },
+    {
+      "path": "variants/heltec_v4_r8/target.h",
+      "mode": "100644",
+      "bytes": 856,
+      "sha256": "7a1587a48fa538d740d8e027d0baef41521eb44175f6de229358149abf0e9f4d"
+    },
+    {
+      "path": "variants/heltec_wireless_paper/platformio.ini",
+      "mode": "100644",
+      "bytes": 5198,
+      "sha256": "5d08d1a2d361339431234b33c16d202b3e005af6e2b57a2de7534897d32932a6"
+    },
+    {
+      "path": "variants/heltec_wireless_paper/target.cpp",
+      "mode": "100644",
+      "bytes": 881,
+      "sha256": "fa48ced2cd1375c7db627b3630790d428d4cbd5c4f4f18757d988c2e22a02f73"
+    },
+    {
+      "path": "variants/heltec_wireless_paper/target.h",
+      "mode": "100644",
+      "bytes": 843,
+      "sha256": "6a3e89820b8c8fba443796c8f29fe6489578520cadac8329dda1fc3966caeeec"
+    },
+    {
+      "path": "variants/ikoka_handheld_nrf/IkokaNrf52Board.cpp",
+      "mode": "100644",
+      "bytes": 956,
+      "sha256": "8674cc6bc436d620e292174521b16e97220b0fb1f0862097ab60e1f67f8d8b41"
+    },
+    {
+      "path": "variants/ikoka_handheld_nrf/IkokaNrf52Board.h",
+      "mode": "100644",
+      "bytes": 1195,
+      "sha256": "abe6fbfed1a5d5914e3aab87d1c4ff9be27b55ce79502021bb5481bd7278e1ed"
+    },
+    {
+      "path": "variants/ikoka_handheld_nrf/platformio.ini",
+      "mode": "100644",
+      "bytes": 4052,
+      "sha256": "9c3c3424321ebe33f7110975efc38d2a880dc10fd3c3a63c197ec2f36c3c686f"
+    },
+    {
+      "path": "variants/ikoka_handheld_nrf/target.cpp",
+      "mode": "100644",
+      "bytes": 693,
+      "sha256": "eaaa997859332f1ae2effdfe7749e6e71cee73a7263d4b29dd2eb87dad092d11"
+    },
+    {
+      "path": "variants/ikoka_handheld_nrf/target.h",
+      "mode": "100644",
+      "bytes": 714,
+      "sha256": "d5396b3a311eb80a0fd3342722b5fb3211e186eb486625529b7dd900df286ddc"
+    },
+    {
+      "path": "variants/ikoka_handheld_nrf/variant.cpp",
+      "mode": "100644",
+      "bytes": 2409,
+      "sha256": "955b0c0be1ef9f0a3ab2a1bb3d5ed33f86788a51616b83350c88899a2fa4bd04"
+    },
+    {
+      "path": "variants/ikoka_handheld_nrf/variant.h",
+      "mode": "100644",
+      "bytes": 4483,
+      "sha256": "d1c5223231e3850005d6dac6c73dba2c15c1ce09c1cccbdc51cbd2c7bea63f85"
+    },
+    {
+      "path": "variants/ikoka_nano_nrf/IkokaNanoNRFBoard.cpp",
+      "mode": "100644",
+      "bytes": 673,
+      "sha256": "4c0441eb8285cb802a1a6be77fd0b6f7e496e0802514f9e01300136bf8314168"
+    },
+    {
+      "path": "variants/ikoka_nano_nrf/IkokaNanoNRFBoard.h",
+      "mode": "100644",
+      "bytes": 1444,
+      "sha256": "66b566dc6724fd0c35d0589ce32175589548adbf52ce43a5134bb3a5ad68187f"
+    },
+    {
+      "path": "variants/ikoka_nano_nrf/platformio.ini",
+      "mode": "100644",
+      "bytes": 8971,
+      "sha256": "32d0c2666fbb5eb6962da58ae644cf900f7ffac0a6f20331c04e549cc1938ce6"
+    },
+    {
+      "path": "variants/ikoka_nano_nrf/target.cpp",
+      "mode": "100644",
+      "bytes": 697,
+      "sha256": "f03a07ba81e2e6e77e72c9d0584b231b7e3fdb6bb496cc87f78b2286fe53003d"
+    },
+    {
+      "path": "variants/ikoka_nano_nrf/target.h",
+      "mode": "100644",
+      "bytes": 723,
+      "sha256": "8b07e2e32917c14e62b8997c03f38d562154b9181ce57bded64347406440d7fe"
+    },
+    {
+      "path": "variants/ikoka_nano_nrf/variant.cpp",
+      "mode": "100644",
+      "bytes": 2463,
+      "sha256": "510ee1a1f2c05905e9e06fd9d39adae750f9392b8f64a726bb1feab598bdeead"
+    },
+    {
+      "path": "variants/ikoka_nano_nrf/variant.h",
+      "mode": "100644",
+      "bytes": 4504,
+      "sha256": "1f5dceee8b627b6f8f81745aa0540ae0f54ff904ffb628a025f66b09849d722f"
+    },
+    {
+      "path": "variants/ikoka_stick_nrf/IkokaStickNRFBoard.cpp",
+      "mode": "100644",
+      "bytes": 675,
+      "sha256": "f361fb4c7e87f808ede4056cb8e9757c63ba3a05bdede8b45887e86979b0ef1a"
+    },
+    {
+      "path": "variants/ikoka_stick_nrf/IkokaStickNRFBoard.h",
+      "mode": "100644",
+      "bytes": 1446,
+      "sha256": "275fa9b92cc1cccfdb44b52087c413dd0eb2cd86b328babd0339975ecede56c9"
+    },
+    {
+      "path": "variants/ikoka_stick_nrf/platformio.ini",
+      "mode": "100644",
+      "bytes": 9326,
+      "sha256": "cb615ea86c74dc2289a451215a215411c4618f0313e4597d3ec403d8ff0a603c"
+    },
+    {
+      "path": "variants/ikoka_stick_nrf/target.cpp",
+      "mode": "100644",
+      "bytes": 695,
+      "sha256": "e0d8a4fc4776d6714f8ab0c81763178d7ebd9c6ff6b7a07f22331002b2a2e5a5"
+    },
+    {
+      "path": "variants/ikoka_stick_nrf/target.h",
+      "mode": "100644",
+      "bytes": 719,
+      "sha256": "2bc977780cb4ddc0c90dce2c76229059c5fc8f55b6e724de212aefa74934db3c"
+    },
+    {
+      "path": "variants/ikoka_stick_nrf/variant.cpp",
+      "mode": "100644",
+      "bytes": 2463,
+      "sha256": "510ee1a1f2c05905e9e06fd9d39adae750f9392b8f64a726bb1feab598bdeead"
+    },
+    {
+      "path": "variants/ikoka_stick_nrf/variant.h",
+      "mode": "100644",
+      "bytes": 4503,
+      "sha256": "2f2a460ab90d8dc861b2317469b3e4e5c8a034017dec104db6cc304035ca9a77"
+    },
+    {
+      "path": "variants/keepteen_lt1/KeepteenLT1Board.cpp",
+      "mode": "100644",
+      "bytes": 341,
+      "sha256": "e3d109f17c5b1d4beeab2d0adb9fd29150e144f642be8e1167fabbca3a335d9f"
+    },
+    {
+      "path": "variants/keepteen_lt1/KeepteenLT1Board.h",
+      "mode": "100644",
+      "bytes": 866,
+      "sha256": "ed3790b98289f4bc27722f2037159b28274c6a99acd21b32378d3a3c375a1228"
+    },
+    {
+      "path": "variants/keepteen_lt1/platformio.ini",
+      "mode": "100644",
+      "bytes": 3286,
+      "sha256": "5cd5b9ad8c6efd2e806dd7384fbb335426688107f767e194bba5468666de6a45"
+    },
+    {
+      "path": "variants/keepteen_lt1/target.cpp",
+      "mode": "100644",
+      "bytes": 940,
+      "sha256": "9c43644eb39b5abd1a19ae79596ab0bf9fa988a9636fe5fbe1c6348fe3941464"
+    },
+    {
+      "path": "variants/keepteen_lt1/target.h",
+      "mode": "100644",
+      "bytes": 708,
+      "sha256": "760268c43a44940776c91b87c97766f47d416a6dd82ed2cc0c020fd90e276de7"
+    },
+    {
+      "path": "variants/keepteen_lt1/variant.cpp",
+      "mode": "100644",
+      "bytes": 542,
+      "sha256": "971b5f295e1a132ecd575706a22c5f88aa0e2565014da8328a3dae18b743dc3a"
+    },
+    {
+      "path": "variants/keepteen_lt1/variant.h",
+      "mode": "100644",
+      "bytes": 2183,
+      "sha256": "9bc566fc2e9591e3c884e99d05188918285a4c6f80f61c2dc4e5e8946df5627e"
+    },
+    {
+      "path": "variants/lilygo_t3s3/platformio.ini",
+      "mode": "100644",
+      "bytes": 5159,
+      "sha256": "612aa3d119d62f5ec62283132cdd13f6c4b2f6eb0077e5db1fab6b398c7e0d29"
+    },
+    {
+      "path": "variants/lilygo_t3s3/target.cpp",
+      "mode": "100644",
+      "bytes": 728,
+      "sha256": "85b4d252e907a91e1c24b2de708498a0f1f3a8e08d5c3d369f5ad76c6893d697"
+    },
+    {
+      "path": "variants/lilygo_t3s3/target.h",
+      "mode": "100644",
+      "bytes": 673,
+      "sha256": "ba05b23c142c3ea988c1148ae01d2fa654fd51a35b0954864142ba94563234a8"
+    },
+    {
+      "path": "variants/lilygo_t3s3_sx1276/LilygoT3S3SX1276Board.h",
+      "mode": "100644",
+      "bytes": 193,
+      "sha256": "830ddbbd66268a724cb19786cf7b6d004dafc0ded8c5fc2f014fe9248e580efe"
+    },
+    {
+      "path": "variants/lilygo_t3s3_sx1276/platformio.ini",
+      "mode": "100644",
+      "bytes": 4993,
+      "sha256": "cb1bef4b0173a683fed644b6c1ed9e6e5b37bb7a1f78c496cd7ede2075462649"
+    },
+    {
+      "path": "variants/lilygo_t3s3_sx1276/target.cpp",
+      "mode": "100644",
+      "bytes": 935,
+      "sha256": "e25d27a6641c756c572875c69b181280c4dc5d05cba6022b976fa48f09cbabd8"
+    },
+    {
+      "path": "variants/lilygo_t3s3_sx1276/target.h",
+      "mode": "100644",
+      "bytes": 685,
+      "sha256": "90d6401d9031d8a59187cfd6b038cd5af087de194fcbe0f077816c74a384fdc8"
+    },
+    {
+      "path": "variants/lilygo_t_impulse_plus/TImpulsePlusBoard.cpp",
+      "mode": "100644",
+      "bytes": 977,
+      "sha256": "e7fef43a4074d1ebf819098a5fe27753ae8f30a6560956cc6c4e96b409240d87"
+    },
+    {
+      "path": "variants/lilygo_t_impulse_plus/TImpulsePlusBoard.h",
+      "mode": "100644",
+      "bytes": 1324,
+      "sha256": "f6607aaa9e933b48d12c39b84ba00dc336f9ae6aadbf60c0347017642e263822"
+    },
+    {
+      "path": "variants/lilygo_t_impulse_plus/platformio.ini",
+      "mode": "100644",
+      "bytes": 2406,
+      "sha256": "e4f47a1bf66275e622e3e79c15708ddf4743e307e09e367eb21f219e60c2f3c6"
+    },
+    {
+      "path": "variants/lilygo_t_impulse_plus/target.cpp",
+      "mode": "100644",
+      "bytes": 957,
+      "sha256": "d017ba49dafb34ff8358df3305ee71323f5a58441ce1b3d2f6c5bd3098287b96"
+    },
+    {
+      "path": "variants/lilygo_t_impulse_plus/target.h",
+      "mode": "100644",
+      "bytes": 744,
+      "sha256": "d6790d59cd37a66d1c6916340709b63a7c92676756b4c1f7b9e0e4f52cc524fc"
+    },
+    {
+      "path": "variants/lilygo_t_impulse_plus/variant.cpp",
+      "mode": "100644",
+      "bytes": 1288,
+      "sha256": "be19d74d98569fe640800de5c879d7b9d57850bdc065d0c2214e6fe6d73f7b10"
+    },
+    {
+      "path": "variants/lilygo_t_impulse_plus/variant.h",
+      "mode": "100644",
+      "bytes": 6160,
+      "sha256": "e279aaa16d7bdaa6e65d5e5bc66821d7474115adc2f6981a3bc21e955c22b0a6"
+    },
+    {
+      "path": "variants/lilygo_tbeam_1w/TBeam1WBoard.cpp",
+      "mode": "100644",
+      "bytes": 1942,
+      "sha256": "7fa153e85ba9a42727ef32ba6f18227d4663e621b4fc73df2490d501153381aa"
+    },
+    {
+      "path": "variants/lilygo_tbeam_1w/TBeam1WBoard.h",
+      "mode": "100644",
+      "bytes": 1625,
+      "sha256": "ce5315abb9ca5aca4d475783b22fc5475ba6af2ca9eb3260948855b4fa2c967e"
+    },
+    {
+      "path": "variants/lilygo_tbeam_1w/pins_arduino.h",
+      "mode": "100644",
+      "bytes": 522,
+      "sha256": "177b901fa5b107a302a9481c72e6d99fbcac3ed32cc836cb5511e3aa2e60c01c"
+    },
+    {
+      "path": "variants/lilygo_tbeam_1w/platformio.ini",
+      "mode": "100644",
+      "bytes": 5480,
+      "sha256": "cc4d8497b7ab0ce87cb1a32a1b67ee7b71289b2f40692fc5cffe2096ca8d287d"
+    },
+    {
+      "path": "variants/lilygo_tbeam_1w/target.cpp",
+      "mode": "100644",
+      "bytes": 1294,
+      "sha256": "3122dee5ca8ed8c730e405969c41686577e0f656cd24432f650bb5d855913b66"
+    },
+    {
+      "path": "variants/lilygo_tbeam_1w/target.h",
+      "mode": "100644",
+      "bytes": 670,
+      "sha256": "13a563401537be7587d925d73f7f2ae5242c68033787fa3f682d4982099e5e47"
+    },
+    {
+      "path": "variants/lilygo_tbeam_1w/variant.h",
+      "mode": "100644",
+      "bytes": 2460,
+      "sha256": "40185831effea3019e2d2d8e98fbd87c5cb71c3c9c967537a3407020b648a4f5"
+    },
+    {
+      "path": "variants/lilygo_tbeam_SX1262/platformio.ini",
+      "mode": "100644",
+      "bytes": 4092,
+      "sha256": "52c15297fad64339f0c70f6cb8682c6b161c1e0163c0698182346c9e318f4715"
+    },
+    {
+      "path": "variants/lilygo_tbeam_SX1262/target.cpp",
+      "mode": "100644",
+      "bytes": 1062,
+      "sha256": "441f6cf27f2d16913c49e83cb02257fe404db114c60856c07f9427a092a8a373"
+    },
+    {
+      "path": "variants/lilygo_tbeam_SX1262/target.h",
+      "mode": "100644",
+      "bytes": 709,
+      "sha256": "e169807700ccd28d77e71a18d39cc9c7afde8468cd89180762b4914366268e5e"
+    },
+    {
+      "path": "variants/lilygo_tbeam_SX1276/LilygoTBeamSX1276Board.h",
+      "mode": "100644",
+      "bytes": 200,
+      "sha256": "a0d26790003ca187684bc2d7184c4e7c7e32334c4fce56f953db6a26077d6f07"
+    },
+    {
+      "path": "variants/lilygo_tbeam_SX1276/platformio.ini",
+      "mode": "100644",
+      "bytes": 4032,
+      "sha256": "3e7908a0d5708f00a6706c700987085be8f74ee26f0946d329b13ec5e5a1ba61"
+    },
+    {
+      "path": "variants/lilygo_tbeam_SX1276/target.cpp",
+      "mode": "100644",
+      "bytes": 1140,
+      "sha256": "d37049be416b5b8d77fb57e4106c46d5ce842cfc15169c5aa9c06d6f24b89087"
+    },
+    {
+      "path": "variants/lilygo_tbeam_SX1276/target.h",
+      "mode": "100644",
+      "bytes": 719,
+      "sha256": "85af70370f4da3edcab52131213f74aa6af4f4ae271f527cf1ff4c8bf1b65890"
+    },
+    {
+      "path": "variants/lilygo_tbeam_supreme_SX1262/platformio.ini",
+      "mode": "100644",
+      "bytes": 5143,
+      "sha256": "f110428041a5b7c3149d68cd42115721b7ba83885136da4917be434cda494565"
+    },
+    {
+      "path": "variants/lilygo_tbeam_supreme_SX1262/target.cpp",
+      "mode": "100644",
+      "bytes": 935,
+      "sha256": "4bbef9335d0f4c38c5ed24d2e6cbe0a8bc8f1dafd32014e6450cb2a5f6ba993e"
+    },
+    {
+      "path": "variants/lilygo_tbeam_supreme_SX1262/target.h",
+      "mode": "100644",
+      "bytes": 679,
+      "sha256": "4dc9b5ae822d8d309ca7bd569ac40c77a90b46bb1e5747d9a5a387ca42ffb99e"
+    },
+    {
+      "path": "variants/lilygo_tdeck/TDeckBoard.cpp",
+      "mode": "100644",
+      "bytes": 914,
+      "sha256": "dbd9f64cc3f74cd22ebba4a1c391a3920c4f01a58201d33d634cd235bc94886f"
+    },
+    {
+      "path": "variants/lilygo_tdeck/TDeckBoard.h",
+      "mode": "100644",
+      "bytes": 979,
+      "sha256": "9972e4f753b9a169c957bd92fd38906a3a5ef12378d94aa7964be0f3cc6aa9b7"
+    },
+    {
+      "path": "variants/lilygo_tdeck/platformio.ini",
+      "mode": "100644",
+      "bytes": 3342,
+      "sha256": "3c7fd095dbdf3112e415b04f29684465f3c48c2bc6f911b25463de104e1a7888"
+    },
+    {
+      "path": "variants/lilygo_tdeck/target.cpp",
+      "mode": "100644",
+      "bytes": 959,
+      "sha256": "f701af3be6847cff6519930d9151672357f0151ebcf7f5943fe446f3aa8fdd7f"
+    },
+    {
+      "path": "variants/lilygo_tdeck/target.h",
+      "mode": "100644",
+      "bytes": 786,
+      "sha256": "d897e6d16f537b968d544ccc53f69a957b27505a74fb50b87683221019b4b35a"
+    },
+    {
+      "path": "variants/lilygo_techo/TechoBoard.cpp",
+      "mode": "100644",
+      "bytes": 728,
+      "sha256": "a79bce9632739f045f17568f1af31a27351241d043524b29055e56620a857c85"
+    },
+    {
+      "path": "variants/lilygo_techo/TechoBoard.h",
+      "mode": "100644",
+      "bytes": 1134,
+      "sha256": "4f0caa1df5d08a99d7a13187200ce096dc173d4abe92bcda30a3123548630f37"
+    },
+    {
+      "path": "variants/lilygo_techo/platformio.ini",
+      "mode": "100644",
+      "bytes": 3758,
+      "sha256": "f275e8f0a03f632dd1cfeec13c44d06e58220028059cd905460db72654117ae3"
+    },
+    {
+      "path": "variants/lilygo_techo/target.cpp",
+      "mode": "100644",
+      "bytes": 954,
+      "sha256": "86d56c0e5f8e36c4343129ace29426646ad166aa4e4e2659d4af74507aa4ad24"
+    },
+    {
+      "path": "variants/lilygo_techo/target.h",
+      "mode": "100644",
+      "bytes": 774,
+      "sha256": "86311ae48d007ad45eeacfcd5bb3c6e6ef76d81fae89371337bdef515b8a156d"
+    },
+    {
+      "path": "variants/lilygo_techo/variant.cpp",
+      "mode": "100644",
+      "bytes": 898,
+      "sha256": "f4b3cff7806820755742c2328ec02341cddd993f4445fb5178bed565af67d9fb"
+    },
+    {
+      "path": "variants/lilygo_techo/variant.h",
+      "mode": "100644",
+      "bytes": 4114,
+      "sha256": "5fd2cbb7c47e8056086ca2936b492f583c6b70778f98515767856ce51b8060f6"
+    },
+    {
+      "path": "variants/lilygo_techo_card/TechoCardBoard.cpp",
+      "mode": "100644",
+      "bytes": 2503,
+      "sha256": "493f8eb9f4002c0ef81ec2798d18b76ea173c0454eebeba81249d2692039daf4"
+    },
+    {
+      "path": "variants/lilygo_techo_card/TechoCardBoard.h",
+      "mode": "100644",
+      "bytes": 945,
+      "sha256": "a392f2c8bc1e3fee841226bf970b1347fe55813546ba451883005b2923d51443"
+    },
+    {
+      "path": "variants/lilygo_techo_card/platformio.ini",
+      "mode": "100644",
+      "bytes": 3700,
+      "sha256": "55c44ad032ae9e2651c78828b8b7e19d69af9a68bd3739c8c5887aa126a1002b"
+    },
+    {
+      "path": "variants/lilygo_techo_card/target.cpp",
+      "mode": "100644",
+      "bytes": 1009,
+      "sha256": "9e372f63178058e5435080c205161e86b7b5147fcd3f9a044813eec87be29482"
+    },
+    {
+      "path": "variants/lilygo_techo_card/target.h",
+      "mode": "100644",
+      "bytes": 815,
+      "sha256": "c852a66383ab686c1188bb53484c110fbd7f538cae72ead22c8deed2fd4539d3"
+    },
+    {
+      "path": "variants/lilygo_techo_card/variant.cpp",
+      "mode": "100644",
+      "bytes": 1060,
+      "sha256": "c49249938ee87682dedf80daa7f09b763b6d7d1e592f94c340bd463a654ff7a3"
+    },
+    {
+      "path": "variants/lilygo_techo_card/variant.h",
+      "mode": "100644",
+      "bytes": 4983,
+      "sha256": "b78c759c126f5280b792ccc8eec0a3ad4912a6601936c9a951e970241086d7ec"
+    },
+    {
+      "path": "variants/lilygo_techo_lite/TechoBoard.cpp",
+      "mode": "100644",
+      "bytes": 1409,
+      "sha256": "54f55dd926325a42e4524f358816e0bdeb79f6de3bba5d9f8a64bb44e178247f"
+    },
+    {
+      "path": "variants/lilygo_techo_lite/TechoBoard.h",
+      "mode": "100644",
+      "bytes": 1208,
+      "sha256": "3a248fdddf12ab1fc806b457e6d369698ac22fb7723037ed3875944b611ca93f"
+    },
+    {
+      "path": "variants/lilygo_techo_lite/platformio.ini",
+      "mode": "100644",
+      "bytes": 5753,
+      "sha256": "e4d04caa3b1cda843a5ba7bffc7e0dee6fc1bfee03df0f0fe75ee213d03f7a34"
+    },
+    {
+      "path": "variants/lilygo_techo_lite/target.cpp",
+      "mode": "100644",
+      "bytes": 951,
+      "sha256": "88405943ce68397a31672f5876b10c8ef0b0ebb5811be6f9efcdb63b08fb8c29"
+    },
+    {
+      "path": "variants/lilygo_techo_lite/target.h",
+      "mode": "100644",
+      "bytes": 774,
+      "sha256": "86311ae48d007ad45eeacfcd5bb3c6e6ef76d81fae89371337bdef515b8a156d"
+    },
+    {
+      "path": "variants/lilygo_techo_lite/variant.cpp",
+      "mode": "100644",
+      "bytes": 969,
+      "sha256": "cc5ddd6394413f7660ba5227f4ec52f8f0d11d999187cbd62a20abc259c2246d"
+    },
+    {
+      "path": "variants/lilygo_techo_lite/variant.h",
+      "mode": "100644",
+      "bytes": 5738,
+      "sha256": "3272330a73c28d6f3505d61ab73118ad33e2a66cf00936c84436f9f45785c3a1"
+    },
+    {
+      "path": "variants/lilygo_teth_elite/TETHEliteBoard.h",
+      "mode": "100644",
+      "bytes": 191,
+      "sha256": "759805d338b8a5721bf8615bf976dac719c4bff2b5290206961fd25268cf1176"
+    },
+    {
+      "path": "variants/lilygo_teth_elite/platformio.ini",
+      "mode": "100644",
+      "bytes": 2990,
+      "sha256": "6c17cb52415f4c75604fc13e21de79eff90874f67559bf0ba515c015b8dbbbfe"
+    },
+    {
+      "path": "variants/lilygo_teth_elite/target.cpp",
+      "mode": "100644",
+      "bytes": 922,
+      "sha256": "8cb90664ea7641900a7837c13fb95c4aeee202fe6e0dc3bc5438a04fd1644595"
+    },
+    {
+      "path": "variants/lilygo_teth_elite/target.h",
+      "mode": "100644",
+      "bytes": 602,
+      "sha256": "cc68be0f8b716f5e05309bd7010ae3dbdac9a96eea2b132766690d77c237dd67"
+    },
+    {
+      "path": "variants/lilygo_tlora_c6/platformio.ini",
+      "mode": "100644",
+      "bytes": 2365,
+      "sha256": "63a421540107f396d9a10ff32fefafec2fb305c1b9bfa7ab05ef7aafac1ebfab"
+    },
+    {
+      "path": "variants/lilygo_tlora_c6/target.cpp",
+      "mode": "100644",
+      "bytes": 767,
+      "sha256": "43434f2406d317270daa017f5b58275cf6960ccb388659fb2e3358466254ab69"
+    },
+    {
+      "path": "variants/lilygo_tlora_c6/target.h",
+      "mode": "100644",
+      "bytes": 466,
+      "sha256": "f6afb22d5836cfb2ff932f23f0c2b9c8cd20fcf8d12a3b4fc8e81b6729b5925e"
+    },
+    {
+      "path": "variants/lilygo_tlora_v2_1/LilyGoTLoraBoard.h",
+      "mode": "100644",
+      "bytes": 580,
+      "sha256": "2ae7de497bff7cdacf1d35f7ccdb5e58555d62b00563d70dd304520305d48e86"
+    },
+    {
+      "path": "variants/lilygo_tlora_v2_1/platformio.ini",
+      "mode": "100644",
+      "bytes": 6103,
+      "sha256": "5d749133462f4bdae0dc42f698a9c1fdb4906ad7def81ed9d3ad8afe9ab5529f"
+    },
+    {
+      "path": "variants/lilygo_tlora_v2_1/target.cpp",
+      "mode": "100644",
+      "bytes": 759,
+      "sha256": "e259519fef8c499287391cf9eadd2884d9968e7dd697d0114af4f2bae0c2bd77"
+    },
+    {
+      "path": "variants/lilygo_tlora_v2_1/target.h",
+      "mode": "100644",
+      "bytes": 705,
+      "sha256": "e1e10ee6213f5aaa0dda0964f652aac55542acae3c843583a67e2bcf206b58d3"
+    },
+    {
+      "path": "variants/m5stack_unit_c6l/UnitC6LBoard.cpp",
+      "mode": "100644",
+      "bytes": 821,
+      "sha256": "634fefc15b54ff5d46277cad4b5f22811d5588d579acf82329432d0f54162b82"
+    },
+    {
+      "path": "variants/m5stack_unit_c6l/UnitC6LBoard.h",
+      "mode": "100644",
+      "bytes": 247,
+      "sha256": "2a44fcac80f393bc8f09de644a9af0ab9008dd0ebe426c57091337e92dea2fad"
+    },
+    {
+      "path": "variants/m5stack_unit_c6l/platformio.ini",
+      "mode": "100644",
+      "bytes": 3200,
+      "sha256": "118c3d95cc569d686818e397d26228796b661cc2099456ffb32033603607e048"
+    },
+    {
+      "path": "variants/m5stack_unit_c6l/target.h",
+      "mode": "100644",
+      "bytes": 492,
+      "sha256": "9f0d4a385a4b029c5d175804e9d8a3566f184170cfdde1878c81ee0b2ab22ae6"
+    },
+    {
+      "path": "variants/mesh_pocket/MeshPocket.cpp",
+      "mode": "100644",
+      "bytes": 213,
+      "sha256": "451cdcf64fedbd3f750fa8ef1092cd84fde4199d0bc9da9e3728194bcc765764"
+    },
+    {
+      "path": "variants/mesh_pocket/MeshPocket.h",
+      "mode": "100644",
+      "bytes": 913,
+      "sha256": "888957591bc18e2e632ccb3478ffac6a9ad36d526d4fc6f18e9cb87bcd17a38f"
+    },
+    {
+      "path": "variants/mesh_pocket/platformio.ini",
+      "mode": "100644",
+      "bytes": 3233,
+      "sha256": "6a2d851cce6a1e858f1e76793cc363a005a1b6a9f3603cdf588915333d182803"
+    },
+    {
+      "path": "variants/mesh_pocket/target.cpp",
+      "mode": "100644",
+      "bytes": 724,
+      "sha256": "6760c156e186f9b09d0aba78e227a1db0b7ab3f91f24a690a5a9650998c4dfc4"
+    },
+    {
+      "path": "variants/mesh_pocket/target.h",
+      "mode": "100644",
+      "bytes": 714,
+      "sha256": "82766cfbfb7fa517f27a8e75b959b02c15054b4c9b0f98b0296cb14b579b59a6"
+    },
+    {
+      "path": "variants/mesh_pocket/variant.cpp",
+      "mode": "100644",
+      "bytes": 513,
+      "sha256": "3562185c732f3acf6fece51cfcff8420b51c8f84195b7cb80006c0520ceac924"
+    },
+    {
+      "path": "variants/mesh_pocket/variant.h",
+      "mode": "100644",
+      "bytes": 3486,
+      "sha256": "0510153dbca48e20b38952d6eb2d55fbc13ff067d309eef87c40ea777048ce09"
+    },
+    {
+      "path": "variants/meshadventurer/platformio.ini",
+      "mode": "100644",
+      "bytes": 9893,
+      "sha256": "a89f52176de3e7e00826b9acd9ab372c769c303c0a3cf2cedb5d52637fec42be"
+    },
+    {
+      "path": "variants/meshadventurer/target.cpp",
+      "mode": "100644",
+      "bytes": 2638,
+      "sha256": "374fafd6e2b6b3ad243888d5b56555450d56551caed31ba3f6a96bcb7038ec4e"
+    },
+    {
+      "path": "variants/meshadventurer/target.h",
+      "mode": "100644",
+      "bytes": 1367,
+      "sha256": "da4e462ee2ba4aacaad2d2f0409a5d60a88033773b2f648b62111c1d55a7c06a"
+    },
+    {
+      "path": "variants/meshadventurer/variant.h",
+      "mode": "100644",
+      "bytes": 2479,
+      "sha256": "f9e35ed8e99b3bcd285ffd56e1cee2d2442f0a6906a79b89b2528ee5aa40ea37"
+    },
+    {
+      "path": "variants/meshnology_w12/MeshnologyW12Board.cpp",
+      "mode": "100644",
+      "bytes": 2738,
+      "sha256": "f9e111cf3dae4cbfd40e20a252e3c2f9be83892a67c1d722ac2be678acb29fb6"
+    },
+    {
+      "path": "variants/meshnology_w12/MeshnologyW12Board.h",
+      "mode": "100644",
+      "bytes": 942,
+      "sha256": "4cd949ad453afede4c7c2c578a3d3058c550db127b04edbc7e249b9f1db51326"
+    },
+    {
+      "path": "variants/meshnology_w12/pins_arduino.h",
+      "mode": "100644",
+      "bytes": 1816,
+      "sha256": "86a03dcadce3e3c2b44a97bbaca5adba63a75e1026a95b543faf0ff9ded80a2d"
+    },
+    {
+      "path": "variants/meshnology_w12/platformio.ini",
+      "mode": "100644",
+      "bytes": 6321,
+      "sha256": "66d672ec3f085052fe03b88f0744b6a1db8a977630fdd17ab55b9f0a70981bff"
+    },
+    {
+      "path": "variants/meshnology_w12/target.cpp",
+      "mode": "100644",
+      "bytes": 2175,
+      "sha256": "9ac5789d0800bf73f0b49e56eacd5c034599db72d0cdf5db661936d6d267feb9"
+    },
+    {
+      "path": "variants/meshnology_w12/target.h",
+      "mode": "100644",
+      "bytes": 745,
+      "sha256": "5508fe596afbc87a8185bf718b119a5039509a5131d25b6636ed9fb142111e45"
+    },
+    {
+      "path": "variants/meshtiny/MeshtinyBoard.cpp",
+      "mode": "100644",
+      "bytes": 979,
+      "sha256": "675851c5378c25c01067dec943bcd806de2bd94580d113b784a06b0e118df70e"
+    },
+    {
+      "path": "variants/meshtiny/MeshtinyBoard.h",
+      "mode": "100644",
+      "bytes": 1373,
+      "sha256": "302edc0c2e72e312b0991b6073466b3600ff6a87b72dd5603238800e8c699fa7"
+    },
+    {
+      "path": "variants/meshtiny/platformio.ini",
+      "mode": "100644",
+      "bytes": 2026,
+      "sha256": "e2facb87fb0a44c8f9aad42b333d967866f0d70020ea8cf5ee32890b0f10111b"
+    },
+    {
+      "path": "variants/meshtiny/target.cpp",
+      "mode": "100644",
+      "bytes": 910,
+      "sha256": "b762e75fbf6f44236b49030f333532f2565538200671af2045c6a92a192d3f63"
+    },
+    {
+      "path": "variants/meshtiny/target.h",
+      "mode": "100644",
+      "bytes": 839,
+      "sha256": "fd283d3ac188fc1befa91c17007c486e4550743d56e9f59208cdacc37ba539a8"
+    },
+    {
+      "path": "variants/meshtiny/variant.cpp",
+      "mode": "100644",
+      "bytes": 1548,
+      "sha256": "0a540c6d505a953e79f41d8eb9b5323596e14f722e82c40be44c0b0ebd7afd0b"
+    },
+    {
+      "path": "variants/meshtiny/variant.h",
+      "mode": "100644",
+      "bytes": 3641,
+      "sha256": "6d795f3b0ad7278527f739212ed76dda9ef61c607389db5f1d4b14b6dc29232b"
+    },
+    {
+      "path": "variants/meshtracker_x1/MeshTrackerX1Board.cpp",
+      "mode": "100644",
+      "bytes": 489,
+      "sha256": "18280a590a83dc4801524019004ca8a378bcd2b47d09989697fa6de331fd9056"
+    },
+    {
+      "path": "variants/meshtracker_x1/MeshTrackerX1Board.h",
+      "mode": "100644",
+      "bytes": 1935,
+      "sha256": "e67e6df0725ba2edf6e2b288c556b29cf67ca0f58ee1de745268e4c0f3c0707d"
+    },
+    {
+      "path": "variants/meshtracker_x1/platformio.ini",
+      "mode": "100644",
+      "bytes": 4294,
+      "sha256": "5224edd68c9624f472c4a3b121f9f3cdec274f6b8f5ed5fda378f006019c5ec3"
+    },
+    {
+      "path": "variants/meshtracker_x1/target.cpp",
+      "mode": "100644",
+      "bytes": 3947,
+      "sha256": "2ab92380f4401f700c1754f014bbd07acd997c1c04ae09b1c978febf72870692"
+    },
+    {
+      "path": "variants/meshtracker_x1/target.h",
+      "mode": "100644",
+      "bytes": 1394,
+      "sha256": "0746835c55b67bd2dbc905a0cc33f589aedd5bd2d92082258345f6d5cd44388c"
+    },
+    {
+      "path": "variants/meshtracker_x1/variant.cpp",
+      "mode": "100644",
+      "bytes": 2482,
+      "sha256": "ac5477bced7b138ea69888003aa57dac2857bd0219c2dfcc265c19f26f993465"
+    },
+    {
+      "path": "variants/meshtracker_x1/variant.h",
+      "mode": "100644",
+      "bytes": 5164,
+      "sha256": "8907585ea86e9b081be65aa224e8b713215694beca18b619538c8e0b96778c05"
+    },
+    {
+      "path": "variants/minewsemi_me25ls01/MinewsemiME25LS01Board.cpp",
+      "mode": "100644",
+      "bytes": 563,
+      "sha256": "26a4ae2eceaed9dfab963bfbec711181574e9b2c95c54259077d505c5895cdff"
+    },
+    {
+      "path": "variants/minewsemi_me25ls01/MinewsemiME25LS01Board.h",
+      "mode": "100644",
+      "bytes": 2044,
+      "sha256": "14ad7fb59789a3e8845dd20ccbed2087a2c8939ddb9374e804747613f54e4c36"
+    },
+    {
+      "path": "variants/minewsemi_me25ls01/platformio.ini",
+      "mode": "100644",
+      "bytes": 4174,
+      "sha256": "52f09b76413640e34840bba32b762c4750b181f33ba8057c75556bbb7a3d409b"
+    },
+    {
+      "path": "variants/minewsemi_me25ls01/target.cpp",
+      "mode": "100644",
+      "bytes": 2294,
+      "sha256": "ed2ef4ad7bbed767d574bba2917c0a7d69f68deac661aa93cbdd0694ffb14462"
+    },
+    {
+      "path": "variants/minewsemi_me25ls01/target.h",
+      "mode": "100644",
+      "bytes": 791,
+      "sha256": "a53f597bae57e78c503b596cc7c39217e0b1fc3950c510295937b3e61dbbb8af"
+    },
+    {
+      "path": "variants/minewsemi_me25ls01/variant.cpp",
+      "mode": "100644",
+      "bytes": 1412,
+      "sha256": "3ceeafd5ac3850916ba56ad00e7fc37548e97c6e4cc8b64b14809da2f19d7d72"
+    },
+    {
+      "path": "variants/minewsemi_me25ls01/variant.h",
+      "mode": "100644",
+      "bytes": 3155,
+      "sha256": "d86b108717bb7336c7c85efed20ec2c09f4284b68dc6a4fb9195b154a833a69e"
+    },
+    {
+      "path": "variants/muziworks_r1_neo/R1NeoBoard.cpp",
+      "mode": "100644",
+      "bytes": 2001,
+      "sha256": "5657b80925a60dcedc7a979b8eae0a1b229e70d1813248c8a28336b3024bb180"
+    },
+    {
+      "path": "variants/muziworks_r1_neo/R1NeoBoard.h",
+      "mode": "100644",
+      "bytes": 1454,
+      "sha256": "734abad60fa3b6be2f98dbc2594e26055c5159f85fa68d91546ee814c14ef684"
+    },
+    {
+      "path": "variants/muziworks_r1_neo/platformio.ini",
+      "mode": "100644",
+      "bytes": 3639,
+      "sha256": "8f91a9add18d6d57bc4772cfd74ed2bac48a58133c066c06259b124860935ed9"
+    },
+    {
+      "path": "variants/muziworks_r1_neo/target.cpp",
+      "mode": "100644",
+      "bytes": 958,
+      "sha256": "0690a4d6d7bf71a7e68b9cd77dd097851e61f3653e30bd69f9f98e0dfd02df90"
+    },
+    {
+      "path": "variants/muziworks_r1_neo/target.h",
+      "mode": "100644",
+      "bytes": 550,
+      "sha256": "c67c8e0571edabbf1b6d18a95d7fa57f6ba9c2c16329c1612715bedf851b61a3"
+    },
+    {
+      "path": "variants/muziworks_r1_neo/variant.cpp",
+      "mode": "100644",
+      "bytes": 2702,
+      "sha256": "57750f199f2e27f86f512b06531b054d53d8ce529e8db8f5bd048be753d56cfe"
+    },
+    {
+      "path": "variants/muziworks_r1_neo/variant.h",
+      "mode": "100644",
+      "bytes": 5681,
+      "sha256": "f09fa7577202fb545f1dbe08714909080997026482ed3861d9f1aa6fd188b749"
+    },
+    {
+      "path": "variants/nano_g2_ultra/nano-g2.cpp",
+      "mode": "100644",
+      "bytes": 946,
+      "sha256": "51905d1e743a15c97963827fed814e8c31cb4ef35cea0b7b634753fea9df1c1f"
+    },
+    {
+      "path": "variants/nano_g2_ultra/nano-g2.h",
+      "mode": "100644",
+      "bytes": 1828,
+      "sha256": "e23de460475a2149e4360db2582db0f38757fdbf7b74bf83b0a4ffe6c2faa297"
+    },
+    {
+      "path": "variants/nano_g2_ultra/platformio.ini",
+      "mode": "100644",
+      "bytes": 3487,
+      "sha256": "3436fb58f628badd6e2df062d4c2f00add102f30e5e2d34d5156b300a721a1b8"
+    },
+    {
+      "path": "variants/nano_g2_ultra/target.cpp",
+      "mode": "100644",
+      "bytes": 3572,
+      "sha256": "cd5a8432f647c7b631f7ab14d1eda0e44f85968a83a96658e11f2e71bf6de3a1"
+    },
+    {
+      "path": "variants/nano_g2_ultra/target.h",
+      "mode": "100644",
+      "bytes": 1307,
+      "sha256": "375053dc96048f147e6699da09403e463b79128e4023336ff2e6c5e3843e052a"
+    },
+    {
+      "path": "variants/nano_g2_ultra/variant.cpp",
+      "mode": "100644",
+      "bytes": 1383,
+      "sha256": "29a199502728dfe294654cf62c5364c8e10e531c160c003df84f55cd10959203"
+    },
+    {
+      "path": "variants/nano_g2_ultra/variant.h",
+      "mode": "100644",
+      "bytes": 5135,
+      "sha256": "2763f5c7219f01f049b5a8bec92b8f70bb7c10ad3c4822af7713f6ce31d9e8ca"
+    },
+    {
+      "path": "variants/nibble_screen_connect/platformio.ini",
+      "mode": "100644",
+      "bytes": 5043,
+      "sha256": "7d93554364e5ba2708c46caca0921d44abbda14a72e37b22bc5d75b6380578a6"
+    },
+    {
+      "path": "variants/nibble_screen_connect/target.cpp",
+      "mode": "100644",
+      "bytes": 697,
+      "sha256": "df1859b2908a833197de52720c845f7fe674058ff58ddb59c243773edc17295c"
+    },
+    {
+      "path": "variants/nibble_screen_connect/target.h",
+      "mode": "100644",
+      "bytes": 673,
+      "sha256": "ba05b23c142c3ea988c1148ae01d2fa654fd51a35b0954864142ba94563234a8"
+    },
+    {
+      "path": "variants/nibble_zero_connect/platformio.ini",
+      "mode": "100644",
+      "bytes": 4677,
+      "sha256": "e56f5324c3a978ee83bcb3f4f3fa47e68fcf55d1cf77c7252fa41780c6dcf9b6"
+    },
+    {
+      "path": "variants/nibble_zero_connect/target.cpp",
+      "mode": "100644",
+      "bytes": 698,
+      "sha256": "541e1399fa900f9dd94015612a0f940968061fa8fe758158c81edcb4c729049c"
+    },
+    {
+      "path": "variants/nibble_zero_connect/target.h",
+      "mode": "100644",
+      "bytes": 674,
+      "sha256": "75fa952c99f1ea1d84a96a12eb761acce94a016823e69d39e365f6d0063ff523"
+    },
+    {
+      "path": "variants/promicro/PromicroBoard.cpp",
+      "mode": "100644",
+      "bytes": 544,
+      "sha256": "37aa08b67a6136cd074a8bbbce58766d51df8973bba2ac9ac96962de1ab7ab43"
+    },
+    {
+      "path": "variants/promicro/PromicroBoard.h",
+      "mode": "100644",
+      "bytes": 1361,
+      "sha256": "16010e8ce1d063f3bdd6e7b6be42ddcd21413965c6a4e8dc1eacb0565b35ed5b"
+    },
+    {
+      "path": "variants/promicro/platformio.ini",
+      "mode": "100644",
+      "bytes": 5166,
+      "sha256": "a922a73233d9ebc58b4ca94a5c436c2b25ebb67ff1128d4410df1414f18ec608"
+    },
+    {
+      "path": "variants/promicro/target.cpp",
+      "mode": "100644",
+      "bytes": 937,
+      "sha256": "2ac9967ffa4a37b2e16dab087f6881f75c214469e623763b772d04ed1db4a7a0"
+    },
+    {
+      "path": "variants/promicro/target.h",
+      "mode": "100644",
+      "bytes": 702,
+      "sha256": "357252035dabc203e31dee514fbd6951c9e53c5fd45a853866be2a7920a18b05"
+    },
+    {
+      "path": "variants/promicro/variant.cpp",
+      "mode": "100644",
+      "bytes": 594,
+      "sha256": "341ce85dcd57de1d6cefea1077a82dda49a27ac2e2b7c5f86dbd259562bbcfb8"
+    },
+    {
+      "path": "variants/promicro/variant.h",
+      "mode": "100644",
+      "bytes": 2664,
+      "sha256": "a6f577bc4feee4c433d59da2c849c048afb0621406c1c82a5c83c4c11d594ca7"
+    },
+    {
+      "path": "variants/rak11310/RAK11310Board.cpp",
+      "mode": "100644",
+      "bytes": 607,
+      "sha256": "a8b01b3520639c3c7e936e4b9b94a0258c71a97c14800201ce3d63e7e7e885b9"
+    },
+    {
+      "path": "variants/rak11310/RAK11310Board.h",
+      "mode": "100644",
+      "bytes": 1513,
+      "sha256": "f4c6870dd2a016420012bfa2bf5722e6e71fd259655d7b839e9f06ad501af8a5"
+    },
+    {
+      "path": "variants/rak11310/platformio.ini",
+      "mode": "100644",
+      "bytes": 4027,
+      "sha256": "9549b6d52c45ba06d5003fe8140fc9a0d9e88adb77788b5bfd72bd6b554ec5be"
+    },
+    {
+      "path": "variants/rak11310/target.cpp",
+      "mode": "100644",
+      "bytes": 637,
+      "sha256": "3ee05257fe158c29a7bb535e8740ceef606f39b9869bbcf162695de508ac3cdd"
+    },
+    {
+      "path": "variants/rak11310/target.h",
+      "mode": "100644",
+      "bytes": 464,
+      "sha256": "5fe203cd7b2f49ad8a106318bdf33f52b2cc880cf22277e0cc0065f746b16675"
+    },
+    {
+      "path": "variants/rak3112/RAK3112Board.h",
+      "mode": "100644",
+      "bytes": 1682,
+      "sha256": "2f4abaf38ce597a29132ac5ceb77245036885e2106139f2123797b569bab96df"
+    },
+    {
+      "path": "variants/rak3112/platformio.ini",
+      "mode": "100644",
+      "bytes": 5297,
+      "sha256": "b678c8bda5c01fb7941b6c8dea048d79edf21e72453e3c5591f5299d3c98b154"
+    },
+    {
+      "path": "variants/rak3112/target.cpp",
+      "mode": "100644",
+      "bytes": 1130,
+      "sha256": "1206787b46680ebe8990699fca515a79eb896a01948362faaa0c5e5fdfc9af2c"
+    },
+    {
+      "path": "variants/rak3112/target.h",
+      "mode": "100644",
+      "bytes": 734,
+      "sha256": "3cf180be5a86fa763fc97838a972714282c4e28c608c7faab7a14dc5439b837f"
+    },
+    {
+      "path": "variants/rak3401/RAK3401Board.cpp",
+      "mode": "100644",
+      "bytes": 2118,
+      "sha256": "aeb43c5cc84c2b73d00388e537dfb43e43c16edd04ba8dff4e24fa05e57c6f11"
+    },
+    {
+      "path": "variants/rak3401/RAK3401Board.h",
+      "mode": "100644",
+      "bytes": 974,
+      "sha256": "d4e25531fcff67e7849601054bfeea2814bb718892d298d6549130d4052406c8"
+    },
+    {
+      "path": "variants/rak3401/platformio.ini",
+      "mode": "100644",
+      "bytes": 3772,
+      "sha256": "5b2afa4bd45afe6c79d550ef18e9c4ae543fa99b009891b1d6cdb8cbe08f283f"
+    },
+    {
+      "path": "variants/rak3401/target.cpp",
+      "mode": "100644",
+      "bytes": 1090,
+      "sha256": "2384e27ac1eed8b893a3ff39d0d5fec4263441907af35330f54d9724bf4cdd67"
+    },
+    {
+      "path": "variants/rak3401/target.h",
+      "mode": "100644",
+      "bytes": 749,
+      "sha256": "f8a20d78df808d5d3869d83a45fb403ed65f2293a9fd6194c107cb1075fcd38d"
+    },
+    {
+      "path": "variants/rak3401/variant.cpp",
+      "mode": "100644",
+      "bytes": 1487,
+      "sha256": "403e13588f806fde183638fb94d7a5ceefaaa3e9e188c2b0e56a77df2fb3c716"
+    },
+    {
+      "path": "variants/rak3401/variant.h",
+      "mode": "100644",
+      "bytes": 6212,
+      "sha256": "db7aa56a0e019dd95b226d64fbb14a7246329384e0c2fed17bee41824f835b58"
+    },
+    {
+      "path": "variants/rak3x72/platformio.ini",
+      "mode": "100644",
+      "bytes": 1436,
+      "sha256": "b231d08316abffd3e9247b53e92d9cc72234486769efd4de51084efb739c8cfe"
+    },
+    {
+      "path": "variants/rak3x72/target.cpp",
+      "mode": "100644",
+      "bytes": 1469,
+      "sha256": "8d017f1de657a9cb4413c4961f143dfac86a89b06cec5570f8808179187fc7ee"
+    },
+    {
+      "path": "variants/rak3x72/target.h",
+      "mode": "100644",
+      "bytes": 1350,
+      "sha256": "3cd3bdd1cafb3ed5fd84bace1af862160eb305cd56e7f88d4945a5d308f93394"
+    },
+    {
+      "path": "variants/rak3x72/variant.h",
+      "mode": "100644",
+      "bytes": 62,
+      "sha256": "2a40b8ea379cec8627578afee3c4a96c56067fd271d332733e7871e2c2b45f9e"
+    },
+    {
+      "path": "variants/rak4631/RAK4631Board.cpp",
+      "mode": "100644",
+      "bytes": 2039,
+      "sha256": "2a043c4be42f60da5f352978aedb28b587120b82d634111445261ec3c1141a2e"
+    },
+    {
+      "path": "variants/rak4631/RAK4631Board.h",
+      "mode": "100644",
+      "bytes": 783,
+      "sha256": "e16cd8d6f17142e0e3dfabb6e00cd132da787936288d2296a862d2c4b1384d57"
+    },
+    {
+      "path": "variants/rak4631/fix_bsec_lib.py",
+      "mode": "100644",
+      "bytes": 567,
+      "sha256": "df1d50bdee6e4b62016230a77dfcaebf1a98cd8e96f01add8b915a050874a2f6"
+    },
+    {
+      "path": "variants/rak4631/platformio.ini",
+      "mode": "100644",
+      "bytes": 7493,
+      "sha256": "42e0957c908296f988cfc8f212bb5f76c2937291f08da6627ebc78ea133a02b5"
+    },
+    {
+      "path": "variants/rak4631/target.cpp",
+      "mode": "100644",
+      "bytes": 1089,
+      "sha256": "89ba0ffc2e361423fa92995225a7d61419e1626360a79d652b4c761203f38353"
+    },
+    {
+      "path": "variants/rak4631/target.h",
+      "mode": "100644",
+      "bytes": 749,
+      "sha256": "710b564c27f9615aa145b11dd63354433e69ab5ab8de95781d8ed9b4276c5b2b"
+    },
+    {
+      "path": "variants/rak4631/variant.cpp",
+      "mode": "100644",
+      "bytes": 1403,
+      "sha256": "6fc4cf8a4713589c908cd5c27de3edf3fa77c76c57b908b698dfb314de81c636"
+    },
+    {
+      "path": "variants/rak4631/variant.h",
+      "mode": "100644",
+      "bytes": 5406,
+      "sha256": "ba6af8863e6824606bb280a5800313d2ff167b74c5864f2882dd1d3003bff0b6"
+    },
+    {
+      "path": "variants/rak_wismesh_tag/RAKWismeshTagBoard.cpp",
+      "mode": "100644",
+      "bytes": 400,
+      "sha256": "b105fbe3003df2c39a0755563fcdb0fd235f7b5abdbba64ac4f717f249aaa58a"
+    },
+    {
+      "path": "variants/rak_wismesh_tag/RAKWismeshTagBoard.h",
+      "mode": "100644",
+      "bytes": 1843,
+      "sha256": "2262d248b875caefc5a590109cc4c02466cfe085f24776bd6550d1856cb209ac"
+    },
+    {
+      "path": "variants/rak_wismesh_tag/platformio.ini",
+      "mode": "100644",
+      "bytes": 3667,
+      "sha256": "4b6b11c17f8573be72040d79ad11f9fcbbfa32a5c11ebe75b5f4e25526062d4b"
+    },
+    {
+      "path": "variants/rak_wismesh_tag/target.cpp",
+      "mode": "100644",
+      "bytes": 996,
+      "sha256": "dd735ca399449668dfb3eb806568d05c418977caca3a9e830d8ff33c0ac999fa"
+    },
+    {
+      "path": "variants/rak_wismesh_tag/target.h",
+      "mode": "100644",
+      "bytes": 686,
+      "sha256": "e6e4c47672d3edb616d88b01f753871859f9728918b891182d35a1bd8d434834"
+    },
+    {
+      "path": "variants/rak_wismesh_tag/variant.cpp",
+      "mode": "100644",
+      "bytes": 553,
+      "sha256": "9ae10aa6fce7842ab78673edc5ce7c80e1ac61c4f188e20d083d81d9b874fc76"
+    },
+    {
+      "path": "variants/rak_wismesh_tag/variant.h",
+      "mode": "100644",
+      "bytes": 3503,
+      "sha256": "ec371dd675ec281b1114abf3aeedf83f2a9d101b4c9b7904eb92f6d391798abb"
+    },
+    {
+      "path": "variants/rpi_picow/PicoWBoard.cpp",
+      "mode": "100644",
+      "bytes": 974,
+      "sha256": "d5fa1956a273afd29dfc0fcf35836a167185c699021d2786cbf9f4137fdf0adf"
+    },
+    {
+      "path": "variants/rpi_picow/PicoWBoard.h",
+      "mode": "100644",
+      "bytes": 1096,
+      "sha256": "fd9ef20d957cba554caeba8997ea2ca4e24cac46921f7e23fea6ab00e997003d"
+    },
+    {
+      "path": "variants/rpi_picow/platformio.ini",
+      "mode": "100644",
+      "bytes": 3155,
+      "sha256": "ff3dd52a8f1cf48469f98f821079519b3c467ba07e5826167eb3689596af621b"
+    },
+    {
+      "path": "variants/rpi_picow/target.cpp",
+      "mode": "100644",
+      "bytes": 566,
+      "sha256": "dac0155bd3bf5b34a90a0727ebe817f2ee69c2f283532c5fc46a9229a97a0784"
+    },
+    {
+      "path": "variants/rpi_picow/target.h",
+      "mode": "100644",
+      "bytes": 458,
+      "sha256": "d0033cc7d268279df0c2c366ba0a16b941bc8cf43c4f0b7e1675e76d01865837"
+    },
+    {
+      "path": "variants/sensebox_eye/EyeRadioWrapper.h",
+      "mode": "100644",
+      "bytes": 1076,
+      "sha256": "5df4c203b28e798d7d018517f60a8000aa45a6f183a363a9118fa5d1aa46596b"
+    },
+    {
+      "path": "variants/sensebox_eye/SafeMSKiosk.cpp",
+      "mode": "100644",
+      "bytes": 4178,
+      "sha256": "a40ac7b62cd7074eac5cc4185785250aeaaab3bc053bcc2b80dd322dd586bda7"
+    },
+    {
+      "path": "variants/sensebox_eye/SafeMSKiosk.h",
+      "mode": "100644",
+      "bytes": 67,
+      "sha256": "66489874512bd188359ad2b06ccf745c213c98c8fe7593d6e4f5578225ee6a45"
+    },
+    {
+      "path": "variants/sensebox_eye/SenseBoxEyeBoard.h",
+      "mode": "100644",
+      "bytes": 491,
+      "sha256": "2c4ba95dda0d9d655e36967f13bf79d1aa39ca4e6b6e233fed133aa666fff348"
+    },
+    {
+      "path": "variants/sensebox_eye/platformio.ini",
+      "mode": "100644",
+      "bytes": 1495,
+      "sha256": "3831adc1584fc70dc38328ed5a850042e199d0e0e53fd34bad855a941ef19c26"
+    },
+    {
+      "path": "variants/sensebox_eye/target.cpp",
+      "mode": "100644",
+      "bytes": 756,
+      "sha256": "445c0dd67cdb04db3127d554e325e13adfb3e9895580fcd82eed1abc495ce850"
+    },
+    {
+      "path": "variants/sensebox_eye/target.h",
+      "mode": "100644",
+      "bytes": 475,
+      "sha256": "92155182dda5e722c205ae17b2306abb7cf3cdbd3bc32323d5d70c7a07ce35e6"
+    },
+    {
+      "path": "variants/sensecap_indicator-espnow/SCIndicatorDisplay.h",
+      "mode": "100644",
+      "bytes": 3046,
+      "sha256": "e5452e39d21e940540cc62662bb90ce4139b43fd41cf2d988b73fa99652bc81e"
+    },
+    {
+      "path": "variants/sensecap_indicator-espnow/platformio.ini",
+      "mode": "100644",
+      "bytes": 1543,
+      "sha256": "f28092d7512267c43f64f722948ec6924c3289d0082d8b2e73e1a4476f670335"
+    },
+    {
+      "path": "variants/sensecap_indicator-espnow/target.cpp",
+      "mode": "100644",
+      "bytes": 1105,
+      "sha256": "9b8db517242c0641c6032a1f8ce1d61294fb3ba053e25ba0fd809649d91d14f1"
+    },
+    {
+      "path": "variants/sensecap_indicator-espnow/target.h",
+      "mode": "100644",
+      "bytes": 655,
+      "sha256": "351146e0c69e1348b3f66b6dca672a779264baad52b2044371b46f0b8a23d707"
+    },
+    {
+      "path": "variants/sensecap_solar/SenseCapSolarBoard.cpp",
+      "mode": "100644",
+      "bytes": 1619,
+      "sha256": "69e74138a628e7121092d110b204cd58c1c137c3c78f0ca8604dad909f2e86dc"
+    },
+    {
+      "path": "variants/sensecap_solar/SenseCapSolarBoard.h",
+      "mode": "100644",
+      "bytes": 1724,
+      "sha256": "a6fba8f3ee8c604ce085c6e0e623d565d263f2492e823fa6b23b38020a5a34be"
+    },
+    {
+      "path": "variants/sensecap_solar/platformio.ini",
+      "mode": "100644",
+      "bytes": 3045,
+      "sha256": "37d9d6d0ade5a65df906b5a2603b6af59aaabc73dee583587a2c5c12e5d10724"
+    },
+    {
+      "path": "variants/sensecap_solar/target.cpp",
+      "mode": "100644",
+      "bytes": 882,
+      "sha256": "b3590c79c398c0e3582cdf9b587f8dd914458a7c3753d200efa34a7edb13a046"
+    },
+    {
+      "path": "variants/sensecap_solar/target.h",
+      "mode": "100644",
+      "bytes": 540,
+      "sha256": "f2fe3222451fd121887bb751f60bb5d79eb25e14c307b6d83db02b88f3cce2d9"
+    },
+    {
+      "path": "variants/sensecap_solar/variant.cpp",
+      "mode": "100644",
+      "bytes": 1811,
+      "sha256": "0547347fdca04819543e37003d738d386a5bf37bc6b77b6ce9b8f0b666e643c9"
+    },
+    {
+      "path": "variants/sensecap_solar/variant.h",
+      "mode": "100644",
+      "bytes": 2715,
+      "sha256": "cfb5e22644cbcb9f9a09dfaf32396d9c0e76438fb002ce99f9467c5709d72cd4"
+    },
+    {
+      "path": "variants/station_g2/StationG2Board.h",
+      "mode": "100644",
+      "bytes": 725,
+      "sha256": "b5ffe456aae0b39ec61796bfa9e2803495dabf9bdae338b46d018e9d29e10370"
+    },
+    {
+      "path": "variants/station_g2/platformio.ini",
+      "mode": "100644",
+      "bytes": 6970,
+      "sha256": "771e3359b9775d61fd78ab9241a16f2d96f8c4ab60fdffdca5ac811eac6295a2"
+    },
+    {
+      "path": "variants/station_g2/target.cpp",
+      "mode": "100644",
+      "bytes": 1184,
+      "sha256": "9edb2958886e6e101c94bb07c42a4cc7561be081dc4e3f9034c212bf8ba3c051"
+    },
+    {
+      "path": "variants/station_g2/target.h",
+      "mode": "100644",
+      "bytes": 703,
+      "sha256": "4a15b62e1ff9bc95bee0024cba7a01a7b4d93089432deab8fd563deb653dd8c3"
+    },
+    {
+      "path": "variants/station_g3_esp32/LoRaFEMControl.cpp",
+      "mode": "100644",
+      "bytes": 2072,
+      "sha256": "dd9d9fb369e234e9af3420aac2af9f3dfe4f66946c7bfa882dc05975eb09fdbb"
+    },
+    {
+      "path": "variants/station_g3_esp32/LoRaFEMControl.h",
+      "mode": "100644",
+      "bytes": 484,
+      "sha256": "96fcc8446e97a4d438a08cc2c0f56e8114fd9b4d2fc2a2e814dad41ec1a44c8b"
+    },
+    {
+      "path": "variants/station_g3_esp32/StationG3Board.cpp",
+      "mode": "100644",
+      "bytes": 1033,
+      "sha256": "40cf2d9077036302d6396601680ebffcba4d1803215d1c705457cab436f27760"
+    },
+    {
+      "path": "variants/station_g3_esp32/StationG3Board.h",
+      "mode": "100644",
+      "bytes": 1543,
+      "sha256": "ccf57e3719230f4f1827cbe5d27b8992e43587f42e7a62bcd42a0e2101acca7c"
+    },
+    {
+      "path": "variants/station_g3_esp32/platformio.ini",
+      "mode": "100644",
+      "bytes": 4659,
+      "sha256": "91d6b2675f864cfafc55ee5325afd50a207d688596aeb75187716b5dd58aa9eb"
+    },
+    {
+      "path": "variants/station_g3_esp32/target.cpp",
+      "mode": "100644",
+      "bytes": 1152,
+      "sha256": "492e4abf464000f47a11c6f367355d8a4bda738410c6b23ae0dad730fc6e893b"
+    },
+    {
+      "path": "variants/station_g3_esp32/target.h",
+      "mode": "100644",
+      "bytes": 702,
+      "sha256": "d8a7b1b4b1d4b49aff1e1a907f19cdfa63422fc1e32b55fed6dc47068e092215"
+    },
+    {
+      "path": "variants/t1000-e/T1000eBoard.cpp",
+      "mode": "100644",
+      "bytes": 439,
+      "sha256": "f977d7624506dcb9acaf26d23474dd77fe72e1d49ae5177629c607ca745a5dc2"
+    },
+    {
+      "path": "variants/t1000-e/T1000eBoard.h",
+      "mode": "100644",
+      "bytes": 2042,
+      "sha256": "1cab27b12f22c0b326c1ecb06e9aabedf38df3e82c40d3e21067e813a074b33e"
+    },
+    {
+      "path": "variants/t1000-e/platformio.ini",
+      "mode": "100644",
+      "bytes": 3828,
+      "sha256": "8d22a1ae53022527168d0b8e8884373f6de8f72cf2590a1fece45126cfb87ded"
+    },
+    {
+      "path": "variants/t1000-e/t1000e_sensors.cpp",
+      "mode": "100644",
+      "bytes": 3952,
+      "sha256": "1ab074798f7426409244094211a3864d8f9bf535766edec62459c512bd854505"
+    },
+    {
+      "path": "variants/t1000-e/t1000e_sensors.h",
+      "mode": "100644",
+      "bytes": 299,
+      "sha256": "ea6efc053e266f077d64c0a0af7dac359b9ff044cbb31e9e28d85bc18b2ef448"
+    },
+    {
+      "path": "variants/t1000-e/target.cpp",
+      "mode": "100644",
+      "bytes": 5194,
+      "sha256": "898d55fcc396de2d99d523f4ac8a494f5bf124526b356a2c9bff9f6f59597c3f"
+    },
+    {
+      "path": "variants/t1000-e/target.h",
+      "mode": "100644",
+      "bytes": 1272,
+      "sha256": "8a84635e806aef10d4f8bcdd9d2a2f74228905664231e5f84175b206b476e390"
+    },
+    {
+      "path": "variants/t1000-e/variant.cpp",
+      "mode": "100644",
+      "bytes": 2475,
+      "sha256": "39c90171723d641d9bbba96fa15d70275240065ba35e0770b1883d90a07eddac"
+    },
+    {
+      "path": "variants/t1000-e/variant.h",
+      "mode": "100644",
+      "bytes": 4620,
+      "sha256": "710ddea55d5ee3d78569e7daaed2e67b1ebab8c61657617d942a056a193e3bea"
+    },
+    {
+      "path": "variants/tenstar_c3/platformio.ini",
+      "mode": "100644",
+      "bytes": 5117,
+      "sha256": "7fdc18992f21493759cc4e2b19bd86a5b115286bc532be9c609785eb154dd866"
+    },
+    {
+      "path": "variants/tenstar_c3/target.cpp",
+      "mode": "100644",
+      "bytes": 765,
+      "sha256": "cd98f7455d2704de9d73c4497d604d34c681d3c5a90da2074a346fcb4a9f86fb"
+    },
+    {
+      "path": "variants/tenstar_c3/target.h",
+      "mode": "100644",
+      "bytes": 530,
+      "sha256": "89375c1521b85716cc0e69fc3ac658324962dfa57dc5361fa4fef61ed1de5408"
+    },
+    {
+      "path": "variants/thinknode_m1/ThinkNodeM1Board.cpp",
+      "mode": "100644",
+      "bytes": 843,
+      "sha256": "d5480557e17576965ab6af9f31b4d4f127eb0bc87d7410d5997e8b4383a55c2e"
+    },
+    {
+      "path": "variants/thinknode_m1/ThinkNodeM1Board.h",
+      "mode": "100644",
+      "bytes": 1202,
+      "sha256": "1fc7e35a4804084d1d33b030a01e878b163e856a16d5bfa367b1f973dbbcfb6b"
+    },
+    {
+      "path": "variants/thinknode_m1/platformio.ini",
+      "mode": "100644",
+      "bytes": 3798,
+      "sha256": "749550716b6b004b63419f43463f706723785eb59f2148fa0bfd27696817bf03"
+    },
+    {
+      "path": "variants/thinknode_m1/target.cpp",
+      "mode": "100644",
+      "bytes": 3594,
+      "sha256": "c0d2b3d13d33100fc19041917f54ea274d5e8c807c1e8840e2a7be06e7a44825"
+    },
+    {
+      "path": "variants/thinknode_m1/target.h",
+      "mode": "100644",
+      "bytes": 1437,
+      "sha256": "6882324f3cb1642226420de51a67b3f8ac88416f7dcf01e2055e41dd8db3fb52"
+    },
+    {
+      "path": "variants/thinknode_m1/variant.cpp",
+      "mode": "100644",
+      "bytes": 852,
+      "sha256": "846b96a0969455d05ab4eb60591d0dea206349d8a50ea8091f37e8f9bfbd8c3e"
+    },
+    {
+      "path": "variants/thinknode_m1/variant.h",
+      "mode": "100644",
+      "bytes": 4335,
+      "sha256": "bd0944b80d10349de276fd252beba1dccb7a091e3c9bbefd077e080b11255037"
+    },
+    {
+      "path": "variants/thinknode_m2/ThinknodeM2Board.cpp",
+      "mode": "100644",
+      "bytes": 948,
+      "sha256": "a70dbfa036362d7837b543f71941d19daa7bac2db93f458fffea720ef138e411"
+    },
+    {
+      "path": "variants/thinknode_m2/ThinknodeM2Board.h",
+      "mode": "100644",
+      "bytes": 277,
+      "sha256": "4a93020d768814046468405f5ba6c97ca09ea6ee3e5f51912cd1cc4986b9b868"
+    },
+    {
+      "path": "variants/thinknode_m2/pins_arduino.h",
+      "mode": "100644",
+      "bytes": 790,
+      "sha256": "710649fcb529354f9b72c96086c194559d9d4db9fd78baf565a292515ed6122e"
+    },
+    {
+      "path": "variants/thinknode_m2/platformio.ini",
+      "mode": "100644",
+      "bytes": 6114,
+      "sha256": "cee40f188bcd6a9bd3bb89dfa7300ba130240eec5b1d554e6e761529a2509326"
+    },
+    {
+      "path": "variants/thinknode_m2/target.cpp",
+      "mode": "100644",
+      "bytes": 977,
+      "sha256": "f35507b586240573dfdcce9141f0216ba3568141154673fb2f0709f91e257529"
+    },
+    {
+      "path": "variants/thinknode_m2/target.h",
+      "mode": "100644",
+      "bytes": 711,
+      "sha256": "61cb9a665646453789ede10795fa4e05d26caea621dc4ad6bc4e59126718e1dd"
+    },
+    {
+      "path": "variants/thinknode_m2/variant.h",
+      "mode": "100644",
+      "bytes": 300,
+      "sha256": "525cdb4157d6e52e7e506dce53ed5e1f32a817fff6fedf1e8e34526c793b7be8"
+    },
+    {
+      "path": "variants/thinknode_m3/ThinkNodeM3Board.cpp",
+      "mode": "100644",
+      "bytes": 693,
+      "sha256": "936f8f4d11e7e4d50d48cf2b009d152841c66b72de160c14c7a62f17a7b8908a"
+    },
+    {
+      "path": "variants/thinknode_m3/ThinkNodeM3Board.h",
+      "mode": "100644",
+      "bytes": 1301,
+      "sha256": "7012ef3ea03a308b7f5ad4dd588290a9f3e9aed4fd15275c5029a6a5a609bd4d"
+    },
+    {
+      "path": "variants/thinknode_m3/platformio.ini",
+      "mode": "100644",
+      "bytes": 3842,
+      "sha256": "2ce645c591896368b1b7d7e9115ee858950ac196142ab4aabb818398d53d35dd"
+    },
+    {
+      "path": "variants/thinknode_m3/target.cpp",
+      "mode": "100644",
+      "bytes": 2175,
+      "sha256": "7acd0d687d27bd9a3ca988e5df05116d99336da62a515b68d2dca7971789cf15"
+    },
+    {
+      "path": "variants/thinknode_m3/target.h",
+      "mode": "100644",
+      "bytes": 707,
+      "sha256": "473f42ffec7f0c5da70a3b0b57fe747da5d5624f11deabf94a1bc99396b3fa82"
+    },
+    {
+      "path": "variants/thinknode_m3/variant.cpp",
+      "mode": "100644",
+      "bytes": 1774,
+      "sha256": "485f3ec99dcfb8a51fa655f2fd40a1c52b91c5f8a41974e92cc63b13c09bf1d1"
+    },
+    {
+      "path": "variants/thinknode_m3/variant.h",
+      "mode": "100644",
+      "bytes": 3553,
+      "sha256": "80beb417fac0c089960b113d6b9c4d3bb18c96e397a8fb39f4e4cffba649b870"
+    },
+    {
+      "path": "variants/thinknode_m5/ThinknodeM5Board.cpp",
+      "mode": "100644",
+      "bytes": 1069,
+      "sha256": "14f0c8051bb1f25d90efcd6ff2d2944e0598b9618e8172a536f1375cce92f216"
+    },
+    {
+      "path": "variants/thinknode_m5/ThinknodeM5Board.h",
+      "mode": "100644",
+      "bytes": 538,
+      "sha256": "fe199a90bbaae8904ad0bf3207b2bd4d3a6425ab17a5b6ecd60214c3d6388df1"
+    },
+    {
+      "path": "variants/thinknode_m5/pins_arduino.h",
+      "mode": "100644",
+      "bytes": 798,
+      "sha256": "2964f5237206aaef8d0efbd68427b302cd4e97a7645105249f32573bb5a95867"
+    },
+    {
+      "path": "variants/thinknode_m5/platformio.ini",
+      "mode": "100644",
+      "bytes": 6468,
+      "sha256": "32fac22a013164e37d332372ac1b1db8637b34775a6903287d9e35c4f529a604"
+    },
+    {
+      "path": "variants/thinknode_m5/target.cpp",
+      "mode": "100644",
+      "bytes": 1275,
+      "sha256": "c002593eea4c171f4e547da8f15cdb9a013058a97dccc6781d132813fbc92f75"
+    },
+    {
+      "path": "variants/thinknode_m5/target.h",
+      "mode": "100644",
+      "bytes": 847,
+      "sha256": "17524d5a62f630868a4d42471cf61ad827ff48dd8d09ba4103fd9aaf72feb217"
+    },
+    {
+      "path": "variants/thinknode_m5/variant.h",
+      "mode": "100644",
+      "bytes": 921,
+      "sha256": "ed6b3dc72f796ceee637dfbff5b7ad5b06093e6c9510455c29e9c0ae01b0b578"
+    },
+    {
+      "path": "variants/thinknode_m6/ThinkNodeM6Board.cpp",
+      "mode": "100644",
+      "bytes": 839,
+      "sha256": "38c6507e39af1372c6466f73f163585f086af78120a6c64b442ae46619e3d7d9"
+    },
+    {
+      "path": "variants/thinknode_m6/ThinkNodeM6Board.h",
+      "mode": "100644",
+      "bytes": 1233,
+      "sha256": "c8f791d97aa8625133e5bd44e83911f5165b8fb76aecc80f8050a3758ddc1646"
+    },
+    {
+      "path": "variants/thinknode_m6/platformio.ini",
+      "mode": "100644",
+      "bytes": 3427,
+      "sha256": "dd6d180795de1f2df550781a612d78cb85ea6e7b8c79f789b749b830392e5c7e"
+    },
+    {
+      "path": "variants/thinknode_m6/target.cpp",
+      "mode": "100644",
+      "bytes": 954,
+      "sha256": "99e28b0883fbdba8a12f763167a013062ab1d28a5b0a874e9ec8bac3711146aa"
+    },
+    {
+      "path": "variants/thinknode_m6/target.h",
+      "mode": "100644",
+      "bytes": 786,
+      "sha256": "37f47a1dd52ed0c145073b3ba8af0475351baf893e6187adf95893af85e31164"
+    },
+    {
+      "path": "variants/thinknode_m6/variant.cpp",
+      "mode": "100644",
+      "bytes": 1172,
+      "sha256": "fdecdc12ae4edb3d99915579045e0d21ec8d7f7ee91cae0a019eed11da9a812a"
+    },
+    {
+      "path": "variants/thinknode_m6/variant.h",
+      "mode": "100644",
+      "bytes": 3663,
+      "sha256": "559c503ea22d47a868bc4c1588937ead38ffcd40e2ba1f33f7e399e88f63a860"
+    },
+    {
+      "path": "variants/thinknode_m7/ThinkNodeM7Board.cpp",
+      "mode": "100644",
+      "bytes": 348,
+      "sha256": "fcf3accaf78d2b58a64114cfec6c5dfeb8b157ac40b2c545fba8557edc0ba580"
+    },
+    {
+      "path": "variants/thinknode_m7/ThinkNodeM7Board.h",
+      "mode": "100644",
+      "bytes": 563,
+      "sha256": "8423b44387efb49701d5dfc69f79535059477665697a947fbc191304ff95af4b"
+    },
+    {
+      "path": "variants/thinknode_m7/pins_arduino.h",
+      "mode": "100644",
+      "bytes": 419,
+      "sha256": "d73ee1fda2a481108ae93e5e6dd70ba470c8d3230f36c72ea79b369bce1ea971"
+    },
+    {
+      "path": "variants/thinknode_m7/platformio.ini",
+      "mode": "100644",
+      "bytes": 5038,
+      "sha256": "e988e96001572a70b797e73cfd1f34744dece25b42b18e038d68d16838d35736"
+    },
+    {
+      "path": "variants/thinknode_m7/target.cpp",
+      "mode": "100644",
+      "bytes": 2169,
+      "sha256": "f9028e048dc093b647f91a020ad66f6106895efd0dc8c83c1821794c4259a81a"
+    },
+    {
+      "path": "variants/thinknode_m7/target.h",
+      "mode": "100644",
+      "bytes": 709,
+      "sha256": "49ebfddc41ff25d2024455dcceac06ad4762d869533cc6848e24ff521bd335fe"
+    },
+    {
+      "path": "variants/thinknode_m7/variant.cpp",
+      "mode": "100644",
+      "bytes": 140,
+      "sha256": "785597ec7fe5e7c630d895599c228d47e1b2872c41122fee10aee2aa0fed413d"
+    },
+    {
+      "path": "variants/thinknode_m7/variant.h",
+      "mode": "100644",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "variants/thinknode_m9/ThinkNodeM9Board.cpp",
+      "mode": "100644",
+      "bytes": 411,
+      "sha256": "e5d87465cb5d2e17732a61ab5b8016a18427c365b3b13af159b1bc7e9c76339c"
+    },
+    {
+      "path": "variants/thinknode_m9/ThinkNodeM9Board.h",
+      "mode": "100644",
+      "bytes": 255,
+      "sha256": "6b959c29e12876ca228b4503943a0b2a7a4654dc63de90842249c38071e31146"
+    },
+    {
+      "path": "variants/thinknode_m9/pins_arduino.h",
+      "mode": "100755",
+      "bytes": 1777,
+      "sha256": "004f6cd775f1267ae4b8650a593941e8fdf0863645417ef2e91b7f0dda376b0b"
+    },
+    {
+      "path": "variants/thinknode_m9/platformio.ini",
+      "mode": "100755",
+      "bytes": 4369,
+      "sha256": "c76fb09230f3900eebde4d0d48bdf33f22873cbce958c1179acbb0679d9687ff"
+    },
+    {
+      "path": "variants/thinknode_m9/target.cpp",
+      "mode": "100644",
+      "bytes": 2054,
+      "sha256": "9e04d23d2143b9701e62e7358efcf94e10fd9b5cbdf68e70d66bd884b0b96cbe"
+    },
+    {
+      "path": "variants/thinknode_m9/target.h",
+      "mode": "100644",
+      "bytes": 787,
+      "sha256": "2692015c15e8ff0131547a2d8497bf7caaf2d795bc2a056edbc3d95d4cb0bca5"
+    },
+    {
+      "path": "variants/thinknode_m9/variant.cpp",
+      "mode": "100644",
+      "bytes": 70,
+      "sha256": "66994f2458dbcf2cec13334f26aa3c91ee8ea026e20075daac25533af49f5b52"
+    },
+    {
+      "path": "variants/thinknode_m9/variant.h",
+      "mode": "100755",
+      "bytes": 2603,
+      "sha256": "25635ccb61b03f7b14d1c002b152de364e663378d46669a623b043e2daffb3a4"
+    },
+    {
+      "path": "variants/tiny_relay/platformio.ini",
+      "mode": "100644",
+      "bytes": 1730,
+      "sha256": "9e20d774d5ddd9b24ba783e1794766d5125f2ec877edf93e0af280ec9d9428e0"
+    },
+    {
+      "path": "variants/tiny_relay/target.cpp",
+      "mode": "100644",
+      "bytes": 1511,
+      "sha256": "60b893639ec7a31238a99e3d286e5a4e46b57340c8c32b1bc6fd3c9b984e0179"
+    },
+    {
+      "path": "variants/tiny_relay/target.h",
+      "mode": "100644",
+      "bytes": 1360,
+      "sha256": "8ece9656a045b3a05f76706138d21de6a5ef04a1d6a9337467de97323e469c3f"
+    },
+    {
+      "path": "variants/tiny_relay/variant.h",
+      "mode": "100644",
+      "bytes": 62,
+      "sha256": "2a40b8ea379cec8627578afee3c4a96c56067fd271d332733e7871e2c2b45f9e"
+    },
+    {
+      "path": "variants/waveshare_rp2040_lora/WaveshareBoard.cpp",
+      "mode": "100644",
+      "bytes": 610,
+      "sha256": "e377c6f77cf94076077b7199f6c9791207b603575e59c9e8348faed39623b76b"
+    },
+    {
+      "path": "variants/waveshare_rp2040_lora/WaveshareBoard.h",
+      "mode": "100644",
+      "bytes": 1625,
+      "sha256": "66c121ab866696d8805049ada12e3d18f260fa050364a6d69fd38532680ae525"
+    },
+    {
+      "path": "variants/waveshare_rp2040_lora/platformio.ini",
+      "mode": "100644",
+      "bytes": 4390,
+      "sha256": "44cef63157d979f47a22984cbb4e63beefb4808a64af2f62cc46f7d399799ee5"
+    },
+    {
+      "path": "variants/waveshare_rp2040_lora/target.cpp",
+      "mode": "100644",
+      "bytes": 772,
+      "sha256": "76af51cd854453257ac51a1c340a5dd629cafcc836643319e7c513eb4202cc40"
+    },
+    {
+      "path": "variants/waveshare_rp2040_lora/target.h",
+      "mode": "100644",
+      "bytes": 467,
+      "sha256": "2723c51fa61217fca91ca89e542985e648319b79edbcf7c2dbb8b46be4173837"
+    },
+    {
+      "path": "variants/wio-e5-dev/platformio.ini",
+      "mode": "100644",
+      "bytes": 1644,
+      "sha256": "15acb2d212e3d5c7e6c720fb2c6252fcca88c8901d3abf6e687467bd80550182"
+    },
+    {
+      "path": "variants/wio-e5-dev/target.cpp",
+      "mode": "100644",
+      "bytes": 1456,
+      "sha256": "2401da1f6e500933821019af86f5a1bfc642bfb69d632c33755658e0ac515d8c"
+    },
+    {
+      "path": "variants/wio-e5-dev/target.h",
+      "mode": "100644",
+      "bytes": 780,
+      "sha256": "3dd703b2ccbfdd4d742aad27ed97b80ab917f49b72ecddb12ab90072dd0f7f99"
+    },
+    {
+      "path": "variants/wio-e5-dev/variant.h",
+      "mode": "100644",
+      "bytes": 55,
+      "sha256": "7fe276fae4986d20c0c00df06f38c79dec4e2ad2f2aec8214aa534ee550f8cbc"
+    },
+    {
+      "path": "variants/wio-e5-mini/platformio.ini",
+      "mode": "100644",
+      "bytes": 1770,
+      "sha256": "6747f8ec0c96d778f78492c3329406538775c33407bd8745d690217cd8fae330"
+    },
+    {
+      "path": "variants/wio-e5-mini/target.cpp",
+      "mode": "100644",
+      "bytes": 1981,
+      "sha256": "52b5344e5d025ace3c54c0f9b855d314c2ffdf340c1bf19bf01c8d699b05cae7"
+    },
+    {
+      "path": "variants/wio-e5-mini/target.h",
+      "mode": "100644",
+      "bytes": 1473,
+      "sha256": "d6a7c5f034a85a658b325b482bf243afbc05c6254624ad1f2109c7c04172416e"
+    },
+    {
+      "path": "variants/wio-e5-mini/variant.h",
+      "mode": "100644",
+      "bytes": 162,
+      "sha256": "0ca20cdfbf560bd5987940b21014d70fe926c52196b67815444f0e26e767e8be"
+    },
+    {
+      "path": "variants/wio-tracker-l1-eink/platformio.ini",
+      "mode": "100644",
+      "bytes": 2266,
+      "sha256": "aec46bff844a9f18e3fb3d4c87de93700cdbf7e86b9e58f87ee392f4df796c8c"
+    },
+    {
+      "path": "variants/wio-tracker-l1/WioTrackerL1Board.cpp",
+      "mode": "100644",
+      "bytes": 770,
+      "sha256": "5cb94f8f73b1a65721ddba28f5e59ab4901d9dbd3420e29ae02e9adf32b6f00f"
+    },
+    {
+      "path": "variants/wio-tracker-l1/WioTrackerL1Board.h",
+      "mode": "100644",
+      "bytes": 905,
+      "sha256": "143c55b508bbf733f307179910ef45e7df818523829a0249d0812bee25fc4006"
+    },
+    {
+      "path": "variants/wio-tracker-l1/platformio.ini",
+      "mode": "100644",
+      "bytes": 3681,
+      "sha256": "45268a08397091d3514ef9ee2b7ed1b7120fe244e4f8eb201ed986508c74c66d"
+    },
+    {
+      "path": "variants/wio-tracker-l1/target.cpp",
+      "mode": "100644",
+      "bytes": 1188,
+      "sha256": "fe57105dd0db7533db6c4c53fca4705607edd0405951a6ed0d60d7de3d26da1f"
+    },
+    {
+      "path": "variants/wio-tracker-l1/target.h",
+      "mode": "100644",
+      "bytes": 1008,
+      "sha256": "2963804c586359362b622d04a006c03f9de863146b44f1b333cc384c9e98f552"
+    },
+    {
+      "path": "variants/wio-tracker-l1/variant.cpp",
+      "mode": "100644",
+      "bytes": 1951,
+      "sha256": "5853668c0192d308af9489c294e245dad32c644e7202745a88af4a6cb44d04d1"
+    },
+    {
+      "path": "variants/wio-tracker-l1/variant.h",
+      "mode": "100644",
+      "bytes": 3702,
+      "sha256": "7917995dd7007e42507d9a4ef024448d498ec20934482192aa7997fc5e10b7d1"
+    },
+    {
+      "path": "variants/wio_wm1110/WioWM1110Board.cpp",
+      "mode": "100644",
+      "bytes": 546,
+      "sha256": "a7f2e976c41b3cb6f34f0721728f170418a61cf4b257d58ab8ad5a4edeae3b0d"
+    },
+    {
+      "path": "variants/wio_wm1110/WioWM1110Board.h",
+      "mode": "100644",
+      "bytes": 977,
+      "sha256": "c2bc0a18b2c5f7eaed31caf9fe7008aff71e8d0d0baec6f7aaf363020f413cd0"
+    },
+    {
+      "path": "variants/wio_wm1110/platformio.ini",
+      "mode": "100644",
+      "bytes": 2473,
+      "sha256": "f9dbbfc964d5916b7e1a7d643a4eea548c4c21aca7dabaf50f4258dc43b6b882"
+    },
+    {
+      "path": "variants/wio_wm1110/target.cpp",
+      "mode": "100644",
+      "bytes": 1968,
+      "sha256": "5ea84173bf58254bee7ba86aa9a4120bdd0776cc472ba132ce323d4afebb9766"
+    },
+    {
+      "path": "variants/wio_wm1110/target.h",
+      "mode": "100644",
+      "bytes": 486,
+      "sha256": "9875ff80ad6703ab1e325f5b272bdba632ad14fbc98cc2ef059617098d97a357"
+    },
+    {
+      "path": "variants/wio_wm1110/variant.cpp",
+      "mode": "100644",
+      "bytes": 2588,
+      "sha256": "82d3c7b5986c9db34a4ecde02924997c8243c4dd4056c3cebb0487fe1a6fc8f3"
+    },
+    {
+      "path": "variants/wio_wm1110/variant.h",
+      "mode": "100644",
+      "bytes": 4561,
+      "sha256": "1cf5591fcbfd0e94846a676fd8faea1c56d294d32c79caab1f255590f7af72b5"
+    },
+    {
+      "path": "variants/xiao_c3/XiaoC3Board.h",
+      "mode": "100644",
+      "bytes": 1915,
+      "sha256": "b8f153001987a8bd13fde5b4c8034a78859a8907cd9b6dd414ddbb19b531305f"
+    },
+    {
+      "path": "variants/xiao_c3/platformio.ini",
+      "mode": "100644",
+      "bytes": 3455,
+      "sha256": "53704c10f6055c29d524c18aad98f0c57cf5129d548852bfc6a5d98eb61d50cf"
+    },
+    {
+      "path": "variants/xiao_c3/target.cpp",
+      "mode": "100644",
+      "bytes": 1073,
+      "sha256": "70fd54d75140510cf72ddfc2140c4da91aa8318bf919a8d5738473385172a1cf"
+    },
+    {
+      "path": "variants/xiao_c3/target.h",
+      "mode": "100644",
+      "bytes": 490,
+      "sha256": "7da926ef9b797fe7657a5784493c608c96131e11932327981c101d2290600881"
+    },
+    {
+      "path": "variants/xiao_c6/XiaoC6Board.cpp",
+      "mode": "100644",
+      "bytes": 1182,
+      "sha256": "91d6c7c6f4862d311477a85be2589333f1181774eff0d9ad2e90925bf6ae26df"
+    },
+    {
+      "path": "variants/xiao_c6/XiaoC6Board.h",
+      "mode": "100644",
+      "bytes": 553,
+      "sha256": "e2620a29fd6974267ab333907599576c290f2e7c518a4eaf2455f9a1bdc34e10"
+    },
+    {
+      "path": "variants/xiao_c6/platformio.ini",
+      "mode": "100644",
+      "bytes": 4952,
+      "sha256": "783816085d81961772bc8a0ad8cca395867e205b9d4ef69ec77110a4315a05e5"
+    },
+    {
+      "path": "variants/xiao_c6/target.h",
+      "mode": "100644",
+      "bytes": 492,
+      "sha256": "cdf26b05dafd015b920227a27d863fc2c4fa91400b3541fe6a228d497c2c566d"
+    },
+    {
+      "path": "variants/xiao_nrf52/XiaoNrf52Board.cpp",
+      "mode": "100644",
+      "bytes": 2004,
+      "sha256": "8245bcb7dde799bf215e0eb7bcdce8f0fe7ae61fdbb61afde784050ae179d08e"
+    },
+    {
+      "path": "variants/xiao_nrf52/XiaoNrf52Board.h",
+      "mode": "100644",
+      "bytes": 1335,
+      "sha256": "c3ab7cd26ff730ff6cacba301b8b32503b07c89f0a41ba5bd2b2e4e2888c600a"
+    },
+    {
+      "path": "variants/xiao_nrf52/platformio.ini",
+      "mode": "100644",
+      "bytes": 3333,
+      "sha256": "b56452bb94826cf8f73431927b92b0602bda583a99f66935b32102e2998152a4"
+    },
+    {
+      "path": "variants/xiao_nrf52/target.cpp",
+      "mode": "100644",
+      "bytes": 689,
+      "sha256": "6690d9e0c674a2431672177f8cc1231a3510ffce5b28d8c706e4d6657fe7fee6"
+    },
+    {
+      "path": "variants/xiao_nrf52/target.h",
+      "mode": "100644",
+      "bytes": 714,
+      "sha256": "f95f95bae74791af8bdf4ce2850c996564cc833a72fbaab457b7be64c63b7a0d"
+    },
+    {
+      "path": "variants/xiao_nrf52/variant.cpp",
+      "mode": "100644",
+      "bytes": 2341,
+      "sha256": "0c199bf2409a815aaeefe48e7ab86a02dc04e3258cb793b53ed6f9c3076ec5df"
+    },
+    {
+      "path": "variants/xiao_nrf52/variant.h",
+      "mode": "100644",
+      "bytes": 5341,
+      "sha256": "1d4f89c2f37c9b59f3c355030ae82bbd6ae3721cdc5c0cc4291283e8fb6c29b2"
+    },
+    {
+      "path": "variants/xiao_rp2040/XiaoRP2040Board.cpp",
+      "mode": "100644",
+      "bytes": 613,
+      "sha256": "fbb8d5ba8a94709b2ce156aef42fa348d6d17bcff42b73533b1d622800496712"
+    },
+    {
+      "path": "variants/xiao_rp2040/XiaoRP2040Board.h",
+      "mode": "100644",
+      "bytes": 1550,
+      "sha256": "1999e65d34293c5ea34ccb240889b30ad1bfabb4debe7002a647f9277c1c852c"
+    },
+    {
+      "path": "variants/xiao_rp2040/platformio.ini",
+      "mode": "100644",
+      "bytes": 3391,
+      "sha256": "3698d33f1ffc6652b1930cd1c5584ecef657692f71d984ce3a980d629f82afce"
+    },
+    {
+      "path": "variants/xiao_rp2040/target.cpp",
+      "mode": "100644",
+      "bytes": 721,
+      "sha256": "c04099f588b74333a00a33cd00d282883b16bbb2a938d8b6de3f1a36774b0c8d"
+    },
+    {
+      "path": "variants/xiao_rp2040/target.h",
+      "mode": "100644",
+      "bytes": 469,
+      "sha256": "1e42c6a5150c9c9a19ac732df99933de50b24df55d0c03ddaa2b3b5d7914d1c1"
+    },
+    {
+      "path": "variants/xiao_s3/XiaoS3Board.h",
+      "mode": "100644",
+      "bytes": 219,
+      "sha256": "b429b400fec90d8c2bee1aa23ee773227f4f7b7eb5d855a7112249d47837f62a"
+    },
+    {
+      "path": "variants/xiao_s3/platformio.ini",
+      "mode": "100644",
+      "bytes": 4166,
+      "sha256": "c8ecc001c0d7638a397c0b423aa455e5ad32d52da3fddf69bf1321b0f64a9830"
+    },
+    {
+      "path": "variants/xiao_s3/target.cpp",
+      "mode": "100644",
+      "bytes": 982,
+      "sha256": "0096436145c653bb3fb02da277767825679088c1843ff721b6027caf580319e8"
+    },
+    {
+      "path": "variants/xiao_s3/target.h",
+      "mode": "100644",
+      "bytes": 728,
+      "sha256": "a705404e18b723fd6f7eaf9709b0c9fc8d0bf11abf41924f9400f6b2fec1b145"
+    },
+    {
+      "path": "variants/xiao_s3_wio/XiaoS3WIOBoard.h",
+      "mode": "100644",
+      "bytes": 229,
+      "sha256": "8fcc4e9a240edc0f2a98994beb4e8fc365e103ced726b754c05a35865b89744d"
+    },
+    {
+      "path": "variants/xiao_s3_wio/platformio.ini",
+      "mode": "100644",
+      "bytes": 6510,
+      "sha256": "b6884d5b34ecdb260d57778d2858be219eb3ba87a78ce6d7ede5f50132ed4bf6"
+    },
+    {
+      "path": "variants/xiao_s3_wio/target.cpp",
+      "mode": "100644",
+      "bytes": 986,
+      "sha256": "e6b84c12921f16b9e2b831f9055bf48dc915d6922d6dbdfe406dd6741d8eb606"
+    },
+    {
+      "path": "variants/xiao_s3_wio/target.h",
+      "mode": "100644",
+      "bytes": 735,
+      "sha256": "ff8b6a3e6a79727045d9a5db855c272d1b7e263125ab49be4a6b347cb92e822f"
+    }
+  ]
+}

@@ -68,6 +68,7 @@ def main():
             "manufacturer": text_field(info[20:60]),
             "firmware": text_field(info[60:80]),
             "protocol_version": info[1],
+            "node_name": text_field(own[58:]),
             "client_repeat_enabled": bool(info[80]),
             "frequency_mhz": struct.unpack_from("<I", own, 48)[0] / 1000,
             "bandwidth_khz": struct.unpack_from("<I", own, 52)[0] / 1000,
