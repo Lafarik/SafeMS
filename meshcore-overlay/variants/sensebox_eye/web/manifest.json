@@ -1,8 +1,8 @@
 {
   "source": "https://github.com/notfall-ms/pwa",
-  "revision": "369e253aa39fe71de66c89bcb5950fef732ac17b",
+  "revision": "45fd6cfc2917377c21a9bc271c1d62001892e168",
   "version": "1.1.2",
-  "build": "6b191672831d",
+  "build": "4ce7f57d99e9",
   "files": [
     {
       "url": "/LICENSE-pwa.txt",
@@ -20,9 +20,9 @@
     },
     {
       "url": "/assets/LOGO.svg",
-      "file": "3aeebfec6a45f4add3c3352c12a9430133ef8592a99be4b3ba5f2c42a13d0909.dat",
-      "size": 31183,
-      "sha256": "3aeebfec6a45f4add3c3352c12a9430133ef8592a99be4b3ba5f2c42a13d0909",
+      "file": "e9ac9fd41086d5f931b1664a4e728584b64c4d0b05b821fcaf06b2b2e456095a.dat",
+      "size": 31257,
+      "sha256": "e9ac9fd41086d5f931b1664a4e728584b64c4d0b05b821fcaf06b2b2e456095a",
       "mime": "image/svg+xml"
     },
     {
@@ -69,31 +69,31 @@
     },
     {
       "url": "/assets/logo-favicon.svg",
-      "file": "e107e3dd8bbc39e535cc77fbc1d8c4d727f5848b8c778a623cb40b763fd9361a.dat",
-      "size": 31183,
-      "sha256": "e107e3dd8bbc39e535cc77fbc1d8c4d727f5848b8c778a623cb40b763fd9361a",
+      "file": "db16d977655bf0e5dcc333a763cdc1e916a88ec6b19c3de5a17374070c092e86.dat",
+      "size": 31257,
+      "sha256": "db16d977655bf0e5dcc333a763cdc1e916a88ec6b19c3de5a17374070c092e86",
       "mime": "image/svg+xml"
     },
     {
       "url": "/assets/logo.svg",
-      "file": "e107e3dd8bbc39e535cc77fbc1d8c4d727f5848b8c778a623cb40b763fd9361a.dat",
-      "size": 31183,
-      "sha256": "e107e3dd8bbc39e535cc77fbc1d8c4d727f5848b8c778a623cb40b763fd9361a",
+      "file": "db16d977655bf0e5dcc333a763cdc1e916a88ec6b19c3de5a17374070c092e86.dat",
+      "size": 31257,
+      "sha256": "db16d977655bf0e5dcc333a763cdc1e916a88ec6b19c3de5a17374070c092e86",
       "mime": "image/svg+xml"
     },
     {
-      "url": "/assets/main.878f448d.css",
-      "file": "3dc54cd184d49ca0f3b7de81950b28388243456951db9b4c50d1ebbec14b8fb4.dat",
-      "size": 9941,
-      "sha256": "3dc54cd184d49ca0f3b7de81950b28388243456951db9b4c50d1ebbec14b8fb4",
-      "mime": "text/css"
+      "url": "/assets/main.33cf79db.js",
+      "file": "00b27626460d616e39445532bd793328c33af23c8522c764ed2003ea68a701c5.dat",
+      "size": 392134,
+      "sha256": "00b27626460d616e39445532bd793328c33af23c8522c764ed2003ea68a701c5",
+      "mime": "application/javascript"
     },
     {
-      "url": "/assets/main.ab6907b5.js",
-      "file": "3f94f46abae73154584badf5620ad5efd58da34c76e1f6e90515a7ccaeb7f5e3.dat",
-      "size": 388165,
-      "sha256": "3f94f46abae73154584badf5620ad5efd58da34c76e1f6e90515a7ccaeb7f5e3",
-      "mime": "application/javascript"
+      "url": "/assets/main.63c128db.css",
+      "file": "a09a82378474cf2d4924aff73feef64e9af7f3f57a300e2f3d853c5d62761cab.dat",
+      "size": 10392,
+      "sha256": "a09a82378474cf2d4924aff73feef64e9af7f3f57a300e2f3d853c5d62761cab",
+      "mime": "text/css"
     },
     {
       "url": "/assets/notfall-ms-192.png",
@@ -153,16 +153,16 @@
     },
     {
       "url": "/index.html",
-      "file": "2fa5b2e5243decb85bd382f99d25ed70153d53b7c70349519aa18bd739321e1c.dat",
-      "size": 10243,
-      "sha256": "2fa5b2e5243decb85bd382f99d25ed70153d53b7c70349519aa18bd739321e1c",
+      "file": "e2ff8fcf45b8b3e9e0b3a2d8ace72b824e5c3f662833bb9d450a641c26a2c195.dat",
+      "size": 11789,
+      "sha256": "e2ff8fcf45b8b3e9e0b3a2d8ace72b824e5c3f662833bb9d450a641c26a2c195",
       "mime": "text/html; charset=utf-8"
     },
     {
       "url": "/kiosk-info.json",
-      "file": "0a343528f517fb5923dbbf172065365d0e3bf624e20d231fdfe0b5611f70ba89.dat",
+      "file": "818c745354dae6b6825ad0edbad043b67a9f209d2831352c39d232b3de1f4dcf.dat",
       "size": 322,
-      "sha256": "0a343528f517fb5923dbbf172065365d0e3bf624e20d231fdfe0b5611f70ba89",
+      "sha256": "818c745354dae6b6825ad0edbad043b67a9f209d2831352c39d232b3de1f4dcf",
       "mime": "application/json"
     },
     {
@@ -174,9 +174,9 @@
     },
     {
       "url": "/sw.js",
-      "file": "e796bb85e612c0e2a4bb8c70688f77bf484e8c0b5c08e4063256adba3c521cce.dat",
+      "file": "dca03742205223527c7ccc008f62422f5d7d966ad5a24ad0d433b8c96c8817b5.dat",
       "size": 4166,
-      "sha256": "e796bb85e612c0e2a4bb8c70688f77bf484e8c0b5c08e4063256adba3c521cce",
+      "sha256": "dca03742205223527c7ccc008f62422f5d7d966ad5a24ad0d433b8c96c8817b5",
       "mime": "application/javascript"
     }
   ]

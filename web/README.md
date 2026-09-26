@@ -2,7 +2,7 @@
 
 Quelle: https://github.com/notfall-ms/pwa
 
-Eingebundener Stand: `369e253aa39fe71de66c89bcb5950fef732ac17b`.
+Eingebundener Stand: `45fd6cfc2917377c21a9bc271c1d62001892e168`.
 `official-pwa-source.tar.gz` enthaelt den unveraenderten Git-Quellbaum dieses
 Commits, einschliesslich Lockfile und Lizenz. `pwa-http-kiosk.patch` dokumentiert
 die lokalen Anpassungen. Die Original-Lizenz steht in `LICENSE-pwa.txt`.
@@ -18,7 +18,8 @@ erhalten. MeshCore, USB und Bluetooth laufen parallel weiter.
 Die Website ersetzt die bisherige SafeMS-Testseite. Auf der Box empfaengt der
 Pager Live-Meldungen aus dem MeshCore-Kanal Krisenstab ueber `/ws`;
 Details zu Format, Zeitstempeln und Grenzen: `../docs/live-pager.md`.
-Der aktuelle Upstream ist Version 1.1.2 einschliesslich Bluetooth-Diagnose. Der Bluetooth-Pager der PWA
+Der eingebundene Upstream ist Version 1.1.2 einschliesslich WebSocket-Client,
+Empfangsbestaetigungen und Verbindungsdiagnose (Commit `45fd6cf`). Der Bluetooth-Pager der PWA
 benutzt ein eigenes GATT-Protokoll, das nicht dem MeshCore-BLE-Protokoll
 entspricht; diese Verbindung ist mit dieser Integration nicht implementiert.
 
@@ -59,12 +60,14 @@ Abhaengigkeiten; `npm ci` benoetigt beim ersten Lauf Internet.
 2. `git apply /pfad/zu/pwa-http-kiosk.patch` im Arbeitsordner ausfuehren.
 3. `npm ci` ausfuehren. `NODE_ENV=production` setzen und `node_modules/.bin`
    dem PATH hinzufuegen. Dann `tsx src/setup/scripts/build.ts` starten.
-4. Aus SafeMS `python scripts/package_pwa.py --repo /pfad/zum/arbeitsordner --revision 369e253aa39fe71de66c89bcb5950fef732ac17b`
+4. Aus SafeMS `python scripts/package_pwa.py --repo /pfad/zum/arbeitsordner --revision 45fd6cfc2917377c21a9bc271c1d62001892e168`
    aufrufen. Alternativ kann ein Git-Checkout verwendet werden; dann `--revision`
    weglassen und den Packager die Herkunft sowie Original-Logos aus Git lesen lassen.
 5. `python scripts/update_source_manifest.py` und anschliessend
    `python -m platformio run -d firmware` ausfuehren.
 
-Pruefung der Anpassungen: 48 Jest-Tests fuer Dokumentliste, HTTP-Fallback,
-Registrierung, BLE samt Diagnose, Pager und WebSocket bestanden (`--coverage=false`, da der Upstream-
-Coverage-Reporter unter diesem Windows-Setup einen separaten Schreibfehler hatte).
+Pruefung der Anpassungen: Jest-Tests fuer Dokumentliste, HTTP-Fallback,
+Registrierung, BLE samt Diagnose, Pager und WebSocket mit
+`--env=jsdom --runInBand --coverage=false` ausfuehren. Die Kiosk-Tests pruefen
+automatischen Verbindungsaufbau, Wiederverbindung, aktuelle Snapshots und
+den Live-Empfang bei nicht verfuegbarem lokalem Speicher.

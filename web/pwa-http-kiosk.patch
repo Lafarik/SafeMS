@@ -1,34 +1,765 @@
+diff --git a/src/frontend/components/pager/pager.css b/src/frontend/components/pager/pager.css
+--- a/src/frontend/components/pager/pager.css
++++ b/src/frontend/components/pager/pager.css
+@@ -4,6 +4,11 @@
+     margin-bottom: 1rem;
+     border-radius: 0 0.7rem 0.7rem 0;
+     background: #fff8e9;
++}
++
++/* Author display rules must not reveal controls hidden in the HTTP kiosk. */
++.pager [hidden] {
++    display: none !important;
+ }
+ .pager-message h3 {
+     font-size: 1rem;
+diff --git a/src/frontend/components/pager/pager.kiosk.spec.ts b/src/frontend/components/pager/pager.kiosk.spec.ts
+new file mode 100644
+--- /dev/null
++++ b/src/frontend/components/pager/pager.kiosk.spec.ts
+@@ -0,0 +1,245 @@
++import { webcrypto } from 'node:crypto';
++import { TextDecoder } from 'node:util';
++import { setupPager } from './pager';
++import { saveReceived } from './inbox/inbox';
++import {
++    bluetoothAvailable,
++    createBluetoothPager,
++} from './bluetooth/bluetooth';
++
++jest.mock('./pager.css', () => ({}));
++jest.mock('./bluetooth/bluetooth');
++
++class Socket {
++    static OPEN = 1;
++    static instances: Socket[] = [];
++    readyState = 0;
++    binaryType = '';
++    onopen?: () => void;
++    onmessage?: (event: { data: string }) => void;
++    onclose?: (event: { code: number }) => void;
++    onerror?: () => void;
++    send = jest.fn();
++    close = jest.fn(() => {
++        this.readyState = 3;
++    });
++    constructor(public url: string) {
++        Socket.instances.push(this);
++    }
++    open() {
++        this.readyState = 1;
++        this.onopen?.();
++    }
++    feed(messages: unknown[] = []) {
++        this.onmessage?.({ data: JSON.stringify({ messages }) });
++    }
++    drop() {
++        this.readyState = 3;
++        this.onclose?.({ code: 1006 });
++    }
++}
++const alert = {
++    id: 'current-box',
++    title: 'Stromausfall',
++    message: 'Die aktuelle Warnung',
++    timestamp: '2026-09-26T11:45:00.000Z',
++};
++const flush = async () => {
++    for (let i = 0; i < 6; ++i) await Promise.resolve();
++};
++const text = (selector: string) =>
++    document.querySelector(selector)?.textContent || '';
++const listeners: Array<[string, EventListenerOrEventListenerObject]> = [];
++
++beforeEach(() => {
++    jest.useFakeTimers();
++    jest.resetAllMocks();
++    localStorage.clear();
++    Socket.instances = [];
++    Object.defineProperty(globalThis, 'crypto', {
++        configurable: true,
++        value: webcrypto,
++    });
++    Object.defineProperty(globalThis, 'WebSocket', {
++        configurable: true,
++        value: Socket,
++    });
++    Object.defineProperty(globalThis, 'TextDecoder', {
++        configurable: true,
++        value: TextDecoder,
++    });
++    document.head.innerHTML = '<meta name="safems-kiosk" content="1">';
++    document.body.innerHTML =
++        '<section><div data-pager-messages></div><span data-pager-status></span><button data-pager-pair></button><button data-pager-websocket></button><p data-pager-bluetooth-status></p><button data-pager-refresh></button><label><select data-pager-interval><option value="60">Minute</option></select></label><details class="pager-connection-settings"><input data-pager-socket-url></details></section>';
++    (bluetoothAvailable as jest.Mock).mockReturnValue(false);
++    (createBluetoothPager as jest.Mock).mockReturnValue({
++        connected: () => false,
++        disconnect: jest.fn(),
++        ackStatus: () => 'unavailable',
++    });
++    const add = window.addEventListener.bind(window);
++    jest.spyOn(window, 'addEventListener').mockImplementation(
++        (type, listener, options) => {
++            listeners.push([type, listener]);
++            add(type, listener, options);
++        }
++    );
++});
++afterEach(() => {
++    window.dispatchEvent(new Event('pagehide'));
++    for (const [type, listener] of listeners.splice(0))
++        window.removeEventListener(type, listener);
++    document.head.innerHTML = '';
++    jest.restoreAllMocks();
++    jest.clearAllTimers();
++    jest.useRealTimers();
++});
++
++test('auto-connects to this box, ignores another stored address and clears live content on an empty snapshot', async () => {
++    localStorage.setItem(
++        'notfall-ms-pager-websocket-url-v1',
++        JSON.stringify('ws://other-box.test/ws')
++    );
++    saveReceived([
++        { ...alert, id: 'old-bluetooth', message: 'Alte fremde Meldung' },
++    ]);
++    setupPager();
++    const socket = Socket.instances[0];
++    expect(socket.url).toBe(`ws://${location.host}/ws`);
++    expect(text('[data-pager-messages]')).not.toMatch(/Demo|Alte fremde/);
++    expect(
++        document.querySelector<HTMLButtonElement>('[data-pager-pair]')!.hidden
++    ).toBe(true);
++    expect(
++        document.querySelector<HTMLElement>('.pager-connection-settings')!
++            .hidden
++    ).toBe(true);
++    socket.open();
++    expect(socket.send).toHaveBeenCalledWith('{"type":"get_messages"}');
++    socket.feed([alert]);
++    await flush();
++    expect(text('[data-pager-messages]')).toContain(alert.message);
++    expect(text('[data-pager-status]')).toContain('live über WLAN');
++    socket.feed([]);
++    expect(text('[data-pager-messages]')).toBe('Keine aktuellen Nachrichten.');
++    socket.drop();
++    expect(text('[data-pager-messages]')).toBe('Keine aktuellen Nachrichten.');
++    expect(text('[data-pager-status]')).toContain('Verbindung unterbrochen');
++});
++
++test('reconnects after a dropped link and closes a silent connection after the heartbeat timeout', async () => {
++    setupPager();
++    const socket = Socket.instances[0];
++    socket.open();
++    socket.feed([alert]);
++    await flush();
++    socket.drop();
++    expect(text('[data-pager-messages]')).toContain(alert.message);
++    jest.advanceTimersByTime(999);
++    expect(Socket.instances).toHaveLength(1);
++    jest.advanceTimersByTime(1);
++    const next = Socket.instances[1];
++    next.open();
++    next.feed([]);
++    await flush();
++    jest.advanceTimersByTime(14000); // Original 15-second heartbeat.
++    expect(next.send).toHaveBeenCalledTimes(2); // Connect plus heartbeat.
++    jest.advanceTimersByTime(10000);
++    await flush();
++    expect(next.close).toHaveBeenCalled();
++    jest.advanceTimersByTime(1000);
++    expect(Socket.instances).toHaveLength(3);
++});
++
++test('pagehide stops the socket and retry timers; pageshow reconnects without duplicate clients', async () => {
++    setupPager();
++    const first = Socket.instances[0];
++    first.open();
++    first.feed([alert]);
++    await flush();
++    window.dispatchEvent(new Event('pagehide'));
++    expect(first.close).toHaveBeenCalled();
++    jest.advanceTimersByTime(60000);
++    await flush();
++    expect(Socket.instances).toHaveLength(1);
++    window.dispatchEvent(new Event('pageshow'));
++    window.dispatchEvent(new Event('pageshow'));
++    expect(Socket.instances).toHaveLength(2);
++    Socket.instances[1].open();
++    Socket.instances[1].feed([]);
++    await flush();
++    expect(text('[data-pager-messages]')).toBe('Keine aktuellen Nachrichten.');
++});
++
++test('storage failure keeps live messages visible without an ACK and manual refresh still works', async () => {
++    setupPager();
++    const socket = Socket.instances[0];
++    socket.open();
++    socket.send.mockClear();
++    jest.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
++        throw new Error('Blocked');
++    });
++    socket.feed([alert]);
++    await flush();
++    expect(text('[data-pager-messages]')).toContain(alert.message);
++    expect(text('[data-pager-bluetooth-status]')).toContain(
++        'nur in dieser Sitzung'
++    );
++    expect(socket.send).not.toHaveBeenCalled();
++    document.querySelector<HTMLButtonElement>('[data-pager-refresh]')!.click();
++    expect(socket.send).toHaveBeenCalledWith('{"type":"get_messages"}');
++    socket.feed([]);
++    await flush();
++    expect(text('[data-pager-messages]')).toBe('Keine aktuellen Nachrichten.');
++});
++
++test('the explicit WLAN disconnect stays disconnected until the user reconnects', async () => {
++    setupPager();
++    const socket = Socket.instances[0];
++    socket.open();
++    socket.feed([]);
++    await flush();
++    const button = document.querySelector<HTMLButtonElement>(
++        '[data-pager-websocket]'
++    )!;
++    button.click();
++    jest.advanceTimersByTime(60000);
++    expect(Socket.instances).toHaveLength(1);
++    button.click();
++    expect(Socket.instances).toHaveLength(2);
++    Socket.instances[1].open();
++    Socket.instances[1].feed([]);
++    await flush();
++});
++
++test('failed reconnects back off from one to fifteen seconds instead of opening overlapping sockets', async () => {
++    setupPager();
++    for (const delay of [1000, 2000, 4000, 8000, 15000, 15000]) {
++        const count = Socket.instances.length;
++        Socket.instances[count - 1].drop();
++        await flush();
++        jest.advanceTimersByTime(delay - 1);
++        expect(Socket.instances).toHaveLength(count);
++        jest.advanceTimersByTime(1);
++        expect(Socket.instances).toHaveLength(count + 1);
++    }
++    Socket.instances[Socket.instances.length - 1].open();
++    Socket.instances[Socket.instances.length - 1].feed([]);
++    await flush();
++});
++
++test('a suspended initial connection cannot overwrite a new connection after pageshow', async () => {
++    setupPager();
++    const old = Socket.instances[0];
++    window.dispatchEvent(new Event('pagehide'));
++    window.dispatchEvent(new Event('pageshow'));
++    const current = Socket.instances[1];
++    current.open();
++    current.feed([alert]);
++    await flush();
++    old.open();
++    old.feed([]);
++    expect(current.close).not.toHaveBeenCalled();
++    expect(text('[data-pager-messages]')).toContain(alert.message);
++    expect(text('[data-pager-status]')).toContain('live über WLAN');
++});
 diff --git a/src/frontend/components/pager/pager.ts b/src/frontend/components/pager/pager.ts
-index e2dcfe2..cbd297b 100644
 --- a/src/frontend/components/pager/pager.ts
 +++ b/src/frontend/components/pager/pager.ts
-@@ -5,6 +5,7 @@ import {
- } from './bluetooth/bluetooth';
- import { setupBluetoothDebug } from './bluetooth/debug/debug';
- import { savedMessages } from './inbox/inbox';
-+import { setupKioskPager } from './websocket/websocket';
- import { renderMessages } from './view/view';
- import './pager.css';
- import { readLocal, writeLocal } from '../preparedness/storage/storage';
-@@ -22,6 +23,10 @@ export const setupPager = (): void => {
-         '[data-pager-refresh]'
+@@ -23,6 +23,9 @@
      );
+     const status = document.querySelector('[data-pager-status]');
      if (!container || !status) return;
-+    if (document.querySelector('meta[name="safems-kiosk"][content="1"]')) {
-+        setupKioskPager(container, status);
-+        return;
-+    }
++    const kiosk = !!document.querySelector(
++        'meta[name="safems-kiosk"][content="1"]'
++    );
      const pair = document.querySelector<HTMLButtonElement>('[data-pager-pair]');
-     const pairLabel = pair?.querySelector('[data-pager-pair-label]');
-     const bluetoothStatus = document.querySelector(
+     const socketButton = document.querySelector<HTMLButtonElement>(
+         '[data-pager-websocket]'
+@@ -39,26 +42,54 @@
+     const storedAddress = readLocal<unknown>(socketKey, '');
+     if (address)
+         address.value =
+-            typeof storedAddress === 'string' && storedAddress
++            !kiosk && typeof storedAddress === 'string' && storedAddress
+                 ? storedAddress
+                 : defaultSocketUrl();
+-    let active: Connection = 'bluetooth';
++    let active: Connection = kiosk ? 'websocket' : 'bluetooth';
+     let loading = false;
++    let suspended = false;
++    let stopped = false;
++    let generation = 0;
++    let retry: number | undefined;
++    let retryDelay = 1000;
++    let lastSnapshot: PagerMessage[] | undefined;
+     const report = setupBluetoothDebug();
+     const fallback = (): void => {
++        if (kiosk) {
++            if (lastSnapshot !== undefined)
++                renderMessages(container, lastSnapshot);
++            else
++                container.textContent =
++                    'Noch keine Meldungen von dieser Box empfangen.';
++            status.textContent =
++                lastSnapshot !== undefined
++                    ? '◌ Verbindung unterbrochen · letzter empfangener Stand'
++                    : '◌ Box derzeit nicht erreichbar';
++            return;
++        }
+         const saved = savedMessages();
+         renderMessages(container, saved.length ? saved : demoMessages);
+         status.textContent = saved.length
+             ? '◌ Lokal gespeicherte Nachrichten'
+             : '◌ Beispielnachricht · Demo';
+     };
++    const reconnect = (): void => {
++        if (!kiosk || suspended || stopped || retry !== undefined) return;
++        retry = window.setTimeout(() => {
++            retry = undefined;
++            void update('websocket');
++        }, retryDelay);
++        retryDelay = Math.min(retryDelay * 2, 15000);
++    };
+     const disconnected = (source: Connection): void => {
+         if (active !== source) return;
+         fallback();
+         if (connectionStatus)
+-            connectionStatus.textContent =
+-                'Verbindung getrennt. Gespeicherte Nachrichten bleiben verfügbar.';
++            connectionStatus.textContent = kiosk
++                ? 'WLAN-Verbindung zur Box unterbrochen. Die Verbindung wird automatisch erneut versucht.'
++                : 'Verbindung getrennt. Gespeicherte Nachrichten bleiben verfügbar.';
+         controls();
++        reconnect();
+     };
+     const bluetooth = createBluetoothPager(
+         () => disconnected('bluetooth'),
+@@ -69,7 +100,8 @@
+             if (active === 'websocket') show(messages);
+         },
+         () => disconnected('websocket'),
+-        report
++        report,
++        { snapshot: kiosk }
+     );
+     const transport = () => (active === 'bluetooth' ? bluetooth : websocket);
+     const controls = (): void => {
+@@ -92,8 +124,12 @@
+             );
+             socketButton.title =
+                 active === 'websocket' && websocket.connected()
+-                    ? 'WebSocket trennen'
+-                    : 'WebSocket verbinden';
++                    ? kiosk
++                        ? 'WLAN-Verbindung trennen'
++                        : 'WebSocket trennen'
++                    : kiosk
++                      ? 'WLAN-Verbindung zur Box herstellen'
++                      : 'WebSocket verbinden';
+         }
+         if (refresh) refresh.disabled = loading;
+         if (address) address.disabled = loading || websocket.connected();
+@@ -103,26 +139,37 @@
+             fallback();
+             return;
+         }
++        if (kiosk) {
++            lastSnapshot = messages;
++            retryDelay = 1000;
++            window.clearTimeout(retry);
++            retry = undefined;
++        }
+         renderMessages(container, messages);
+-        status.textContent =
+-            active === 'bluetooth'
+-                ? '● Über Bluetooth geladen'
+-                : '● Über WebSocket geladen';
++        status.textContent = kiosk
++            ? '● Krisenstab · live über WLAN'
++            : active === 'bluetooth'
++              ? '● Über Bluetooth geladen'
++              : '● Über WebSocket geladen';
+         if (connectionStatus) {
+             const ack = transport().ackStatus();
+-            connectionStatus.textContent =
+-                ack === 'pending'
+-                    ? 'Gespeichert · Empfangsbestätigung wird erneut versucht.'
+-                    : active === 'websocket'
+-                      ? 'Gespeichert · ACK zur Übertragung übergeben.'
+-                      : ack === 'unavailable'
+-                        ? 'Verbunden · Sender unterstützt keine Empfangsbestätigung.'
+-                        : 'Gespeichert · Empfang bestätigt.';
++            connectionStatus.textContent = kiosk
++                    ? ack === 'unavailable'
++                        ? 'Live empfangen · nur in dieser Sitzung sichtbar. Lokales Speichern ist nicht verfügbar; keine Empfangsbestätigung gesendet.'
++                        : 'Live empfangen und lokal gespeichert.'
++                : ack === 'pending'
++                  ? 'Gespeichert · Empfangsbestätigung wird erneut versucht.'
++                  : active === 'websocket'
++                    ? 'Gespeichert · ACK zur Übertragung übergeben.'
++                    : ack === 'unavailable'
++                      ? 'Verbunden · Sender unterstützt keine Empfangsbestätigung.'
++                      : 'Gespeichert · Empfang bestätigt.';
+         }
+         controls();
+     };
+     const update = async (connect?: Connection): Promise<void> => {
+-        if (loading) return;
++        if (loading || (kiosk && (suspended || stopped))) return;
++        const currentGeneration = generation;
+         loading = true;
+         controls();
+         try {
+@@ -132,6 +179,7 @@
+                 active = connect;
+             } else if (!transport().connected()) {
+                 fallback();
++                reconnect();
+                 return;
+             }
+             if (connectionStatus)
+@@ -139,12 +187,16 @@
+             let messages: PagerMessage[];
+             if (connect === 'bluetooth') messages = await bluetooth.pair();
+             else if (connect === 'websocket') {
+-                const url = address?.value.trim() || defaultSocketUrl();
++                const url = kiosk
++                    ? defaultSocketUrl()
++                    : address?.value.trim() || defaultSocketUrl();
+                 messages = await websocket.connect(url);
+-                writeLocal(socketKey, url);
++                if (!kiosk) writeLocal(socketKey, url);
+             } else messages = await transport().read();
++            if (currentGeneration !== generation || suspended) return;
+             show(messages);
+         } catch (error) {
++            if (currentGeneration !== generation || suspended) return;
+             transport().disconnect();
+             fallback();
+             if (connectionStatus)
+@@ -152,22 +204,41 @@
+                     active === 'websocket' && error instanceof Error
+                         ? error.message
+                         : 'Verbindung oder Empfang fehlgeschlagen. Details in der Verbindungsdiagnose.';
++            reconnect();
+         } finally {
+-            loading = false;
+-            controls();
++            if (currentGeneration === generation) {
++                loading = false;
++                controls();
++            }
+         }
+     };
+     const toggle = (source: Connection): void => {
+         if (loading) return;
+         if (active === source && transport().connected()) {
++            if (kiosk) {
++                stopped = true;
++                window.clearTimeout(retry);
++                retry = undefined;
++            }
+             transport().disconnect();
+             disconnected(source);
+-        } else void update(source);
++            if (kiosk && connectionStatus)
++                connectionStatus.textContent =
++                    'WLAN-Verbindung zur Box getrennt. Mit „WLAN“ erneut verbinden.';
++        } else {
++            stopped = false;
++            void update(source);
++        }
+     };
+     pair?.addEventListener('click', () => toggle('bluetooth'));
+     socketButton?.addEventListener('click', () => toggle('websocket'));
+     refresh?.addEventListener('click', () => {
+-        void update();
++        if (kiosk && !websocket.connected()) {
++            stopped = false;
++            window.clearTimeout(retry);
++            retry = undefined;
++            void update('websocket');
++        } else void update();
+     });
+     const intervalSelect = document.querySelector<HTMLSelectElement>(
+         '[data-pager-interval]'
+@@ -179,7 +250,13 @@
+     const schedule = (): void => {
+         window.clearInterval(timer);
+         timer = undefined;
+-        if (seconds > 0)
++        if (kiosk) {
++            // A bounded request timeout also detects silently lost WLAN links.
++            timer = window.setInterval(() => {
++                if (!suspended && !stopped && websocket.connected())
++                    void update();
++            }, 15000);
++        } else if (seconds > 0)
+             timer = window.setInterval(() => {
+                 if (!document.hidden && transport().connected()) void update();
+             }, seconds * 1000);
+@@ -199,4 +276,36 @@
+     controls();
+     schedule();
+     fallback();
++    if (kiosk) {
++        if (pair) pair.hidden = true;
++        if (socketButton) socketButton.textContent = 'WLAN';
++        intervalSelect?.closest('label')?.setAttribute('hidden', '');
++        const section = container.closest('section') || document;
++        section
++            .querySelector<HTMLElement>('.pager-connection-settings')
++            ?.setAttribute('hidden', '');
++        const diagnosticHint = section.querySelector(
++            '.pager-bluetooth-debug p:nth-of-type(2)'
++        );
++        if (diagnosticHint)
++            diagnosticHint.textContent =
++                'Bei Verbindungsproblemen prüfen, ob dieses Gerät weiterhin mit dem WLAN der Box verbunden ist.';
++        status.textContent = '◷ Krisenstab verbinden …';
++        window.addEventListener('pagehide', () => {
++            suspended = true;
++            ++generation;
++            loading = false;
++            window.clearTimeout(retry);
++            retry = undefined;
++            window.clearInterval(timer);
++            websocket.disconnect();
++        });
++        window.addEventListener('pageshow', () => {
++            if (!suspended) return;
++            suspended = false;
++            schedule();
++            if (!stopped) void update('websocket');
++        });
++        void update('websocket');
++    }
+ };
+diff --git a/src/frontend/components/pager/websocket/websocket.spec.ts b/src/frontend/components/pager/websocket/websocket.spec.ts
+--- a/src/frontend/components/pager/websocket/websocket.spec.ts
++++ b/src/frontend/components/pager/websocket/websocket.spec.ts
+@@ -227,3 +227,82 @@
+         'wss://example.test/ws'
+     );
+ });
++
++test('kiosk displays only the current snapshot and acknowledges no unrelated inbox history', async () => {
++    saveReceived([{ ...message, id: 'other-box-or-bluetooth' }]);
++    const received = jest.fn();
++    const pager = createWebSocketPager(received, jest.fn(), undefined, {
++        snapshot: true,
++    });
++    const result = pager.connect(defaultSocketUrl());
++    const socket = Socket.instances[0];
++    socket.open();
++    socket.feed();
++    expect(await result).toEqual([message]);
++    const acks = socket.send.mock.calls
++        .map(([data]) => JSON.parse(data))
++        .filter((data) => data.messageId);
++    expect(acks.map((ack) => ack.messageId)).toEqual([message.id]);
++    socket.send.mockClear();
++    socket.feed({ messages: [] });
++    expect(received).toHaveBeenLastCalledWith([]);
++    expect(socket.send).not.toHaveBeenCalled();
++    expect(readInbox()!.messages).toHaveLength(2);
++});
++
++test.each(['getItem', 'setItem'] as const)(
++    'kiosk keeps a valid live feed in RAM without ACK if %s fails',
++    async (method) => {
++        const received = jest.fn();
++        const diagnostic = jest.fn();
++        const pager = createWebSocketPager(received, jest.fn(), diagnostic, {
++            snapshot: true,
++        });
++        const result = pager.connect(defaultSocketUrl());
++        const socket = Socket.instances[0];
++        socket.open();
++        socket.send.mockClear();
++        jest.spyOn(Storage.prototype, method).mockImplementation(() => {
++            throw new Error('Storage unavailable');
++        });
++        socket.feed();
++        expect(await result).toEqual([message]);
++        expect(received).toHaveBeenCalledWith([message]);
++        expect(socket.send).not.toHaveBeenCalled();
++        expect(pager.ackStatus()).toBe('unavailable');
++        expect(diagnostic).toHaveBeenCalledWith(
++            expect.objectContaining({
++                state: 'error',
++                detail: expect.stringContaining('ohne ACK'),
++            })
++        );
++        socket.feed({ messages: [] });
++        expect(received).toHaveBeenLastCalledWith([]);
++    }
++);
++
++test.each(['bytes', 'count'])(
++    'kiosk rejects an oversized snapshot: %s',
++    async (kind) => {
++        const received = jest.fn();
++        const pager = createWebSocketPager(received, jest.fn(), undefined, {
++            snapshot: true,
++        });
++        const result = pager.connect(defaultSocketUrl());
++        const rejected = expect(result).rejects.toThrow('ungültig');
++        const socket = Socket.instances[0];
++        socket.open();
++        socket.send.mockClear();
++        if (kind === 'bytes') socket.onmessage!({ data: ' '.repeat(8193) });
++        else
++            socket.feed({
++                messages: Array.from({ length: 9 }, (_, i) => ({
++                    ...message,
++                    id: String(i),
++                })),
++            });
++        await rejected;
++        expect(received).not.toHaveBeenCalled();
++        expect(socket.send).not.toHaveBeenCalled();
++    }
++);
+diff --git a/src/frontend/components/pager/websocket/websocket.ts b/src/frontend/components/pager/websocket/websocket.ts
+--- a/src/frontend/components/pager/websocket/websocket.ts
++++ b/src/frontend/components/pager/websocket/websocket.ts
+@@ -28,7 +28,8 @@
+ export const createWebSocketPager = (
+     onMessages: (messages: PagerMessage[]) => void,
+     onDisconnect: () => void,
+-    onDiagnostic?: (entry: BluetoothDiagnostic) => void
++    onDiagnostic?: (entry: BluetoothDiagnostic) => void,
++    options: { snapshot?: boolean } = {}
+ ) => {
+     let socket: WebSocket | undefined;
+     let pending:
+@@ -39,7 +40,7 @@
+               timer: number;
+           }
+         | undefined;
+-    let ackState: 'pending' | 'sent' = 'pending';
++    let ackState: 'pending' | 'sent' | 'unavailable' = 'pending';
+     const report = (
+         state: BluetoothDiagnostic['state'],
+         detail: string
+@@ -126,6 +127,14 @@
+             current.onmessage = (event: MessageEvent) => {
+                 if (socket !== current) return;
+                 try {
++                    if (
++                        options.snapshot &&
++                        ((typeof event.data === 'string' &&
++                            event.data.length > 8192) ||
++                            (event.data instanceof ArrayBuffer &&
++                                event.data.byteLength > 8192))
++                    )
++                        throw new Error('WebSocket-Feed zu groß.');
+                     const text =
+                         typeof event.data === 'string'
+                             ? event.data
+@@ -137,39 +146,68 @@
+                     if (text === undefined)
+                         throw new Error('Unbekanntes WebSocket-Datenformat.');
+                     const messages = parseMessages(JSON.parse(text));
+-                    const inbox = saveReceived(messages);
++                    if (options.snapshot && messages.length > 8)
++                        throw new Error('Zu viele Meldungen im Box-Feed.');
++                    let inbox: ReturnType<typeof saveReceived> | undefined;
++                    try {
++                        inbox = saveReceived(messages);
++                    } catch (error) {
++                        if (!options.snapshot) throw error;
++                        report(
++                            'error',
++                            'Lokaler Speicher nicht verfügbar; Meldungen werden nur in dieser Sitzung angezeigt, ohne ACK.'
++                        );
++                    }
+                     ackState = 'pending';
+-                    try {
+-                        for (const messageId of inbox.pendingAcks) {
+-                            if (current.readyState !== WebSocket.OPEN)
+-                                throw new Error('Verbindung vor ACK getrennt.');
+-                            current.send(
+-                                JSON.stringify({
+-                                    messageId,
+-                                    deviceId: inbox.deviceId,
+-                                    status: 'received',
+-                                    timestamp: new Date().toISOString(),
+-                                })
++                    if (!inbox) ackState = 'unavailable';
++                    else
++                        try {
++                            const currentIds = new Set(
++                                messages.map((message) => message.id)
++                            );
++                            for (const messageId of inbox.pendingAcks) {
++                                // A kiosk snapshot never acknowledges unrelated BLE or old-box history.
++                                if (
++                                    options.snapshot &&
++                                    !currentIds.has(messageId)
++                                )
++                                    continue;
++                                if (current.readyState !== WebSocket.OPEN)
++                                    throw new Error(
++                                        'Verbindung vor ACK getrennt.'
++                                    );
++                                current.send(
++                                    JSON.stringify({
++                                        messageId,
++                                        deviceId: inbox.deviceId,
++                                        status: 'received',
++                                        timestamp: new Date().toISOString(),
++                                    })
++                                );
++                            }
++                            // send() only queues bytes. Retain ACKs for retry; no server receipt is defined.
++                            ackState = 'sent';
++                        } catch {
++                            report(
++                                'error',
++                                'ACK konnte nicht gesendet werden; Nachricht bleibt gespeichert.'
+                             );
+                         }
+-                        // send() only queues bytes. Retain ACKs for retry; no server receipt is defined.
+-                        ackState = 'sent';
+-                    } catch {
+-                        report(
+-                            'error',
+-                            'ACK konnte nicht gesendet werden; Nachricht bleibt gespeichert.'
+-                        );
+-                    }
+                     report(
+                         'ok',
+-                        `${messages.length} Nachrichten verarbeitet und lokal gespeichert.`
++                        inbox
++                            ? `${messages.length} Nachrichten verarbeitet und lokal gespeichert.`
++                            : `${messages.length} Nachrichten in dieser Sitzung angezeigt.`
+                     );
++                    const displayed = options.snapshot
++                        ? messages
++                        : inbox!.messages;
+                     if (pending) {
+                         window.clearTimeout(pending.timer);
+-                        pending.resolve(inbox.messages);
++                        pending.resolve(displayed);
+                         pending = undefined;
+                     }
+-                    onMessages(inbox.messages);
++                    onMessages(displayed);
+                 } catch {
+                     fail(
+                         new Error(
 diff --git a/src/frontend/components/pwa/documents/documents.spec.ts b/src/frontend/components/pwa/documents/documents.spec.ts
-index 110dbc5..11bccf2 100644
 --- a/src/frontend/components/pwa/documents/documents.spec.ts
 +++ b/src/frontend/components/pwa/documents/documents.spec.ts
-@@ -29,6 +29,18 @@ beforeEach(() => {
+@@ -27,6 +27,18 @@
+ beforeEach(() => {
+     document.body.innerHTML =
          '<div data-pwa-documents></div><p data-pwa-documents-status></p><span data-pwa-offline></span>';
- });
- 
++});
++
 +test('shows kiosk documents without CacheStorage and does not promise phone offline storage', async () => {
 +    Object.defineProperty(window, 'caches', { configurable: true, value: undefined });
 +    Object.defineProperty(globalThis, 'fetch', {
@@ -39,16 +770,13 @@ index 110dbc5..11bccf2 100644
 +    expect(document.querySelector('pre')?.textContent).toBe('From the box');
 +    expect(document.querySelector('.pwa-document-badge')?.textContent).toBe('Auf dieser Box');
 +    expect(document.querySelector('[data-pwa-offline]')?.textContent).toBe('WLAN-Zugriff auf die Box');
-+});
-+
+ });
+ 
  test('renders cached TXT content as text rather than HTML', async () => {
-     const match = jest.fn().mockResolvedValue({
-         text: async () => '<script>bad()</script> Sample',
 diff --git a/src/frontend/components/pwa/documents/documents.ts b/src/frontend/components/pwa/documents/documents.ts
-index adc21b9..06db57c 100644
 --- a/src/frontend/components/pwa/documents/documents.ts
 +++ b/src/frontend/components/pwa/documents/documents.ts
-@@ -5,7 +5,8 @@ import { renderMarkdown } from './markdown/markdown';
+@@ -5,7 +5,8 @@
  
  const renderDocument = async (
      url: string,
@@ -58,7 +786,7 @@ index adc21b9..06db57c 100644
  ): Promise<HTMLElement> => {
      const article = document.createElement('article');
      const link = document.createElement('a');
-@@ -13,7 +14,7 @@ const renderDocument = async (
+@@ -13,7 +14,7 @@
      link.textContent = '📄 ' + decodeURIComponent(url.split('/').pop() || url);
      const badge = document.createElement('span');
      badge.className = 'pwa-document-badge';
@@ -67,7 +795,7 @@ index adc21b9..06db57c 100644
      article.append(link, badge);
      if (/\.txt$/i.test(url)) {
          const preview = document.createElement('pre');
-@@ -27,20 +28,20 @@ const renderDocument = async (
+@@ -27,20 +28,20 @@
  };
  
  /** 🎯 Read and display documents from the active offline cache. */
@@ -93,7 +821,7 @@ index adc21b9..06db57c 100644
              } catch {
                  return null;
              }
-@@ -53,11 +54,11 @@ export const showDocuments = async (status: PwaStatus): Promise<void> => {
+@@ -53,11 +54,11 @@
      const complete = count === status.documents.length;
      setStatus(
          '[data-pwa-documents-status]',
@@ -108,10 +836,9 @@ index adc21b9..06db57c 100644
              : `⚠ ${count}/${status.documents.length} offline`
      );
 diff --git a/src/frontend/components/pwa/registration/registration.spec.ts b/src/frontend/components/pwa/registration/registration.spec.ts
-index 6b7aac4..b404791 100644
 --- a/src/frontend/components/pwa/registration/registration.spec.ts
 +++ b/src/frontend/components/pwa/registration/registration.spec.ts
-@@ -14,6 +14,21 @@ const status = {
+@@ -14,6 +14,21 @@
      cacheName: 'notfall-ms-sample',
      documents: ['/documents/beispiel.txt'],
  };
@@ -134,10 +861,9 @@ index 6b7aac4..b404791 100644
      postMessage: jest.fn((message, ports) => {
          if (message.type === 'GET_STATUS') ports[0].deliver(status);
 diff --git a/src/frontend/components/pwa/registration/registration.ts b/src/frontend/components/pwa/registration/registration.ts
-index eeec234..e0b1327 100644
 --- a/src/frontend/components/pwa/registration/registration.ts
 +++ b/src/frontend/components/pwa/registration/registration.ts
-@@ -39,7 +39,19 @@ const showError = (): void => {
+@@ -39,7 +39,19 @@
  /** 🎯 Register the worker and track its lifecycle. */
  export const setupRegistration = async (development = false): Promise<void> => {
      if (!('serviceWorker' in navigator) || !window.isSecureContext) {
@@ -159,10 +885,9 @@ index eeec234..e0b1327 100644
      }
      let controlled = !!navigator.serviceWorker.controller;
 diff --git a/src/frontend/templates/base.template.njk b/src/frontend/templates/base.template.njk
-index f376cc7..f9e6c7d 100644
 --- a/src/frontend/templates/base.template.njk
 +++ b/src/frontend/templates/base.template.njk
-@@ -10,7 +10,7 @@
+@@ -11,7 +11,7 @@
      <meta name="theme-color" content="#0d6efd">
      <title>{{title or metadata.title}}</title>
      <link rel="manifest" href="/manifest.webmanifest">
@@ -171,197 +896,12 @@ index f376cc7..f9e6c7d 100644
      <link rel="apple-touch-icon" href="/assets/notfall-ms-192.png">
      <link href="/assets/bootstrap.min.css" rel="stylesheet" type="text/css">
  
-@@ -87,4 +87,4 @@
-         <script type="module" src="{{config.HOST_VITE}}/{{config.ENTRY_FILE}}"></script>
-     {% endif %}
- </body>
--</html>
-\ No newline at end of file
-+</html>
 diff --git a/src/setup/pwa/files/files.ts b/src/setup/pwa/files/files.ts
-index 3636b35..d26a575 100644
 --- a/src/setup/pwa/files/files.ts
 +++ b/src/setup/pwa/files/files.ts
-@@ -11,4 +11,4 @@ export const listFiles = (directory: string): string[] =>
+@@ -11,4 +11,4 @@
  
  /** 🎯 Encode a relative file path as a URL. */
  export const toUrl = (path: string): string =>
 -    '/' + path.split('/').map(encodeURIComponent).join('/');
 +    '/' + path.replace(/\\/g, '/').split('/').map(encodeURIComponent).join('/');
-diff --git a/src/frontend/components/pager/websocket/websocket.ts b/src/frontend/components/pager/websocket/websocket.ts
-new file mode 100644
-index 0000000..4edab02
---- /dev/null
-+++ b/src/frontend/components/pager/websocket/websocket.ts
-@@ -0,0 +1,89 @@
-+import { parseMessages } from '../feed/feed';
-+import { renderMessages } from '../view/view';
-+
-+/** The firmware marks its embedded HTML; the public HTTPS/Bluetooth PWA is unchanged. */
-+export const setupKioskPager = (container: HTMLElement, status: Element): void => {
-+    const refresh = document.querySelector<HTMLButtonElement>('[data-pager-refresh]');
-+    const section = container.closest('section') || document;
-+    for (const element of section.querySelectorAll<HTMLElement>(
-+        '[data-pager-pair], [data-pager-bluetooth-status], [data-pager-interval], label[for="pager-interval"], .pager-bluetooth-debug'
-+    )) element.hidden = true;
-+    const caption = section.querySelector('.preparedness-caption');
-+    if (caption) caption.textContent = 'Meldungen aus dem MeshCore-Kanal Krisenstab werden über diese WLAN-Box live angezeigt.';
-+    const help = section.querySelector('[data-pager-interval-help]');
-+    if (help) help.textContent = 'Neue Meldungen erscheinen automatisch. Internet und Bluetooth-Kopplung sind dafür nicht nötig.';
-+
-+    let socket: WebSocket | undefined;
-+    let retry: number | undefined;
-+    let heartbeat: number | undefined;
-+    let delay = 1000;
-+    let suspended = false;
-+    let lastMessage = 0;
-+    let received = false;
-+    container.textContent = 'Verbindung zur Box wird aufgebaut …';
-+    status.textContent = '◷ Krisenstab verbinden …';
-+
-+    const connect = (): void => {
-+        if (suspended || socket) return;
-+        const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-+        let current: WebSocket;
-+        try { current = new WebSocket(`${protocol}//${location.host}/ws`); }
-+        catch { disconnected(); return; }
-+        socket = current;
-+        current.onmessage = (event: MessageEvent): void => {
-+            if (current !== socket || typeof event.data !== 'string' || event.data.length > 16384) return;
-+            try {
-+                const messages = parseMessages(JSON.parse(event.data));
-+                if (messages.length > 8) throw new Error('Oversized feed');
-+                renderMessages(container, messages);
-+                status.textContent = '● Krisenstab · live über WLAN';
-+                received = true;
-+                lastMessage = Date.now();
-+                delay = 1000;
-+            } catch {
-+                status.textContent = '◌ Ungültige Meldung von der Box';
-+            }
-+        };
-+        current.onopen = (): void => {
-+            if (current !== socket) return;
-+            lastMessage = Date.now();
-+            // Also detects silently lost WLAN links; no message can be published here.
-+            heartbeat = window.setInterval(() => {
-+                if (Date.now() - lastMessage > 45000) current.close();
-+                else if (current.readyState === WebSocket.OPEN) current.send('refresh');
-+            }, 15000);
-+        };
-+        current.onerror = (): void => current.close();
-+        current.onclose = (): void => {
-+            if (current !== socket) return;
-+            socket = undefined;
-+            disconnected();
-+        };
-+    };
-+    const disconnected = (): void => {
-+        window.clearInterval(heartbeat);
-+        window.clearTimeout(retry);
-+        status.textContent = received
-+            ? '◌ Verbindung unterbrochen · letzter empfangener Stand'
-+            : '◌ Box derzeit nicht erreichbar';
-+        if (!received) container.textContent = 'Noch keine Meldungen von dieser Box empfangen.';
-+        if (!suspended) {
-+            retry = window.setTimeout(connect, delay);
-+            delay = Math.min(delay * 2, 15000);
-+        }
-+    };
-+    refresh?.addEventListener('click', () => {
-+        if (socket?.readyState === WebSocket.OPEN) socket.send('refresh');
-+        else { window.clearTimeout(retry); connect(); }
-+    });
-+    window.addEventListener('pagehide', () => {
-+        suspended = true;
-+        window.clearTimeout(retry);
-+        window.clearInterval(heartbeat);
-+        const previous = socket;
-+        socket = undefined;
-+        previous?.close();
-+    });
-+    window.addEventListener('pageshow', () => { suspended = false; connect(); });
-+    connect();
-+};
-diff --git a/src/frontend/components/pager/websocket/websocket.spec.ts b/src/frontend/components/pager/websocket/websocket.spec.ts
-new file mode 100644
-index 0000000..449ed09
---- /dev/null
-+++ b/src/frontend/components/pager/websocket/websocket.spec.ts
-@@ -0,0 +1,76 @@
-+import { setupKioskPager } from './websocket';
-+
-+class FakeSocket {
-+    static OPEN = 1;
-+    static instances: FakeSocket[] = [];
-+    readyState = 1;
-+    onmessage?: (event: { data: string }) => void;
-+    onopen?: () => void;
-+    onclose?: () => void;
-+    onerror?: () => void;
-+    send = jest.fn();
-+    close = jest.fn(() => { this.readyState = 3; this.onclose?.(); });
-+    constructor(public url: string) { FakeSocket.instances.push(this); }
-+}
-+const feed = { messages: [{ id: 'msg-1', title: 'Stromausfall', message: 'Hier ist dick Stromausfall, Leute!!', timestamp: '2026-09-26T10:18:40.123Z' }] };
-+let added: [string, EventListenerOrEventListenerObject][];
-+beforeEach(() => {
-+    jest.useFakeTimers();
-+    FakeSocket.instances = [];
-+    Object.defineProperty(window, 'WebSocket', { configurable: true, value: FakeSocket });
-+    document.body.innerHTML = '<section><p class="preparedness-caption"></p><div data-pager-messages></div><span data-pager-status></span><button data-pager-pair></button><button data-pager-refresh></button></section>';
-+    added = [];
-+    const original = window.addEventListener.bind(window);
-+    jest.spyOn(window, 'addEventListener').mockImplementation((name, listener, options) => {
-+        added.push([name, listener]); original(name, listener, options);
-+    });
-+});
-+afterEach(() => {
-+    for (const [name, listener] of added) window.removeEventListener(name, listener);
-+    jest.restoreAllMocks(); jest.clearAllTimers(); jest.useRealTimers();
-+});
-+const start = () => {
-+    setupKioskPager(document.querySelector('[data-pager-messages]')!, document.querySelector('[data-pager-status]')!);
-+    const socket = FakeSocket.instances[0]; socket.onopen?.(); return socket;
-+};
-+test('renders the requested live feed immediately, escapes markup and clears an empty snapshot', () => {
-+    const socket = start();
-+    expect(socket.url).toBe('ws://localhost/ws');
-+    socket.onmessage?.({ data: JSON.stringify(feed) });
-+    expect(document.body.textContent).toContain('Hier ist dick Stromausfall, Leute!!');
-+    expect(document.querySelector('[data-pager-status]')?.textContent).toContain('live');
-+    socket.onmessage?.({ data: JSON.stringify({ messages: [{ ...feed.messages[0], message: '<img src=x onerror=alert(1)>' }] }) });
-+    expect(document.querySelector('img')).toBeNull();
-+    socket.onmessage?.({ data: '{"messages":[]}' });
-+    expect(document.querySelector('[data-pager-messages]')?.textContent).toBe('Keine aktuellen Nachrichten.');
-+});
-+test('retains valid messages on malformed JSON and invalid timestamps', () => {
-+    const socket = start(); socket.onmessage?.({ data: JSON.stringify(feed) });
-+    socket.onmessage?.({ data: '{bad' });
-+    socket.onmessage?.({ data: JSON.stringify({ messages: [{ ...feed.messages[0], timestamp: 'wrong' }] }) });
-+    expect(document.body.textContent).toContain(feed.messages[0].message);
-+    expect(document.querySelector('[data-pager-status]')?.textContent).toContain('Ungültige');
-+});
-+test('reconnects after WLAN loss, preserving the old feed with a stale label', () => {
-+    const socket = start(); socket.onmessage?.({ data: JSON.stringify(feed) }); socket.close();
-+    expect(document.querySelector('[data-pager-status]')?.textContent).toContain('letzter empfangener Stand');
-+    jest.advanceTimersByTime(1000);
-+    expect(FakeSocket.instances).toHaveLength(2);
-+    FakeSocket.instances[1].onmessage?.({ data: '{"messages":[]}' });
-+    expect(document.querySelector('[data-pager-status]')?.textContent).toContain('live');
-+});
-+test('refreshes a read-only snapshot and detects a silently stalled connection', () => {
-+    const socket = start();
-+    document.querySelector<HTMLButtonElement>('[data-pager-refresh]')!.click();
-+    expect(socket.send).toHaveBeenCalledWith('refresh');
-+    jest.advanceTimersByTime(60000);
-+    expect(socket.close).toHaveBeenCalled();
-+});
-+test('closes on pagehide and reconnects on pageshow without retaining timers', () => {
-+    const socket = start(); window.dispatchEvent(new Event('pagehide'));
-+    jest.advanceTimersByTime(120000);
-+    expect(socket.close).toHaveBeenCalledTimes(1);
-+    expect(FakeSocket.instances).toHaveLength(1);
-+    window.dispatchEvent(new Event('pageshow'));
-+    expect(FakeSocket.instances).toHaveLength(2);
-+});

@@ -693,8 +693,8 @@
     {
       "path": "examples/companion_radio/MyMesh.cpp",
       "mode": "100644",
-      "bytes": 85956,
-      "sha256": "3b9ec86bc9810f20b41e2a42a1e40b2a999d967cf383f878d039ba629a512531"
+      "bytes": 86298,
+      "sha256": "5fb1cdbff8bf6e72a01d2b171ae26a640267b0a6ce25211049b622b23f6fef4d"
     },
     {
       "path": "examples/companion_radio/MyMesh.h",
@@ -4407,20 +4407,26 @@
     {
       "path": "variants/sensebox_eye/SafeMSFeedSelfTest.h",
       "mode": "100644",
-      "bytes": 4412,
-      "sha256": "e91cfb64179f7412d452f56e451c315460396bc25dc1951d5f9498ff2d4cf38e"
+      "bytes": 8207,
+      "sha256": "1f3ca25493c1ffdb4b54653d8761faf637ab7d9fc5c17f456782d69ba03edeb6"
     },
     {
       "path": "variants/sensebox_eye/SafeMSKiosk.cpp",
       "mode": "100644",
-      "bytes": 13190,
-      "sha256": "0955d047e450678a7fe1eb2498aaacdf6b9043a4b3ca716d5829bdd0ab2c58ee"
+      "bytes": 13703,
+      "sha256": "aca111c4b357598bc366e2c155337f202547221b5d4286f6cd371cbcb03f0d26"
     },
     {
       "path": "variants/sensebox_eye/SafeMSKiosk.h",
       "mode": "100644",
       "bytes": 312,
       "sha256": "c62928b6e6e190d38af29efb707e16aacdf2393cf3867aa221ba22df709b62af"
+    },
+    {
+      "path": "variants/sensebox_eye/SafeMSWebSocketProtocol.h",
+      "mode": "100644",
+      "bytes": 4543,
+      "sha256": "7113c8405850a0fc03a8edc37c154c141d0752b9e1b33847254b4dfc2b24f778"
     },
     {
       "path": "variants/sensebox_eye/SafeMSWifiQr.h",
@@ -4457,6 +4463,12 @@
       "mode": "100644",
       "bytes": 576,
       "sha256": "84dfcd731a45d3e16ec004fa0c3dbdf35bc89192b79455f8b7f8272709d71d48"
+    },
+    {
+      "path": "variants/sensebox_eye/web/00b27626460d616e39445532bd793328c33af23c8522c764ed2003ea68a701c5.dat",
+      "mode": "100644",
+      "bytes": 392134,
+      "sha256": "00b27626460d616e39445532bd793328c33af23c8522c764ed2003ea68a701c5"
     },
     {
       "path": "variants/sensebox_eye/web/0992a0b4d841d916a7023414d8960ca6389ca9fdde62d8757c1361efaeabc53f.dat",
@@ -4537,6 +4549,12 @@
       "sha256": "80167ea0a58cb49b8bdc495ec91a108053861ed9a5782843deb65b5a2cc47548"
     },
     {
+      "path": "variants/sensebox_eye/web/818c745354dae6b6825ad0edbad043b67a9f209d2831352c39d232b3de1f4dcf.dat",
+      "mode": "100644",
+      "bytes": 322,
+      "sha256": "818c745354dae6b6825ad0edbad043b67a9f209d2831352c39d232b3de1f4dcf"
+    },
+    {
       "path": "variants/sensebox_eye/web/846c269993da2a21f37bbc46537fee547ce0cb53bf547c1d909dc341c33bca91.dat",
       "mode": "100644",
       "bytes": 26745,
@@ -4567,6 +4585,12 @@
       "sha256": "a0681bc5133dc765329987a86bddbf8b1537c3a47c74701d2e10ef63e0cd6516"
     },
     {
+      "path": "variants/sensebox_eye/web/a09a82378474cf2d4924aff73feef64e9af7f3f57a300e2f3d853c5d62761cab.dat",
+      "mode": "100644",
+      "bytes": 10392,
+      "sha256": "a09a82378474cf2d4924aff73feef64e9af7f3f57a300e2f3d853c5d62761cab"
+    },
+    {
       "path": "variants/sensebox_eye/web/bb83be384ebc967242967b6bc8817bdb2aaa8b72e4e198a87f605a548a92bddf.dat",
       "mode": "100644",
       "bytes": 1011864,
@@ -4591,10 +4615,28 @@
       "sha256": "d72c187f9a1534fb7873c6a2e7b6244ec13960b5bedad16756ffe7a095b69a76"
     },
     {
+      "path": "variants/sensebox_eye/web/db16d977655bf0e5dcc333a763cdc1e916a88ec6b19c3de5a17374070c092e86.dat",
+      "mode": "100644",
+      "bytes": 31257,
+      "sha256": "db16d977655bf0e5dcc333a763cdc1e916a88ec6b19c3de5a17374070c092e86"
+    },
+    {
+      "path": "variants/sensebox_eye/web/dca03742205223527c7ccc008f62422f5d7d966ad5a24ad0d433b8c96c8817b5.dat",
+      "mode": "100644",
+      "bytes": 4166,
+      "sha256": "dca03742205223527c7ccc008f62422f5d7d966ad5a24ad0d433b8c96c8817b5"
+    },
+    {
       "path": "variants/sensebox_eye/web/e107e3dd8bbc39e535cc77fbc1d8c4d727f5848b8c778a623cb40b763fd9361a.dat",
       "mode": "100644",
       "bytes": 31183,
       "sha256": "e107e3dd8bbc39e535cc77fbc1d8c4d727f5848b8c778a623cb40b763fd9361a"
+    },
+    {
+      "path": "variants/sensebox_eye/web/e2ff8fcf45b8b3e9e0b3a2d8ace72b824e5c3f662833bb9d450a641c26a2c195.dat",
+      "mode": "100644",
+      "bytes": 11789,
+      "sha256": "e2ff8fcf45b8b3e9e0b3a2d8ace72b824e5c3f662833bb9d450a641c26a2c195"
     },
     {
       "path": "variants/sensebox_eye/web/e796bb85e612c0e2a4bb8c70688f77bf484e8c0b5c08e4063256adba3c521cce.dat",
@@ -4607,6 +4649,12 @@
       "mode": "100644",
       "bytes": 80727,
       "sha256": "e8cc82cfeaee0806b9f38644f00db4de622bea2260310e6e701f783205ab9aec"
+    },
+    {
+      "path": "variants/sensebox_eye/web/e9ac9fd41086d5f931b1664a4e728584b64c4d0b05b821fcaf06b2b2e456095a.dat",
+      "mode": "100644",
+      "bytes": 31257,
+      "sha256": "e9ac9fd41086d5f931b1664a4e728584b64c4d0b05b821fcaf06b2b2e456095a"
     },
     {
       "path": "variants/sensebox_eye/web/ec5692ad154aa00bc9c9a46d0dac952d0a2444116ab07199ed607e1cb133c072.dat",
@@ -4635,8 +4683,8 @@
     {
       "path": "variants/sensebox_eye/web/manifest.json",
       "mode": "100644",
-      "bytes": 7003,
-      "sha256": "925ec9dc89b4f6b32710d18fd3aed241b7f5e4c57873133cf025db7319c81732"
+      "bytes": 7004,
+      "sha256": "f5f6b488652148850eeb1791645575380897ca496870f72220c87f5306849268"
     },
     {
       "path": "variants/sensecap_indicator-espnow/SCIndicatorDisplay.h",

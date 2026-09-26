@@ -10,8 +10,8 @@ WLAN, kurze Lage-Updates ueber LoRa/MeshCore und Betrieb ohne Internet.
 - Vollstaendiger MeshCore-Quellcode inklusive senseBox-Anpassung direkt in `firmware/`; kein zusaetzlicher MeshCore-Download noetig.
 - SPI-Diagnoseprogramm kompiliert und am Geraet getestet: RegVersion 0x12, SX1276/77/78/79-Familie. Keine Aussendungen.
 - Original-Firmware vollstaendig lokal gesichert und gegen die Geraete-Pruefsumme verifiziert.
-- Offizielle PWA aus `notfall-ms/pwa` mit Dokumenten und DNS/HTTP-Captive-Portal enthalten. Krisenstab-Meldungen per Mesh, Fernaktivierung und QR-Anzeige sind noch nicht implementiert.
-- Ein gezielter Funk-Link mit Gegenstation ist noch nicht bestaetigt.
+- Offizielle PWA aus `notfall-ms/pwa` mit Dokumenten, WebSocket-Pager und DNS/HTTP-Captive-Portal enthalten. Krisenstab-Meldungen per Mesh und WLAN-QR auf dem OLED sind implementiert; die Fernaktivierung des Hotspots steht noch aus.
+- Eine echte Krisenstab-Meldung wurde per Mesh empfangen und im JSON-Verlauf der Box nachgewiesen.
 - Hardware-Backup und Diagnoseergebnisse: siehe `docs/hardware.md`.
 
 ## Projektaufbau
@@ -49,12 +49,12 @@ Bluetooth LE, USB und WLAN gleichzeitig.
 
 Die Befehle oben bauen nur und flashen kein Geraet. Die Boardvariante ist
 experimentell. Funkchip und Interrupt-Verhalten muessen am konkreten Board
-geprueft werden. Erst nach vollstaendiger Sicherung einen Diagnosetest flashen.
+geprueft werden.
 Backups, Zugangsdaten und lokale Logs werden nicht versioniert.
 
 ## Flashen und USB pruefen
 
-Nach Sicherung und Hardwarepruefung, mit dem passenden Board auf COM7:
+Mit dem passenden, bereits geprueften Board auf COM7:
 
 ```sh
 python -m platformio run -d firmware -e SenseBox_Eye_companion_radio_ble_usb_wifi -t upload --upload-port COM7

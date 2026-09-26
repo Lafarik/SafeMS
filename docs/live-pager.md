@@ -55,7 +55,8 @@ Dieses Skript synchronisiert die separate Kiosk-Uhr vom Rechner, fuehrt die
 Parser/JSON/Verlauf-Pruefungen direkt auf dem ESP32 aus und liest den echten
 Meldungsspeicher. Eine erfolgreiche normale MeshCore-Zeitsynchronisierung
 synchronisiert ebenfalls die Kiosk-Uhr. USB-Erweiterungen: 112 + uint32 LE UTC
-setzt die Zeit; 113 + uint16 LE Offset liest JSON in 220-Byte-Bloecken;
+setzt die Zeit; 113 + uint16 LE Offset liest JSON in bis zu 171-Byte-Bloecken
+(176-Byte-MeshCore-Frame abzueglich fuenf Headerbytes);
 114 liefert eine uint32 LE Test-Fehlerbitmap (0 = alle bestanden).
 Die Diagnose veroeffentlicht keine erfundenen Meldungen und sendet keinen Funk.
 
@@ -65,11 +66,30 @@ des Verlaufs nicht doppelt angezeigt. Die letzten acht Meldungen bleiben im RAM,
 neueste zuerst; ein Neustart leert diesen Verlauf. Eine begrenzte Queue entkoppelt
 den Funkempfang vom HTTP-Server. Ueberlast wird unter `/api/status` gezaehlt.
 
-`GET /api/messages` liefert dasselbe JSON. WebSocket-Clients koennen mit dem
-Text `refresh` einen neuen Snapshot anfordern, aber keine Meldungen einspeisen.
-Die PWA verbindet sich nach Verbindungsabbruch erneut und kennzeichnet den
-letzten Stand bis dahin als nicht aktuell. Auf der Box wird kein Demo-Feed
-als Live-Meldung gezeigt. Die oeffentliche HTTPS-PWA behaelt ihre BLE-Funktion.
+`GET /api/messages` liefert dasselbe JSON. Der offizielle WebSocket-Client aus
+`notfall-ms/pwa` fordert mit `{"type":"get_messages"}` einen neuen Snapshot an.
+Der bisherige Textbefehl `refresh` bleibt kompatibel. Meldungen lassen sich
+ueber diesen Endpunkt nicht einspeisen.
+
+Nach erfolgreicher lokaler Speicherung sendet der PWA-Client Empfangsbestaetigungen:
+
+```json
+{"messageId":"msg-<32 Hexzeichen>","deviceId":"pwa-<UUID>","status":"received","timestamp":"2026-09-26T10:18:40.123Z"}
+```
+
+Die Box akzeptiert diese ACKs ohne Antwort und ohne LoRa-Weiterleitung. Sie
+speichert damit keine Teilnehmerliste und bestaetigt keine Zustellung an den
+Krisenstab. Ein ACK besagt auch nicht, dass eine Person die Meldung gelesen hat.
+Eingehende WebSocket-Nutzdaten sind auf 512 Bytes begrenzt und werden geprueft.
+
+Auf der Box nutzt die PWA den offiziellen WebSocket-Client automatisch mit
+der Adresse des aktuellen WLAN-Kiosks. Sie verbindet sich nach einem Abbruch
+erneut und zeigt bis dahin den letzten empfangenen Stand als nicht aktuell.
+Ein leerer neuer Snapshot entfernt alte Meldungen aus der Live-Anzeige. Kann
+der Browser nichts lokal speichern, bleibt der Live-Empfang im RAM nutzbar;
+es werden dann keine Speicherbestaetigungen gesendet. Auf der Box wird kein
+Demo-Feed als Live-Meldung gezeigt. Der normale PWA-Betrieb ausserhalb des
+Kiosks behaelt die offizielle Transportauswahl mit Bluetooth und WebSocket.
 
 ## WLAN-QR auf dem OLED
 

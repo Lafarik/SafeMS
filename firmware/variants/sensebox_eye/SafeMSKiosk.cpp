@@ -7,6 +7,7 @@
 #include <SafeMSWebAssets.h>
 #include "SafeMSFeed.h"
 #include "SafeMSFeedSelfTest.h"
+#include "SafeMSWebSocketProtocol.h"
 #include <esp_timer.h>
 #include <mbedtls/sha256.h>
 #include <freertos/queue.h>
@@ -78,14 +79,20 @@ esp_err_t websocketHandler(httpd_req_t* request) {
   }
   httpd_ws_frame_t frame = {};
   if (httpd_ws_recv_frame(request, &frame, 0) != ESP_OK) return ESP_FAIL;
-  // Browsers may only request the current snapshot with a bounded text "refresh".
-  if (frame.type != HTTPD_WS_TYPE_TEXT || !frame.final || frame.len > 16) return ESP_FAIL;
-  uint8_t payload[17] = {};
+  // Read-only PWA requests and acknowledgements; no commands reach the mesh.
+  if (frame.type != HTTPD_WS_TYPE_TEXT || !frame.final || !frame.len ||
+      frame.len > SafeMSWebSocketProtocol::MaxPayload) return ESP_FAIL;
+  uint8_t payload[SafeMSWebSocketProtocol::MaxPayload + 1] = {};
   frame.payload = payload;
-  if (httpd_ws_recv_frame(request, &frame, 16) != ESP_OK) return ESP_FAIL;
-  if (frame.len != 7 || memcmp(payload,"refresh",7)) return ESP_FAIL;
-  sendSnapshot(reinterpret_cast<void*>(intptr_t(httpd_req_to_sockfd(request))));
-  return ESP_OK;
+  if (httpd_ws_recv_frame(request, &frame, SafeMSWebSocketProtocol::MaxPayload) != ESP_OK) return ESP_FAIL;
+  const auto action = SafeMSWebSocketProtocol::parse(reinterpret_cast<const char*>(payload), frame.len);
+  if (action == SafeMSWebSocketProtocol::Action::Snapshot) {
+    sendSnapshot(reinterpret_cast<void*>(intptr_t(httpd_req_to_sockfd(request))));
+    return ESP_OK;
+  }
+  // Do not answer ACKs: another snapshot would provoke another ACK from clients.
+  // These confirmations are deliberately not stored, published, or sent by radio.
+  return action == SafeMSWebSocketProtocol::Action::Acknowledgement ? ESP_OK : ESP_FAIL;
 }
 
 esp_err_t statusHandler(httpd_req_t* request) {

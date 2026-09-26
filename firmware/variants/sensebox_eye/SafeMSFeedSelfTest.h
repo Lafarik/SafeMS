@@ -1,5 +1,53 @@
 #pragma once
 #include "SafeMSFeed.h"
+#include "SafeMSWebSocketProtocol.h"
+
+inline bool safeMSWebSocketProtocolSelfTest() {
+  using SafeMSWebSocketProtocol::Action;
+  bool passed = true;
+  auto check = [&](const std::string& input, Action expected) {
+    if (SafeMSWebSocketProtocol::parse(input.data(), input.size()) != expected) passed = false;
+  };
+  const std::string request = "{\"type\":\"get_messages\"}";
+  const std::string ack = "{\"messageId\":\"msg-123\",\"deviceId\":\"pwa-11f03e84-23d1-4731-beb2-b7d28ecdbb0b\",\"status\":\"received\",\"timestamp\":\"2026-09-26T12:10:53.027Z\"}";
+  check("refresh", Action::Snapshot);
+  check(request, Action::Snapshot);
+  check(" \t{ \"type\" : \"get_messages\" }\r\n", Action::Snapshot);
+  check(ack, Action::Acknowledgement);
+  check("{\"timestamp\":\"2024-02-29T00:00:00.000Z\",\"status\":\"received\",\"deviceId\":\"pwa-test\",\"messageId\":\"msg-1\"}", Action::Acknowledgement);
+  check("", Action::Invalid);
+  check("refresh ", Action::Invalid);
+  check("{\"type\":\"get_messages\",\"extra\":1}", Action::Invalid);
+  check("{\"type\":\"get_messages\",\"type\":\"get_messages\"}", Action::Invalid);
+  check("{\"type\":1}", Action::Invalid);
+  check("{\"type\":\"publish\"}", Action::Invalid);
+  check("{\"type\":\"get_messages\"", Action::Invalid);
+  check(request + "x", Action::Invalid);
+  check(request + request, Action::Invalid);
+  check(request + std::string(1, '\0'), Action::Invalid);
+  check("{\"type\":\"get_messages\\u0000hidden\"}", Action::Invalid);
+  check("{\"type\\u0000hidden\":\"get_messages\"}", Action::Invalid);
+  check("{\"type\":{\"type\":\"get_messages\"}}", Action::Invalid);
+  check("[" + request + "]", Action::Invalid);
+  check(request + std::string(SafeMSWebSocketProtocol::MaxPayload-request.size(), ' '), Action::Snapshot);
+  check(request + std::string(SafeMSWebSocketProtocol::MaxPayload-request.size()+1, ' '), Action::Invalid);
+  const std::string longAckPrefix = "{\"messageId\":\"";
+  const std::string ackSuffix = "\",\"deviceId\":\"pwa-test\",\"status\":\"received\",\"timestamp\":\"2026-09-26T12:10:53.027Z\"}";
+  check(longAckPrefix + std::string(128, 'x') + ackSuffix, Action::Acknowledgement);
+  check(longAckPrefix + std::string(129, 'x') + ackSuffix, Action::Invalid);
+  check(longAckPrefix + ackSuffix, Action::Invalid);
+  check("{\"messageId\":\"msg-1\",\"deviceId\":\"" + std::string(129, 'x') +
+    "\",\"status\":\"received\",\"timestamp\":\"2026-09-26T12:10:53.027Z\"}", Action::Invalid);
+  check("{\"messageId\":1,\"deviceId\":\"pwa-test\",\"status\":\"received\",\"timestamp\":\"2026-09-26T12:10:53.027Z\"}", Action::Invalid);
+  check("{\"messageId\":\"msg-1\",\"messageId\":\"msg-2\",\"status\":\"received\",\"timestamp\":\"2026-09-26T12:10:53.027Z\"}", Action::Invalid);
+  check("{\"messageId\":\"msg-1\",\"deviceId\":\"pwa-test\",\"status\":\"sent\",\"timestamp\":\"2026-09-26T12:10:53.027Z\"}", Action::Invalid);
+  check("{\"messageId\":\"msg-1\",\"deviceId\":\"pwa-test\",\"status\":\"received\",\"timestamp\":\"2026-02-29T12:10:53.027Z\"}", Action::Invalid);
+  check("{\"messageId\":\"msg-1\",\"deviceId\":\"pwa-test\",\"status\":\"received\",\"timestamp\":\"2026-09-26T24:10:53.027Z\"}", Action::Invalid);
+  check("{\"messageId\":\"msg-1\",\"deviceId\":\"pwa-test\",\"status\":\"received\",\"timestamp\":\"today\"}", Action::Invalid);
+  check("{\"messageId\":\"msg-1\\u0000hidden\",\"deviceId\":\"pwa-test\",\"status\":\"received\",\"timestamp\":\"2026-09-26T12:10:53.027Z\"}", Action::Invalid);
+  check("{\"messageId\":\"msg-1\",\"deviceId\":\"pwa-\\ntest\",\"status\":\"received\",\"timestamp\":\"2026-09-26T12:10:53.027Z\"}", Action::Invalid);
+  return passed;
+}
 
 // Read-only USB diagnostics: exercise the same parser and serializer used on air.
 inline uint32_t safeMSFeedSelfTest() {
@@ -57,5 +105,7 @@ inline uint32_t safeMSFeedSelfTest() {
   const std::string longestTitle(96, 'T');
   check(parse("Krisenstab", ("title: " + longestTitle + " message: B").c_str(),a) &&
     !parse("Krisenstab", ("title: " + longestTitle + "T message: B").c_str(),a));
-  return failed; // 32 checks (some grouped edge cases); all uint32_t bits fit, zero means passed.
+  // Keep USB114's existing 32-bit response: bit31 also covers the read-only WS protocol.
+  if (!safeMSWebSocketProtocolSelfTest()) failed |= uint32_t(1) << 31;
+  return failed; // 32 diagnostic groups; zero means all feed and WebSocket checks passed.
 }

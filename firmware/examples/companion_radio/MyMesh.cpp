@@ -1246,10 +1246,14 @@ void MyMesh::handleCmdFrame(size_t len) {
     else writeErrFrame(ERR_CODE_ILLEGAL_ARG);
   } else if (cmd_frame[0] == 113 && len == 3) { // Read-only JSON feed, chunked for USB diagnostics
     uint16_t offset; memcpy(&offset,cmd_frame+1,2);
-    uint8_t reply[225] = {113};
-    uint16_t total = SafeMSKiosk::readFeed(offset,reinterpret_cast<char*>(reply+5),220);
+    constexpr uint16_t feedHeaderSize = 5;
+    static_assert(MAX_FRAME_SIZE > feedHeaderSize && MAX_FRAME_SIZE <= UINT16_MAX,
+      "Feed frames must fit both the serial transport and 16-bit chunk lengths");
+    constexpr uint16_t feedChunkSize = MAX_FRAME_SIZE - feedHeaderSize;
+    uint8_t reply[MAX_FRAME_SIZE] = {113};
+    uint16_t total = SafeMSKiosk::readFeed(offset,reinterpret_cast<char*>(reply+feedHeaderSize),feedChunkSize);
     memcpy(reply+1,&offset,2); memcpy(reply+3,&total,2);
-    _serial->writeFrame(reply,5+(offset < total ? std::min(220,int(total-offset)) : 0));
+    _serial->writeFrame(reply,feedHeaderSize+(offset < total ? std::min(feedChunkSize,uint16_t(total-offset)) : 0));
   } else if (cmd_frame[0] == 114 && len == 1) { // Read-only parser/serializer self-test
     uint8_t reply[5] = {114};
     uint32_t failed = SafeMSKiosk::feedSelfTest();

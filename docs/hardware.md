@@ -157,3 +157,34 @@ den aktuellen Flashinhalt. Backups koennen Schluessel oder WLAN-Daten enthalten.
 - Vor dem Update waren Pager und normale MeshCore-Nachrichtenqueue leer
   (RX 3 / TX 0 / RX-Fehler 0). Die fruehere Nachricht war nicht mehr abrufbar;
   eine neue Funknachricht ist fuer den Ende-zu-Ende-Test erforderlich.
+
+
+## Offizieller WebSocket-Client und nachgewiesener Funkempfang
+
+- Vor dem Update lag eine echte Krisenstab-Meldung im Box-Verlauf:
+  Titel `Stromausfall`, Text `Hier ist dick Stromausfall, Leute!!`,
+  Empfangszeit `2026-09-26T12:10:53.027Z`. Der Nutzer konnte auch
+  `/api/messages` am Handy aufrufen. Das bestaetigt Funkempfang und JSON-Verarbeitung.
+- Offizielle PWA auf Commit `45fd6cfc2917377c21a9bc271c1d62001892e168`
+  aktualisiert. Deren WebSocket-Client ersetzt den bisherigen separaten Client.
+  Die Firmware akzeptiert `get_messages`, Speicher-ACKs und weiterhin `refresh`.
+- 68 Jest-Tests in neun Pager-/Dokument-/Registrierungs-Suites bestanden.
+  Der gepackte Browserstand (Build `4ce7f57d99e9`) besteht den Protokolltest:
+  automatischer Start, Live-Push ohne Neuladen, aktueller leerer Snapshot,
+  manueller Abruf, Wiederverbindung und Speicherfehler ohne falsche ACKs.
+  Drei Dokumente, Original-Logo und Blackout-PDF (1.011.864 Bytes) funktionieren;
+  keine JavaScript-Fehler oder fehlenden Ressourcen. Dies ist ein Browsertest
+  mit simulierter WebSocket-Gegenstelle, kein neuer Hardware-Ende-zu-Ende-Test.
+- Vollstaendiger offizieller Quellbaum plus Patch rekonstruiert: 189 Dateien
+  einschliesslich des neuen Kiosk-Tests stimmen mit dem gebauten Stand ueberein.
+- USB-Feed-Diagnose korrigiert: maximal 171 Nutzdatenbytes pro 176-Byte-Frame.
+  Zuvor wurden groessere Antworten nach Eingang echter Meldungen verworfen.
+- Kombinierter Build: 101.572 Bytes statischer RAM, 3.860.301 Bytes Programm-Flash
+  (58,9 % der Anwendungs-Partition). Das 3.860.720-Byte-Image auf COM7
+  geschrieben und der Flash-Hash erfolgreich geprueft.
+- Alle Feed-/Parser-/Verlauf- und 33 neuen WebSocket-Protokollpruefungen
+  direkt auf dem ESP32 bestanden; Kiosk-UTC synchronisiert. Nach dem Flash
+  USB-Laufzeit 27/30 s, Fehlerflags 0, Queue 0, RX/TX/RX-Fehler 0.
+  Funkparameter, Bluetooth, WLAN-SSID und OLED-QR bleiben erhalten.
+- Der RAM-Meldungsspeicher ist nach dem Neustart leer. Der neue komplette Weg
+  Funk -> Firmware -> offizieller PWA-Client ist am Handy nochmals zu testen.
