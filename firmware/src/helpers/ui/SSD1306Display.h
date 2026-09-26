@@ -12,7 +12,7 @@
 #endif
 
 #ifndef DISPLAY_ADDRESS
-  #define DISPLAY_ADDRESS   0x3C
+  #define DISPLAY_ADDRESS   0x3D
 #endif
 
 class SSD1306Display : public DisplayDriver {

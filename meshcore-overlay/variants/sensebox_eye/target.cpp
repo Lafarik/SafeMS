@@ -12,6 +12,10 @@ ESP32RTCClock fallback_clock;
 AutoDiscoverRTCClock rtc_clock(fallback_clock);
 EnvironmentSensorManager sensors;
 
+#ifdef DISPLAY_CLASS
+  DISPLAY_CLASS display;
+#endif
+
 bool radio_init() {
   fallback_clock.begin();
   rtc_clock.begin(Wire);

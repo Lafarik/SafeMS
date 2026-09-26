@@ -22,10 +22,10 @@ bool SSD1306Display::begin() {
     if (_peripher_power) _peripher_power->claim();
     _isOn = true;
   }
+  return display.begin(SSD1306_SWITCHCAPVCC, DISPLAY_ADDRESS, true, false) && i2c_probe(Wire, DISPLAY_ADDRESS);
   #ifdef DISPLAY_ROTATION
   display.setRotation(DISPLAY_ROTATION);
   #endif
-  return display.begin(SSD1306_SWITCHCAPVCC, DISPLAY_ADDRESS, true, false) && i2c_probe(Wire, DISPLAY_ADDRESS);
 }
 
 void SSD1306Display::turnOn() {

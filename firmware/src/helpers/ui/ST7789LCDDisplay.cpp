@@ -5,7 +5,7 @@
 #endif
 
 #ifndef DISPLAY_ROTATION
-  #define DISPLAY_ROTATION 3
+  #define DISPLAY_ROTATION 2
 #endif
 
 #ifndef DISPLAY_SCALE_X
